@@ -1,0 +1,26 @@
+.cartWrapper::after {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  content: "";
+  height: 100%;
+  opacity: 0.15;
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url("https://1184592825.rsc.cdn77.org/main-files/uploads/2018/03/abandoned-cart-carritos-abandonados.jpg");
+}
+
+.cartWrapper > p {
+  color: black;
+  text-align: right;
+  padding-right: 40px;
+}
+
+.empty {
+  margin-top: 50px;
+  text-align: center;
+}

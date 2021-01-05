@@ -1,0 +1,41 @@
+.wrapper {
+  width: 300px;
+  margin: 20px;
+  height: 200px;
+  padding: 10px;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  border: 1px solid black;
+  justify-content: space-between;
+
+  h3 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  p {
+    color: gray;
+    font-size: 18px;
+  }
+
+  button {
+    width: 110px;
+    border: none;
+    outline: none;
+    color: white;
+    margin: 0 auto;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 10px;
+    background-color: gray;
+  }
+  
+  button:hover {
+    transform: scale(0.9);
+  }
+}
+
+.btn {
+  display: flex;
+}

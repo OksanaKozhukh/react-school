@@ -1,0 +1,45 @@
+h3 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+p {
+  color: gray;
+  font-size: 18px;
+}
+
+button {
+  width: 110px;
+  border: none;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 10px;
+  margin: 20px auto 0;
+  background-color: gray;
+}
+
+button:hover {
+  transform: scale(0.9);
+}
+
+.infoWrapper {
+  padding: 70px 0 0 40px;
+}
+
+.infoWrapper::after {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  content: "";
+  height: 100%;
+  opacity: 0.15;
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url("https://www.dynamiccio.com/wp-content/uploads/2020/02/ecoomerce.png");
+}
