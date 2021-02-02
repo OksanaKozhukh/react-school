@@ -1,19 +1,22 @@
-import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
+import { BOOK } from "book";
 import { BiCart } from "react-icons/bi";
-import { ProductContext } from "../../App";
-import { useHistory } from "react-router-dom";
+import { getTotalPrice } from "bus/cart/helpers";
+import { selectCartProducts } from "bus/cart/selectors";
 
 import "./styles.scss";
 
 const Header = () => {
-  const history = useHistory();
-  const { totalPrice  } = useContext(ProductContext);
-  
+  const cartProducts = useSelector(selectCartProducts);
+
   return (
     <div className="header">
-      <span>Total: {totalPrice} $</span>
-      <div><BiCart size={32} onClick={() => history.push("/cart")} /></div>
+      <span>Total: {getTotalPrice(cartProducts)} $</span>
+      <Link to={BOOK.CART}>
+        <BiCart size={32} className='icon'/>
+      </Link>
     </div>
   );
 };
