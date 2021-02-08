@@ -10,15 +10,14 @@ import "./styles.scss";
 const ProductItem = ({ item }) => {
   const dispatch = useDispatch();
 
-  const origin = item.origin[0].toUpperCase() + item.origin.slice(1);
-
-  const handleAddClick = (item) => dispatch(cartActions.addToCart(item));
+  const handleAddClick = (item) =>
+    dispatch(cartActions.addToCart({ ...item, quantity: 0 }));
 
   return (
     <div className="wrapper">
       <h3>{item.name}</h3>
       <div>
-        <p>Origin: {origin}</p>
+        <p>Origin: {item.origin}</p>
         <p>Price: $ {item.price}</p>
       </div>
       <div className="btn">

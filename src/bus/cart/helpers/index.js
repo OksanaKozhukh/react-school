@@ -1,1 +1,0 @@
-export { getTotalPrice } from './getTotalPrice';

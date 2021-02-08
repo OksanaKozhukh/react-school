@@ -1,15 +1,23 @@
-import { takeEvery } from "redux-saga/effects";
+import { takeLatest } from "redux-saga/effects";
 
 import { productActions } from "../actions";
-import { fetchProductListWorker, fetchProductItemWorker } from "./workers";
+import {
+  fetchProductListWorker,
+  fetchProductItemWorker,
+  filterProductListWorker,
+} from "./workers";
 
 export function* productWatcher() {
-  yield takeEvery(
+  yield takeLatest(
     [productActions.fetchProductList.request],
     fetchProductListWorker
   );
-  yield takeEvery(
+  yield takeLatest(
     [productActions.fetchProductItem.request],
     fetchProductItemWorker
+  );
+  yield takeLatest(
+    [productActions.filterProductList.request],
+    filterProductListWorker, 
   );
 }

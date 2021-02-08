@@ -3,19 +3,30 @@ import { useSelector } from "react-redux";
 
 import { BOOK } from "book";
 import { BiCart } from "react-icons/bi";
-import { getTotalPrice } from "bus/cart/helpers";
-import { selectCartProducts } from "bus/cart/selectors";
+import { selectTotalPrice } from "bus/cart/selectors";
+import FilterPerPage from "containers/Filters/FilterPerPage";
+import MinMaxPcice from "containers/Filters/FilterMinMaxPrice";
+import FilterByCountry from "containers/Filters/FilterByCountry";
 
 import "./styles.scss";
 
 const Header = () => {
-  const cartProducts = useSelector(selectCartProducts);
+  const total = useSelector(selectTotalPrice);
 
   return (
     <div className="header">
-      <span>Total: {getTotalPrice(cartProducts)} $</span>
+      <div className="pageFilter">
+        <FilterPerPage />
+      </div>
+      <div className="priceFilter">
+        <MinMaxPcice />
+      </div>
+      <div className="countryFilter">
+        <FilterByCountry />
+      </div>
+      <span className="total">Total: {total} $</span>
       <Link to={BOOK.CART}>
-        <BiCart size={32} className='icon'/>
+        <BiCart size={32} className="icon" />
       </Link>
     </div>
   );

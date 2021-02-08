@@ -1,33 +1,29 @@
-import uniq from "lodash/uniq";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { BOOK } from "book";
 import CartItem from "pages/CartItem";
-import { getTotalPrice } from "bus/cart/helpers";
-import { selectCartProducts } from "bus/cart/selectors";
+import { selectCartProducts, selectTotalPrice } from "bus/cart/selectors";
 
 import "./styles.scss";
 
 const Cart = () => {
+  const total = useSelector(selectTotalPrice);
   const cartProducts = useSelector(selectCartProducts);
 
-  const displayList = uniq(cartProducts);
-
-  return displayList.length > 0 ? (
+  return cartProducts.length > 0 ? (
     <div className="cartWrapper">
-      {displayList.map((item) => (
+      {cartProducts.map((item) => (
         <CartItem
           key={item.id}
           item={item}
-          quantity={cartProducts.filter((i) => i.id === item.id).length}
         />
       ))}
-      <div className='blockWrapper'>
-      <Link to={BOOK.PRODUCT_LIST}>
-        <button className=''>Back to purchase</button>
-      </Link>
-      <p>Total price: {getTotalPrice(cartProducts)} $</p>
+      <div className="blockWrapper">
+        <Link to={BOOK.PRODUCT_LIST}>
+          <button className="">Back to purchase</button>
+        </Link>
+        <p>Total price: {total} $</p>
       </div>
     </div>
   ) : (

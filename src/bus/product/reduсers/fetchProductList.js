@@ -7,6 +7,7 @@ const initialState = {
   error: false,
   loading: false,
   succeed: false,
+  totalItems: null,
 };
 
 const fetchProductListReducer = createReducer(initialState, {
@@ -18,7 +19,8 @@ const fetchProductListReducer = createReducer(initialState, {
       ...state,
       succeed: true,
       loading: false,
-      products: payload.data.items
+      products: payload.data.items,
+      totalItems: payload.data.totalItems,
   }),
   [productActions.fetchProductList.error]: (state, { payload }) => ({
       ...state,
