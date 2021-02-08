@@ -1,28 +1,33 @@
-import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-import CartItem from "../CartItem";
-import { ProductContext } from "../../App";
+import { BOOK } from "book";
+import CartItem from "pages/CartItem";
+import { selectCartProducts, selectTotalPrice } from "bus/cart/selectors";
 
 import "./styles.scss";
 
 const Cart = () => {
-  const { totalPrice, cartList } = useContext(ProductContext);
+  const total = useSelector(selectTotalPrice);
+  const cartProducts = useSelector(selectCartProducts);
 
-  const displayList = Array.from(new Set(cartList));
-
-  return displayList.length > 0 ? (
-    <div className='cartWrapper'>
-      {displayList.map((item) => (
+  return cartProducts.length > 0 ? (
+    <div className="cartWrapper">
+      {cartProducts.map((item) => (
         <CartItem
           key={item.id}
           item={item}
-          quantity={cartList.filter((i) => i.id === item.id).length}
         />
       ))}
-      <p>Total price: {totalPrice} $</p>
+      <div className="blockWrapper">
+        <Link to={BOOK.PRODUCT_LIST}>
+          <button className="">Back to purchase</button>
+        </Link>
+        <p>Total price: {total} $</p>
+      </div>
     </div>
   ) : (
-    <p className='empty'>Your cart is empty. Please, choose any product.</p>
+    <p className="empty">Your cart is empty. Please, choose any product.</p>
   );
 };
 

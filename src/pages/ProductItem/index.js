@@ -1,38 +1,37 @@
-import { useContext } from "react";
-import { useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
-import { ProductContext } from "../../App";
+import { BOOK } from "book";
+import { cartActions } from "bus/cart/actions";
 
 import "./styles.scss";
 
 const ProductItem = ({ item }) => {
-  const history = useHistory();
-  const { setTotalPrice, setCartList, cartList } = useContext(ProductContext);
+  const dispatch = useDispatch();
 
-  const origin = item.origin[0].toUpperCase() + item.origin.slice(1);
-
-  const handleDetailClick = (id) => {
-    history.push(`/product-info/${id}`);
-  };
-
-  const handleAddClick = (item) => {
-    setTotalPrice((prev) => prev + item.price);
-    setCartList([...cartList, item]);
-  };
+  const handleAddClick = (item) =>
+    dispatch(cartActions.addToCart({ ...item, quantity: 0 }));
 
   return (
     <div className="wrapper">
       <h3>{item.name}</h3>
       <div>
-        <p>Origin: {origin}</p>
+        <p>Origin: {item.origin}</p>
         <p>Price: $ {item.price}</p>
       </div>
       <div className="btn">
-        <button onClick={() => handleDetailClick(item.id)}>Details</button>
+        <Link to={BOOK.PRODUCT_ITEM.replace(":id", item.id)}>
+          <button>Details</button>
+        </Link>
         <button onClick={() => handleAddClick(item)}>Add to cart</button>
       </div>
     </div>
   );
+};
+
+ProductItem.propTypes = {
+  item: PropTypes.object,
 };
 
 export default ProductItem;
