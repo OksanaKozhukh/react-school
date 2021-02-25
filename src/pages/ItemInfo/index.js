@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectProductItem } from "bus/product/selectors";
 import Header from "components/Header";
 
-import "./styles.scss";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { cartActions } from "bus/cart/actions";
 import { productActions } from "bus/product/actions";
+
+import styles from"./styles.module.scss";
 
 const ItemInfo = () => {
   const { id } = useParams();
@@ -26,7 +27,7 @@ const ItemInfo = () => {
     <>
       <Header />
 
-      <div className="infoWrapper">
+      <div className={styles.infoWrapper}>
         <h2> {item.name}</h2>
         <p>Origin: {item.origin}</p>
         <p>Price: $ {item.price}</p>

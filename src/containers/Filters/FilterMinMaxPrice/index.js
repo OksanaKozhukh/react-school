@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 
 import { productActions } from "bus/product/actions";
 
-import "./styles.scss";
+import styles from "./styles.module.scss";
 
 const MinMaxPcice = () => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ const MinMaxPcice = () => {
     dispatch(productActions.filterProductList.request());
   };
   return (
-    <div className='priceRange'>
+    <div className={styles.priceRange}>
       <input
         type="text"
         name="minPrice"

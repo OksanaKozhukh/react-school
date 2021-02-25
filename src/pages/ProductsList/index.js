@@ -13,7 +13,7 @@ import {
   selectFilteredProductListLoading,
 } from "bus/product/selectors";
 
-import "./styles.scss";
+import styles from "./styles.module.scss";
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ const ProductList = () => {
         <Loader />
       ) : (
         <>
-          <div className="productsWrapper">
+          <div className={styles.productsWrapper}>
             {list.map((item) => (
               <ProductItem key={item.id} item={item} />
             ))}

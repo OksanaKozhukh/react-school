@@ -1,0 +1,54 @@
+.wrapper {
+  width: 500px;
+  height: 400px;
+  display: flex;
+  padding: 30px;
+  border-radius: 12px;
+  flex-direction: column;
+  border: 1px solid gray;
+  background-color: white;
+
+  input {
+    outline: none;
+    height: 30px;
+    width: 480px;
+    font-size: 16px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-family: "Times New Roman";
+    border: 1px solid lightgray;
+  }
+  .error {
+    color: red;
+    font-style: 12px;
+  }
+
+  button {
+    width: 60px;
+    cursor: pointer;
+    font-size: 22px;
+    margin-top: 80px;
+    align-self: center;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  p {
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 20px;
+    margin-bottom: 40px;
+  }
+
+  .icon {
+    cursor: pointer;
+  }
+}
+
+.field {
+  margin-bottom: 30px;
+}

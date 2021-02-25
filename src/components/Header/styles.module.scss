@@ -1,0 +1,72 @@
+.header {
+  width: 100%;
+  height: auto;
+  display: flex;
+  position: fixed;
+  padding: 20px 0;
+  align-items: center;
+  padding-right: 20px;
+  background-color: gray;
+  justify-content: space-between;
+
+  button {
+    border: none;
+    outline: none;
+    background-color: gray;
+    
+    .icon {
+      color: white;
+      cursor: pointer;
+      margin-left: 20px;
+    }
+  }
+}
+
+.filter {
+  display: flex;
+  justify-content: flex-end;
+
+  .pageFilter {
+    width: 180px;
+    margin-right: 20px;
+  }
+
+  .countryFilter {
+    width: 370px;
+  }
+
+  .priceFilter {
+    input {
+      border: none;
+      outline: none;
+      height: 36px;
+      width: 70px;
+      font-size: 16px;
+      padding: 1px 8px;
+      border-radius: 4px;
+      margin-right: 20px;
+      font-family: "Times New Roman";
+
+      ::placeholder {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+.cart {
+  display: flex;
+  align-items: center;
+
+  .total {
+    margin: 0 20px;
+    color: white;
+    font-size: 20px;
+  }
+
+  .icon {
+    color: white;
+    cursor: pointer;
+    margin-right: 20px;
+  }
+}

@@ -1,0 +1,44 @@
+.wrapper {
+  width: 300px;
+  margin: 20px;
+  height: 200px;
+  padding: 10px;
+  display: flex;
+  text-align: center;
+  border-radius: 15px;
+  flex-direction: column;
+  border: 2px solid darkgray;
+  justify-content: space-between;
+
+  h3 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  p {
+    color: gray;
+    font-size: 18px;
+    padding-bottom: 20px;
+  }
+
+  .btn {
+    display: flex;
+    justify-content: space-around;
+
+    button {
+      margin: 0;
+      width: 110px;
+      border: none;
+      outline: none;
+      color: white;
+      cursor: pointer;
+      font-size: 18px;
+      border-radius: 10px;
+      background-color: gray;
+    }
+
+    button:hover {
+      transform: scale(0.9);
+    }
+  }
+}

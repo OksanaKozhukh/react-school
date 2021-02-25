@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectFilterOptions, selectTotalItems } from "bus/product/selectors";
 import { productActions } from "bus/product/actions";
 
-import "./styles.scss";
+import styles from "./styles.module.scss";
 
 const Pagination = () => {
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const Pagination = () => {
   };
 
   return (
-    <ul className="pageNumbers">
+    <ul className={styles.pageNumbers}>
       {pageNumbers.includes(currentPage - 1) && (
         <li onClick={() => changeCurrentPage(currentPage - 1)}>Prev</li>
       )}

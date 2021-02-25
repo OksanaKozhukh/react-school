@@ -1,31 +1,31 @@
-h3 {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-p {
-  color: gray;
-  font-size: 18px;
-}
-
-button {
-  width: 110px;
-  border: none;
-  outline: none;
-  color: white;
-  cursor: pointer;
-  font-size: 18px;
-  border-radius: 10px;
-  margin: 20px auto 0;
-  background-color: gray;
-}
-
-button:hover {
-  transform: scale(0.9);
-}
-
 .infoWrapper {
   padding: 70px 0 0 40px;
+
+  button {
+    width: 110px;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 10px;
+    margin: 20px auto 0;
+    background-color: gray;
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  p {
+    color: gray;
+    font-size: 18px;
+  }
+
+  button:hover {
+    transform: scale(0.9);
+  }
 }
 
 .infoWrapper::after {

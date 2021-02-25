@@ -3,6 +3,7 @@ import { createReducer } from "@reduxjs/toolkit";
 import { productActions } from "bus/product/actions";
 
 const initialState = {
+  origins: [],
   products: [],
   error: false,
   loading: false,
@@ -22,6 +23,10 @@ const fetchProductListReducer = createReducer(initialState, {
       products: payload.data.items,
       totalItems: payload.data.totalItems,
   }),
+  [productActions.fetchOrigins.success]: (state, { payload }) => ({
+    ...state,
+   origins: payload.data.items,
+}),
   [productActions.fetchProductList.error]: (state, { payload }) => ({
       ...state,
       error: payload.error.code

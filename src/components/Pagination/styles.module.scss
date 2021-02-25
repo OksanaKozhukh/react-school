@@ -1,17 +1,17 @@
 .pageNumbers {
-  list-style: none;
+  margin: 0;
   display: flex;
+  padding: 20px 0;
+  list-style: none;
   justify-content: center;
   background-color: gray;
-  margin: 0;
-  padding: 20px 0;
 
   li {
-    margin-right: 0.6em;
     color: white;
-    user-select: none;
     cursor: pointer;
     font-size: 18px;
+    user-select: none;
+    margin-right: 0.6em;
   }
 
   li:hover {

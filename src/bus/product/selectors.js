@@ -1,5 +1,5 @@
-import { createSelector } from "@reduxjs/toolkit";
 import get from "lodash/get";
+import { createSelector } from "@reduxjs/toolkit";
 
 // PRODUCT LIST
 
@@ -14,9 +14,8 @@ export const selectProductListLoading = createSelector(
   (state) => get(state, "loading")
 );
 
-export const selectTotalItems = createSelector(
-  [selectProductState],
-  (state) => get(state, 'totalItems')
+export const selectTotalItems = createSelector([selectProductState], (state) =>
+  get(state, "totalItems")
 );
 
 // PRODUCT ITEM
@@ -45,4 +44,10 @@ export const selectFilteredProductListLoading = createSelector(
 export const selectFilterOptions = createSelector(
   [selectFilteredState],
   (state) => get(state, "options")
+);
+
+// ORIGINS
+
+export const selectOrigins = createSelector(selectProductState, (state) =>
+  get(state, "origins")
 );
