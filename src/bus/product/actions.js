@@ -21,6 +21,12 @@ export const productActions = {
     success: createAction(`${actionType}/FILTER_PRODUCT_LIST_SUCCESS`),
     error: createAction(`${actionType}/FILTER_PRODUCT_LIST_ERROR`),
   },
+  filterMyProductList: {
+    request: createAction(`${actionType}/FILTER_MY_PRODUCT_LIST_REQUEST`),
+    start: createAction(`${actionType}/FILTER_MY_PRODUCT_LIST_START`),
+    success: createAction(`${actionType}/FILTER_MY_PRODUCT_LIST_SUCCESS`),
+    error: createAction(`${actionType}/FILTER_MY_PRODUCT_LIST_ERROR`),
+  },
   filterOptions: createAction(`${actionType}/FILTER_OPTIONS`),
   fetchOrigins: {
     request: createAction(`${actionType}/FETCH_ORIGINS_REQUEST`),

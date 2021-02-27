@@ -1,18 +1,25 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { BOOK } from "book";
+import { MODALS_NAMES } from "constants/index";
 import { cartActions } from "bus/cart/actions";
+import { modalsActions } from "bus/modals/actions";
+import { selectGeneralList } from "bus/list/selector";
 
 import styles from "./styles.module.scss";
 
 const ProductItem = ({ item }) => {
   const dispatch = useDispatch();
+  const isGeneralList = useSelector(selectGeneralList);
+
+  const getOriginName = (el) => el[0].toUpperCase() + el.slice(1);
 
   const handleAddClick = (item) =>
     dispatch(cartActions.addToCart({ ...item, quantity: 0 }));
-    const getOriginName = el => el[0].toUpperCase() + el.slice(1);
+
+  const handleEditClick = () => dispatch(modalsActions.openModal(MODALS_NAMES.ADD_PRODUCT))
 
   return (
     <div className={styles.wrapper}>
@@ -25,7 +32,11 @@ const ProductItem = ({ item }) => {
         <Link to={BOOK.PRODUCT_ITEM.replace(":id", item.id)}>
           <button>Details</button>
         </Link>
-        <button onClick={() => handleAddClick(item)}>Add to cart</button>
+        {isGeneralList ? (
+          <button onClick={() => handleAddClick(item)}>Add to cart</button>
+        ) : (
+          <button onClick={handleEditClick}>Edit</button>
+        )}
       </div>
     </div>
   );

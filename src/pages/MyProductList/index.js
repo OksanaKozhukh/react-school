@@ -1,25 +1,21 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
+import Pagination from "components/Pagination";
+import ProductItem from "pages/ProductItem";
+
 import Header from "components/Header";
 import Loader from "components/Loader";
-import ProductItem from "pages/ProductItem";
-import Pagination from "components/Pagination";
 import { useListInfo } from "bus/product/hooks";
 import { productActions } from "bus/product/actions";
-import { defineListActions } from "bus/list/actions";
 
 import styles from "./styles.module.scss";
 
-const ProductList = () => {
+const MyProductList = () => {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(defineListActions.setGeneralList());
-    dispatch(productActions.fetchProductList.request());
-    return () => dispatch(defineListActions.clearGeneralList());
-  }, [dispatch]);
-
+  useEffect(() => dispatch(productActions.fetchProductList.request()), [
+    dispatch,
+  ]);
   const { loading, list } = useListInfo();
 
   return (
@@ -41,4 +37,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default MyProductList;
