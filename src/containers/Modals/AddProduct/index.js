@@ -11,6 +11,7 @@ import { selectOrigins } from "bus/product/selectors";
 import { addProduct } from "./shape";
 
 import styles from "./styles.module.scss";
+
 const AddProduct = () => {
   const dispatch = useDispatch();
   const handleCloseModal = () => dispatch(modalsActions.closeModal());

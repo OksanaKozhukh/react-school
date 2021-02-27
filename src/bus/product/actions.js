@@ -39,5 +39,12 @@ export const productActions = {
     start: createAction(`${actionType}/ADD_NEW_PRODUCT_START`),
     success: createAction(`${actionType}/ADD_NEW_PRODUCT_SUCCESS`),
     error: createAction(`${actionType}/ADD_NEW_PRODUCT_ERROR`),
-  }
+  },
+  editProduct: {
+    request: createAction(`${actionType}/EDIT_PRODUCT_REQUEST`),
+    start: createAction(`${actionType}/EDIT_PRODUCT_START`),
+    success: createAction(`${actionType}/EDIT_PRODUCT_SUCCESS`),
+    error: createAction(`${actionType}/EDIT_PRODUCT_ERROR`),
+  },
+  selectProductForEdit: createAction(`${actionType}/SELECT_PRODUCT_FOR_EDIT`),
 };

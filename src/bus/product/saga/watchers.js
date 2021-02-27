@@ -2,6 +2,7 @@ import { takeLatest } from "redux-saga/effects";
 
 import { productActions } from "../actions";
 import {
+  editProductWorker,
   fetchOriginsWorker,
   addNewProductWorker,
   fetchProductListWorker,
@@ -22,6 +23,7 @@ export function* productWatcher() {
     [productActions.filterProductList.request],
     filterProductListWorker
   );
+  yield takeLatest([productActions.editProduct.request], editProductWorker);
   yield takeLatest([productActions.fetchOrigins.request], fetchOriginsWorker);
   yield takeLatest([productActions.addNewProduct.request], addNewProductWorker);
 }

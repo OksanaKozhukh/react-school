@@ -1,9 +1,7 @@
 .productsWrapper {
-    display: flex;
-    flex-wrap: wrap;
-    padding-top: 70px;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(to right, lightblue, lightgray);
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  padding: 70px 0;
+  align-items: center;
+  justify-content: center;
+}

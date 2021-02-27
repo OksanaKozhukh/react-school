@@ -8,7 +8,7 @@ import { selectGeneralList } from "bus/list/selector";
 const fetchProductList = (isGeneral) => {
   return axios({
     method: "get",
-    url:API.PRODUCT.FETCH_PRODUCT_LIST,
+    url:API.PRODUCT.PRODUCT_LIST,
     ...(!isGeneral && { params: {
       editable:true
     }}),

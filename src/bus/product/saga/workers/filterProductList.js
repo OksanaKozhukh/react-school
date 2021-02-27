@@ -9,7 +9,7 @@ import { selectFilterOptions } from "bus/product/selectors";
 const fetchFilterList = (params, isGeneral) => {
   return axios({
     method: "get",
-    url: API.PRODUCT.FETCH_PRODUCT_LIST,
+    url: API.PRODUCT.PRODUCT_LIST,
     params,
     ...(!isGeneral && {
       headers: {

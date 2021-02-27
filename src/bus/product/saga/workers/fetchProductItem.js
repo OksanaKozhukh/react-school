@@ -7,7 +7,7 @@ import { productActions } from "bus/product/actions";
 const fetchProductItem = id => {
   return axios({
     method: "get",
-    url: API.PRODUCT.FETCH_PRODUCT_ITEM.replace(':id', id),
+    url: API.PRODUCT.PRODUCT_ITEM.replace(':id', id),
   });
 };
 

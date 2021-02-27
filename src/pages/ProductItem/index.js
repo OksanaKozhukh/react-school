@@ -9,6 +9,7 @@ import { modalsActions } from "bus/modals/actions";
 import { selectGeneralList } from "bus/list/selector";
 
 import styles from "./styles.module.scss";
+import { productActions } from "bus/product/actions";
 
 const ProductItem = ({ item }) => {
   const dispatch = useDispatch();
@@ -19,7 +20,10 @@ const ProductItem = ({ item }) => {
   const handleAddClick = (item) =>
     dispatch(cartActions.addToCart({ ...item, quantity: 0 }));
 
-  const handleEditClick = () => dispatch(modalsActions.openModal(MODALS_NAMES.ADD_PRODUCT))
+  const handleEditClick = (item) => {
+    dispatch(modalsActions.openModal(MODALS_NAMES.EDIT_PRODUCT));
+    dispatch(productActions.selectProductForEdit(item));
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -35,7 +39,7 @@ const ProductItem = ({ item }) => {
         {isGeneralList ? (
           <button onClick={() => handleAddClick(item)}>Add to cart</button>
         ) : (
-          <button onClick={handleEditClick}>Edit</button>
+          <button onClick={() => handleEditClick(item)}>Edit</button>
         )}
       </div>
     </div>

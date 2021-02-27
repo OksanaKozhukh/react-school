@@ -51,3 +51,11 @@ export const selectFilterOptions = createSelector(
 export const selectOrigins = createSelector(selectProductState, (state) =>
   get(state, "origins")
 );
+
+// EDIT
+
+const selectEditState = (state) => get(state, "edit");
+
+export const selectCurrentProduct = createSelector([selectEditState], (state) =>
+  get(state, "currentProduct")
+);
