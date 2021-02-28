@@ -1,10 +1,12 @@
+import styles from './styles.module.scss';
+
 const Loader = () => (
-  <div className="loading">
-    <div className="dot"></div>
-    <div className="dot"></div>
-    <div className="dot"></div>
-    <div className="dot"></div>
-    <div className="dot"></div>
+  <div className={styles.loading}>
+    <div className={styles.dot}></div>
+    <div className={styles.dot}></div>
+    <div className={styles.dot}></div>
+    <div className={styles.dot}></div>
+    <div className={styles.dot}></div>
   </div>
 );
 

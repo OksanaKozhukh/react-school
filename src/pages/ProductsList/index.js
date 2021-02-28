@@ -1,34 +1,26 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import Header from "components/Header";
 import Loader from "components/Loader";
 import ProductItem from "pages/ProductItem";
 import Pagination from "components/Pagination";
+import { useListInfo } from "bus/product/hooks";
 import { productActions } from "bus/product/actions";
-import {
-  selectProductList,
-  selectProductListLoading,
-  selectFilteredProductList,
-  selectFilteredProductListLoading,
-} from "bus/product/selectors";
+import { defineListActions } from "bus/list/actions";
 
-import "./styles.scss";
+import styles from "./styles.module.scss";
 
 const ProductList = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => dispatch(productActions.fetchProductList.request()), [
-    dispatch,
-  ]);
+  useEffect(() => {
+    dispatch(defineListActions.setGeneralList());
+    dispatch(productActions.fetchProductList.request());
+    return () => dispatch(defineListActions.clearGeneralList());
+  }, [dispatch]);
 
-  const productlist = useSelector(selectProductList);
-  const loadingList = useSelector(selectProductListLoading);
-  const filteredList = useSelector(selectFilteredProductList);
-  const loadingFilteredList = useSelector(selectFilteredProductListLoading);
-
-  const loading = loadingList || loadingFilteredList;
-  const list = filteredList.length > 0 ? filteredList : productlist;
+  const { loading, list } = useListInfo();
 
   return (
     <>
@@ -37,7 +29,7 @@ const ProductList = () => {
         <Loader />
       ) : (
         <>
-          <div className="productsWrapper">
+          <div className={styles.productsWrapper}>
             {list.map((item) => (
               <ProductItem key={item.id} item={item} />
             ))}

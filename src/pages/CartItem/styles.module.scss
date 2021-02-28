@@ -8,12 +8,12 @@
     color: black;
   }
   button {
-    background-color: white;
+    margin: 0;
+    padding: 0;
     color: black;
     border: none;
     outline: none;
-    margin: 0;
-    padding: 0;
+    background-color: white;
   }
 }
 
@@ -23,8 +23,8 @@
 }
 .quantityWrapper {
   width: 150px;
-  margin-right: 100px;
   display: flex;
+  margin-right: 100px;
   align-items: center;
 
   button:first-child {

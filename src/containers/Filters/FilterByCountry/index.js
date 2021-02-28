@@ -2,8 +2,6 @@ import Select from "react-select";
 import { useDispatch } from "react-redux";
 import { productActions } from "bus/product/actions";
 
-import "./styles.scss";
-
 const options = [
   { value: "europe", label: "Europe" },
   { value: "usa", label: "Usa" },
