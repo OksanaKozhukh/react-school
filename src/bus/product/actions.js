@@ -46,5 +46,12 @@ export const productActions = {
     success: createAction(`${actionType}/EDIT_PRODUCT_SUCCESS`),
     error: createAction(`${actionType}/EDIT_PRODUCT_ERROR`),
   },
+  deleteProduct: {
+    request: createAction(`${actionType}/DELETE_PRODUCT_REQUEST`),
+    start: createAction(`${actionType}/DELETE_PRODUCT_START`),
+    success: createAction(`${actionType}/DELETE_PRODUCT_SUCCESS`),
+    error: createAction(`${actionType}/DELETE_PRODUCT_ERROR`),
+  },
   selectProductForEdit: createAction(`${actionType}/SELECT_PRODUCT_FOR_EDIT`),
+  selectProductForDelete: createAction(`${actionType}/SELECT_PRODUCT_FOR_DELETE`),
 };

@@ -7,9 +7,18 @@
   text-align: center;
   border-radius: 15px;
   flex-direction: column;
-  background-color:#e1f5fe;
+  background-color: #e1f5fe;
   border: 2px solid darkgray;
   justify-content: space-between;
+
+  .nameWrapper {
+    margin-top: 0;
+  }
+
+  .icon {
+    cursor: pointer;
+    align-self: flex-end;
+  }
 
   h3 {
     font-size: 20px;

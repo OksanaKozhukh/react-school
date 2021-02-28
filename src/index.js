@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import createSagaMiddleware from "redux-saga";
+import { ToastContainer } from 'react-toastify';
 import { applyMiddleware, compose, createStore } from "redux";
 
 import App from "App";
@@ -9,7 +10,7 @@ import { rootSaga } from "rootSaga";
 import { rootReducer } from "rootReducer";
 import ModalsContainer from "containers/Modals";
 
-import "./index.scss";
+import "./index.module.scss";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -28,6 +29,7 @@ ReactDOM.render(
     <Provider store={store}>
       <App />
       <ModalsContainer />
+      <ToastContainer />
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")

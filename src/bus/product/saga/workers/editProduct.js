@@ -2,6 +2,7 @@ import axios from "axios";
 import { call, put } from "redux-saga/effects";
 
 import { API, apiKey } from "constants/index";
+import { toastActions } from "bus/toast/actions";
 import { productActions } from "bus/product/actions";
 
 const editProductRequest = (product, id) =>
@@ -19,6 +20,10 @@ export function* editProductWorker({ payload }) {
     const { product, id } = payload;
     yield call(() => editProductRequest(product, id));
     yield put(productActions.editProduct.success());
+
+    const message = "Product has been edited";
+    yield put(toastActions.showToast({ message }));
+
     yield put(productActions.fetchProductList.request());
   } catch (err) {
     yield put(productActions.editProduct.error(err));

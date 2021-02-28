@@ -1,0 +1,17 @@
+:global {
+  .Toastify__toast-container {
+    width: auto;
+    z-index: 1000;
+  }
+
+  .Toastify__toast {
+    width: 100%;
+    padding: 12px;
+    color: black;
+    min-height: auto;
+    border-radius: 12px;
+    background-color: #f3f8f9;
+    border: 1px solid lightgray;
+    box-shadow: 0 6px 16px 0 rgba(219, 231, 234, 0.55);
+  }
+}

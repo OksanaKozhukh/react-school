@@ -59,3 +59,11 @@ const selectEditState = (state) => get(state, "edit");
 export const selectCurrentProduct = createSelector([selectEditState], (state) =>
   get(state, "currentProduct")
 );
+
+// DELETE
+
+const selectDeleteState = (state) => get(state, "delete");
+
+export const selectProductId = createSelector([selectDeleteState], (state) =>
+  get(state, "id")
+);

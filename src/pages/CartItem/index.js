@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useDispatch } from "react-redux";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { AiOutlinePlusSquare } from "react-icons/ai";
@@ -36,5 +37,9 @@ const CartItem = ({ item }) => {
     </div>
   );
 };
+
+CartItem.propTypes = {
+  item: PropTypes.object,
+}
 
 export default CartItem;

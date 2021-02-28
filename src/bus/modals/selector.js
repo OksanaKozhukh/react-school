@@ -7,10 +7,6 @@ export const selectModalName = createSelector(selectModalState, (state) =>
   get(state, "name")
 );
 
-export const selectProductId = createSelector(selectModalState, (state) =>
-  get(state, "id")
-);
-
 export const selectIsModalOpened = createSelector(selectModalState, (state) =>
   get(state, "opened")
 );

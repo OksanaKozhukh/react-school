@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { GrFormClose } from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
 
 import { BOOK } from "book";
@@ -25,9 +26,22 @@ const ProductItem = ({ item }) => {
     dispatch(productActions.selectProductForEdit(item));
   };
 
+  const handleDeleteClick = id => {
+    dispatch(modalsActions.openModal(MODALS_NAMES.DELETE_PRODUCT));
+    dispatch(productActions.selectProductForDelete(id))
+  }
+
   return (
     <div className={styles.wrapper}>
-      <h3>{item.name}</h3>
+      {!isGeneralList && (
+        <GrFormClose
+          size={25}
+          className={styles.icon}
+          onClick={() => handleDeleteClick(item.id)}
+        />
+      )}
+      <h3 className={!isGeneralList && styles.nameWrapper}>{item.name}</h3>
+
       <div>
         <p>Origin: {getOriginName(item.origin)}</p>
         <p>Price: $ {item.price}</p>

@@ -21,8 +21,6 @@ const ItemInfo = () => {
 
   const handleAddClick = (item) => dispatch(cartActions.addToCart(item));;
 
-  // const origin = item.origin[0].toUpperCase() + item.origin.slice(1);
-
   return (
     <>
       <Header />
