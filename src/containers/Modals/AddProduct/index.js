@@ -16,7 +16,6 @@ import styles from "./styles.module.scss";
 const AddProduct = () => {
   const dispatch = useDispatch();
   const loading = useSelector(selectAddStateLoading);
-console.log(loading);
 
   useEffect(() => dispatch(productActions.fetchOrigins.request()), [dispatch]);
 
@@ -33,7 +32,6 @@ console.log(loading);
     onSubmit: ({ name, price, origin }) => {
       const product = { name, price, origin };
       dispatch(productActions.addNewProduct.request({ product }));
-      handleCloseModal();
     },
   });
 

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { call, put, select } from "redux-saga/effects";
+import { call, put, select, delay } from "redux-saga/effects";
 
 import { API, apiKey } from "constants/index";
 import { productActions } from "bus/product/actions";
@@ -20,6 +20,7 @@ const fetchFilterList = (params, isGeneral) => {
 };
 
 export function* filterProductListWorker() {
+  yield delay(1000);
   yield put(productActions.filterProductList.start());
   try {
     const isGenaralList = yield select(selectGeneralList);
