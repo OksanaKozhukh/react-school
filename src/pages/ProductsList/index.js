@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import Header from "components/Header";
-import Loader from "components/Loader";
+import MainLoader from "components/MainLoader";
 import ProductItem from "pages/ProductItem";
 import Pagination from "components/Pagination";
 import { useListInfo } from "bus/product/hooks";
@@ -26,7 +26,7 @@ const ProductList = () => {
     <>
       <Header />
       {loading ? (
-        <Loader />
+        <MainLoader />
       ) : (
         <>
           <div className={styles.productsWrapper}>

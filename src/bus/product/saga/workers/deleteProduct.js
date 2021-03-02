@@ -15,6 +15,7 @@ const deleteProductRequest = (id) =>
   });
 
 export function* deleteProductWorker({ payload }) {
+  yield put(productActions.deleteProduct.start());
   try {
     const { id } = payload;
     yield call(() => deleteProductRequest(id));

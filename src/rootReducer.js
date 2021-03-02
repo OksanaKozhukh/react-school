@@ -9,12 +9,14 @@ import deleteProductReducer from "bus/product/reduсers/deleteProduct";
 import fetchProductListReducer from "bus/product/reduсers/fetchProductList";
 import fetchProductItemReducer from "bus/product/reduсers/fetchProductItem";
 import filterProductListReducer from "bus/product/reduсers/filterProductList";
+import addNewProductReducer from "bus/product/reduсers/addNewProduct";
 
 export const rootReducer = combineReducers({
   cart: cartReducer,
   toast: toastReducer,
   modals: modalsReducer,
   edit: editProductReducer,
+  add: addNewProductReducer,
   delete: deleteProductReducer,
   defineList: defineListReducer,
   filter: filterProductListReducer,

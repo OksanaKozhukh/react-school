@@ -16,6 +16,7 @@ const addNewProductRequest = (product) =>
   });
 
 export function* addNewProductWorker({ payload }) {
+  yield put(productActions.addNewProduct.start());
   try {
     const { product } = payload;
     yield call(() => addNewProductRequest(product));

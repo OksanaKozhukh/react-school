@@ -20,6 +20,7 @@ const fetchFilterList = (params, isGeneral) => {
 };
 
 export function* filterProductListWorker() {
+  yield put(productActions.filterProductList.start());
   try {
     const isGenaralList = yield select(selectGeneralList);
     const paramsFilter = yield select(selectFilterOptions);

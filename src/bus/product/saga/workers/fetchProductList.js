@@ -21,6 +21,7 @@ const fetchProductList = (isGeneral) => {
 };
 
 export function* fetchProductListWorker() {
+  yield put(productActions.fetchProductList.start());
   try {
     const isGeneralList = yield select(selectGeneralList);
     const data = yield call(() => fetchProductList(isGeneralList));

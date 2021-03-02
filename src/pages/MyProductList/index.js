@@ -5,7 +5,7 @@ import Pagination from "components/Pagination";
 import ProductItem from "pages/ProductItem";
 
 import Header from "components/Header";
-import Loader from "components/Loader";
+import MainLoader from "components/MainLoader";
 import { useListInfo } from "bus/product/hooks";
 import { productActions } from "bus/product/actions";
 
@@ -22,7 +22,7 @@ const MyProductList = () => {
     <>
       <Header />
       {loading ? (
-        <Loader />
+        <MainLoader />
       ) : (
         <>
           <div className={styles.productsWrapper}>

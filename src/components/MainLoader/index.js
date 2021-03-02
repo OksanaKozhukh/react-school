@@ -1,6 +1,6 @@
-import styles from './styles.module.scss';
+import styles from "./styles.module.scss";
 
-const Loader = () => (
+const MainLoader = () => (
   <div className={styles.loading}>
     <div className={styles.dot}></div>
     <div className={styles.dot}></div>
@@ -10,4 +10,4 @@ const Loader = () => (
   </div>
 );
 
-export default Loader;
+export default MainLoader;

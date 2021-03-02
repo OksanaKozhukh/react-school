@@ -16,6 +16,7 @@ const editProductRequest = (product, id) =>
   });
 
 export function* editProductWorker({ payload }) {
+  yield put(productActions.editProduct.start());
   try {
     const { product, id } = payload;
     yield call(() => editProductRequest(product, id));
