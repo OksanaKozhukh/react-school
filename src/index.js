@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import { Router } from "react-router-dom";
 import createSagaMiddleware from "redux-saga";
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from "react-toastify";
 import { applyMiddleware, compose, createStore } from "redux";
 
 import App from "App";
+import history from "utils/history";
 import { rootSaga } from "rootSaga";
 import { rootReducer } from "rootReducer";
 import ModalsContainer from "containers/Modals";
@@ -25,12 +27,12 @@ const store = createStore(
 sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
+  <Provider store={store}>
+    <Router history={history}>
       <App />
       <ModalsContainer />
       <ToastContainer />
-    </Provider>
-  </React.StrictMode>,
+    </Router>
+  </Provider>,
   document.getElementById("root")
 );

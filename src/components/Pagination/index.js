@@ -1,27 +1,29 @@
+import qs from "query-string";
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectFilterOptions, selectTotalItems } from "bus/product/selectors";
 import { productActions } from "bus/product/actions";
+import { formUrlQuery } from "bus/product/helpers/formUrlQuery";
+import { selectTotalItems } from "bus/product/selectors";
 
 import styles from "./styles.module.scss";
 
 const Pagination = () => {
   const dispatch = useDispatch();
   const total = useSelector(selectTotalItems);
-  const options = useSelector(selectFilterOptions);
+  const options = qs.parse(window.location.search.substr(1));
 
-  const perPage = options.perPage;
-  const currentPage = options.page;
+  const perPage = options.perPage || 50;
+  const currentPage = options.page || 1;
 
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(total / perPage); i++) {
-    if (i >= currentPage - 2 && i <= currentPage + 2)
     pageNumbers.push(i);
   }
 
   const changeCurrentPage = (num) => {
-    dispatch(productActions.filterOptions({ 'page': num }));
-    dispatch(productActions.filterProductList.request());
+    const data = { 'page': num };
+    formUrlQuery(data);
+    dispatch(productActions.fetchProductList.request());
   };
 
   return (

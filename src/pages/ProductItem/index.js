@@ -1,21 +1,19 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { GrFormClose } from "react-icons/gr";
-import { useDispatch, useSelector } from "react-redux";
 
 import { BOOK } from "book";
 import { MODALS_NAMES } from "constants/index";
 import { cartActions } from "bus/cart/actions";
 import { modalsActions } from "bus/modals/actions";
-import { selectGeneralList } from "bus/list/selector";
 
 import styles from "./styles.module.scss";
 import { productActions } from "bus/product/actions";
 
 const ProductItem = ({ item }) => {
   const dispatch = useDispatch();
-  const isGeneralList = useSelector(selectGeneralList);
-
+  const pathname = window.location.pathname;
   const getOriginName = (el) => el[0].toUpperCase() + el.slice(1);
 
   const handleAddClick = (item) =>
@@ -26,21 +24,27 @@ const ProductItem = ({ item }) => {
     dispatch(productActions.selectProductForEdit(item));
   };
 
-  const handleDeleteClick = id => {
+  const handleDeleteClick = (id) => {
     dispatch(modalsActions.openModal(MODALS_NAMES.DELETE_PRODUCT));
-    dispatch(productActions.selectProductForDelete(id))
-  }
+    dispatch(productActions.selectProductForDelete(id));
+  };
 
   return (
     <div className={styles.wrapper}>
-      {!isGeneralList && (
+      {pathname === BOOK.MY_PRODUCT_LIST && (
         <GrFormClose
           size={25}
           className={styles.icon}
           onClick={() => handleDeleteClick(item.id)}
         />
       )}
-      <h3 className={!isGeneralList && styles.nameWrapper}>{item.name}</h3>
+      <h3
+        className={
+          pathname === BOOK.MY_PRODUCT_LIST ? styles.nameWrapper : null
+        }
+      >
+        {item.name}
+      </h3>
 
       <div>
         <p>Origin: {getOriginName(item.origin)}</p>
@@ -50,10 +54,10 @@ const ProductItem = ({ item }) => {
         <Link to={BOOK.PRODUCT_ITEM.replace(":id", item.id)}>
           <button>Details</button>
         </Link>
-        {isGeneralList ? (
-          <button onClick={() => handleAddClick(item)}>Add to cart</button>
-        ) : (
+        {pathname === BOOK.MY_PRODUCT_LIST ? (
           <button onClick={() => handleEditClick(item)}>Edit</button>
+        ) : (
+          <button onClick={() => handleAddClick(item)}>Add to cart</button>
         )}
       </div>
     </div>

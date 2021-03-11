@@ -25,6 +25,7 @@ const Header = () => {
       <button onClick={addProduct}>
         <CgAddR size={32} className={styles.icon} />
       </button>
+
       <div className={styles.filter}>
         <div className={styles.pageFilter}>
           <FilterPerPage />
@@ -36,6 +37,7 @@ const Header = () => {
           <FilterByCountry />
         </div>
       </div>
+      
       <div className={styles.cart}>
         <span className={styles.total}>Total: {total} $</span>
         <Link to={BOOK.CART}>

@@ -27,25 +27,6 @@ export const selectProductItem = createSelector(
   (state) => get(state, "product")
 );
 
-// FILTER
-
-export const selectFilteredState = (state) => get(state, "filter");
-
-export const selectFilteredProductList = createSelector(
-  [selectFilteredState],
-  (state) => get(state, "filteredList")
-);
-
-export const selectFilteredProductListLoading = createSelector(
-  [selectFilteredState],
-  (state) => get(state, "loading")
-);
-
-export const selectFilterOptions = createSelector(
-  [selectFilteredState],
-  (state) => get(state, "options")
-);
-
 // ORIGINS
 
 export const selectOrigins = createSelector(selectProductState, (state) =>

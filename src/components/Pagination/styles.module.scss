@@ -15,6 +15,10 @@
     font-size: 18px;
     user-select: none;
     margin-right: 0.6em;
+
+    .current {
+      color: black;
+    }
   }
 
   li:hover {

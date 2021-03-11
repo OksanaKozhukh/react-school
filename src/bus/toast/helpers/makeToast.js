@@ -10,8 +10,8 @@ export function makeToast(message, options) {
     closeOnClick: true,
     pauseOnHover: true,
     transition: Slide,
-    // autoClose: 4000,
-    draggable: true,
+    autoClose: 4000,
     ...options,
   });
 }
+

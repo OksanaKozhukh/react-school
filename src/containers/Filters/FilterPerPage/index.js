@@ -1,6 +1,8 @@
 import Select from "react-select";
 import { useDispatch } from "react-redux";
+
 import { productActions } from "bus/product/actions";
+import { formUrlQuery } from "bus/product/helpers/formUrlQuery";
 
 const options = [
   { value: "10", label: "10" },
@@ -13,8 +15,8 @@ const FilterPerPage = () => {
 
   const handleChange = (ev) => {
     const data = { 'perPage': ev.value };
-    dispatch(productActions.filterOptions(data));
-    dispatch(productActions.filterProductList.request());
+    formUrlQuery(data);
+    dispatch(productActions.fetchProductList.request());
   };
 
   return (

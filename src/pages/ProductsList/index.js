@@ -1,26 +1,26 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Header from "components/Header";
-import MainLoader from "components/MainLoader";
 import ProductItem from "pages/ProductItem";
 import Pagination from "components/Pagination";
-import { useListInfo } from "bus/product/hooks";
+import MainLoader from "components/MainLoader";
 import { productActions } from "bus/product/actions";
-import { defineListActions } from "bus/list/actions";
+import {
+  selectProductList,
+  selectProductListLoading,
+} from "bus/product/selectors";
 
 import styles from "./styles.module.scss";
 
 const ProductList = () => {
   const dispatch = useDispatch();
+  const list = useSelector(selectProductList);
+  const loading = useSelector(selectProductListLoading);
 
   useEffect(() => {
-    dispatch(defineListActions.setGeneralList());
     dispatch(productActions.fetchProductList.request());
-    return () => dispatch(defineListActions.clearGeneralList());
   }, [dispatch]);
-
-  const { loading, list } = useListInfo();
 
   return (
     <>
