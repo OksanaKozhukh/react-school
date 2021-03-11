@@ -1,6 +1,8 @@
 import Select from "react-select";
 import { useDispatch } from "react-redux";
+
 import { productActions } from "bus/product/actions";
+import { formUrlQuery } from "bus/product/helpers/formUrlQuery";
 
 const options = [
   { value: "europe", label: "Europe" },
@@ -12,10 +14,11 @@ const options = [
 const FilterByCountry = () => {
   const dispatch = useDispatch();
 
+
   const handleChange = (ev) => {
-    const data = {'origins' : ev.map((el) => el.value).join(",")};
-    dispatch(productActions.filterOptions(data));
-    dispatch(productActions.filterProductList.request());
+    const data = { origins: ev.map((el) => el.value).join(",") };
+    formUrlQuery(data);
+    dispatch(productActions.fetchProductList.request());
   };
 
   return (

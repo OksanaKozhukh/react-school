@@ -8,6 +8,7 @@ const fetchOrigins = () =>
   axios({ method: "get", url: API.PRODUCT.FETCH_ORIGINS });
 
 export function* fetchOriginsWorker() {
+  yield put(productActions.fetchOrigins.start());
   try {
     const data = yield call(fetchOrigins);
     yield put(productActions.fetchOrigins.success(data));

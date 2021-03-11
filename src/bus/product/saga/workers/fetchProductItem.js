@@ -12,6 +12,7 @@ const fetchProductItem = id => {
 };
 
 export function* fetchProductItemWorker({ payload }) {
+  yield put(productActions.fetchProductItem.start());
   try {
     const { id } = payload;
     const data = yield call(() => fetchProductItem(id));

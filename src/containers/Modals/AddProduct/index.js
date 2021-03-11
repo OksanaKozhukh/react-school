@@ -3,10 +3,11 @@ import { useEffect } from "react";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 
+import Button from "components/Button";
 import { GrFormClose } from "react-icons/gr";
 import { modalsActions } from "bus/modals/actions";
 import { productActions } from "bus/product/actions";
-import { selectOrigins } from "bus/product/selectors";
+import { selectOrigins, selectAddStateLoading } from "bus/product/selectors";
 
 import { addProduct } from "./shape";
 
@@ -14,9 +15,11 @@ import styles from "./styles.module.scss";
 
 const AddProduct = () => {
   const dispatch = useDispatch();
-  const handleCloseModal = () => dispatch(modalsActions.closeModal());
+  const loading = useSelector(selectAddStateLoading);
 
   useEffect(() => dispatch(productActions.fetchOrigins.request()), [dispatch]);
+
+  const handleCloseModal = () => dispatch(modalsActions.closeModal());
 
   const options = useSelector(selectOrigins).map((el) => ({
     value: el.value,
@@ -29,7 +32,6 @@ const AddProduct = () => {
     onSubmit: ({ name, price, origin }) => {
       const product = { name, price, origin };
       dispatch(productActions.addNewProduct.request({ product }));
-      handleCloseModal();
     },
   });
 
@@ -74,9 +76,11 @@ const AddProduct = () => {
           />
           <div className={styles.error}>{formik.errors.origins}</div>
         </div>
-        <button type="submit" disabled={!formik.dirty || !formik.isValid}>
-          Add
-        </button>
+        <Button
+          title="Add"
+          loading={loading}
+          disabled={!formik.dirty || !formik.isValid}
+        />
       </div>
     </form>
   );

@@ -3,6 +3,7 @@ import { call, put } from "redux-saga/effects";
 
 import { API, apiKey } from "constants/index";
 import { toastActions } from "bus/toast/actions";
+import { modalsActions } from "bus/modals/actions";
 import { productActions } from "bus/product/actions";
 
 const deleteProductRequest = (id) =>
@@ -15,6 +16,7 @@ const deleteProductRequest = (id) =>
   });
 
 export function* deleteProductWorker({ payload }) {
+  yield put(productActions.deleteProduct.start());
   try {
     const { id } = payload;
     yield call(() => deleteProductRequest(id));
@@ -23,6 +25,7 @@ export function* deleteProductWorker({ payload }) {
     const message = "Product has been deleted";
     yield put(toastActions.showToast({ message }));
 
+    yield put(modalsActions.closeModal());
     yield put(productActions.fetchProductList.request());
   } catch (err) {
     yield put(productActions.deleteProduct.error(err));

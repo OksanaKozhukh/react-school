@@ -1,15 +1,17 @@
 import { useDispatch } from "react-redux";
 
 import { productActions } from "bus/product/actions";
+import { formUrlQuery } from "bus/product/helpers/formUrlQuery";
 
 import styles from "./styles.module.scss";
 
 const MinMaxPcice = () => {
   const dispatch = useDispatch();
+
   const handleChange = (ev) => {
     const data = { [ev.target.name]: ev.target.value };
-    dispatch(productActions.filterOptions(data));
-    dispatch(productActions.filterProductList.request());
+    formUrlQuery(data);
+    dispatch(productActions.fetchProductList.request());
   };
   return (
     <div className={styles.priceRange}>

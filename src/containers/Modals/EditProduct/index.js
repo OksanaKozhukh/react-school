@@ -3,10 +3,15 @@ import Select from "react-select";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 
+import Button from "components/Button";
 import { GrFormClose } from "react-icons/gr";
 import { modalsActions } from "bus/modals/actions";
 import { productActions } from "bus/product/actions";
-import { selectCurrentProduct, selectOrigins } from "bus/product/selectors";
+import {
+  selectCurrentProduct,
+  selectEditStateLoading,
+  selectOrigins,
+} from "bus/product/selectors";
 
 import { editProduct } from "./shape";
 
@@ -14,6 +19,7 @@ import styles from "./styles.module.scss";
 
 const EditProduct = () => {
   const dispatch = useDispatch();
+  const loading = useSelector(selectEditStateLoading);
   const currentProduct = useSelector(selectCurrentProduct);
 
   useEffect(() => dispatch(productActions.fetchOrigins.request()), [dispatch]);
@@ -33,7 +39,6 @@ const EditProduct = () => {
       dispatch(
         productActions.editProduct.request({ product, id: currentProduct.id })
       );
-      handleCloseModal();
     },
   });
 
@@ -84,10 +89,13 @@ const EditProduct = () => {
           <div className={styles.error}>{formik.errors.origins}</div>
         </div>
         <div className={styles.btn}>
-          <button onClick={formik.handleReset}>Reset</button>
-          <button type="submit" disabled={!formik.dirty || !formik.isValid}>
-            Edit
-          </button>
+          <Button title="Reset" onClick={formik.handleReset} extraClass={styles.extraClass}/>
+          <Button
+            title="Edit"
+            loading={loading}
+            extraClass={styles.extraClass}
+            disabled={!formik.dirty || !formik.isValid}
+          />
         </div>
       </div>
     </form>
