@@ -1,15 +1,7 @@
-import axios from "axios";
 import { call, put } from "redux-saga/effects";
 
-import { API } from "constants/index";
 import { productActions } from "bus/product/actions";
-
-const fetchProductItem = id => {
-  return axios({
-    method: "get",
-    url: API.PRODUCT.PRODUCT_ITEM.replace(':id', id),
-  });
-};
+import { fetchProductItem } from "bus/product/saga/apiRequests";
 
 export function* fetchProductItemWorker({ payload }) {
   yield put(productActions.fetchProductItem.start());

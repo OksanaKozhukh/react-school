@@ -1,23 +1,9 @@
-import axios from "axios";
 import qs from "query-string";
 import { call, put, delay } from "redux-saga/effects";
 
 import { BOOK } from "book";
-import { API, apiKey } from "constants/index";
 import { productActions } from "bus/product/actions";
-
-const fetchProductList = (params, pathname) => {
-  return axios({
-    method: "get",
-    url: API.PRODUCT.PRODUCT_LIST,
-    params,
-    ...(pathname === BOOK.MY_PRODUCT_LIST && {
-      headers: {
-        Authorization: apiKey,
-      },
-    }),
-  });
-};
+import { fetchProductList } from "bus/product/saga/apiRequests";
 
 export function* fetchProductListWorker() {
   const queryParams = qs.parse(window.location.search.substr(1));

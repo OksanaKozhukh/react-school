@@ -1,11 +1,7 @@
-import axios from "axios";
 import { call, put } from "redux-saga/effects";
 
-import { API } from "constants/index";
 import { productActions } from "bus/product/actions";
-
-const fetchOrigins = () =>
-  axios({ method: "get", url: API.PRODUCT.FETCH_ORIGINS });
+import { fetchOrigins } from 'bus/product/saga/apiRequests';
 
 export function* fetchOriginsWorker() {
   yield put(productActions.fetchOrigins.start());
