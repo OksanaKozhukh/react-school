@@ -20,13 +20,13 @@ const Cart = () => {
         <Link to={BOOK.PRODUCT_LIST}>
           <button className="">Back to purchase</button>
         </Link>
-        <p>Total price: {total} $</p>
+        <p data-testid='cart-total-price'>Total price: {total} $</p>
       </div>
     </div>
   ) : (
-    <p className={styles.empty}>
-      Your cart is empty. Please, choose any product.
-    </p>
+    <div className={styles.empty}>
+      <p>Your cart is empty. Please, choose any product.</p>
+    </div>
   );
 };
 

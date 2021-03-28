@@ -29,11 +29,11 @@ export function* fetchProductListWorker() {
     perPage: 50,
     ...(pathname === BOOK.MY_PRODUCT_LIST && { editable: true }),
   };
+  const params = { ...defaultParams, ...queryParams };
 
   yield put(productActions.fetchProductList.start());
 
   try {
-    const params = { ...defaultParams, ...queryParams };
     const data = yield call(() => fetchProductList(params, pathname));
     yield put(productActions.fetchProductList.success(data));
   } catch (error) {

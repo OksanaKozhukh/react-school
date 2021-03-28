@@ -18,7 +18,7 @@ const cartReducer = createReducer(initialState, {
             quantity: item.quantity + 1,
           }
         : item
-    );
+    ).map(el => Object.assign(el, {totalPrice: el.price}));
     const uniqList = uniqBy(list, "id");
     return {
       ...state,
@@ -33,14 +33,16 @@ const cartReducer = createReducer(initialState, {
   [cartActions.increaseItem]: (state, { payload }) => ({
     ...state,
     cartProducts: state.cartProducts.map((item) =>
-      item.id === payload ? { ...item, quantity: item.quantity + 1 } : item
+      item.id === payload ? { ...item, quantity: item.quantity + 1, totalPrice: item.totalPrice + item.price } : item
     ),
+    totalPrice: Number(state.totalPrice) + Number(state.cartProducts.filter(item => item.id === payload).map(item => item.price)),
   }),
   [cartActions.decreaseItem]: (state, { payload }) => ({
     ...state,
     cartProducts: state.cartProducts.map((item) =>
-      item.id === payload ? { ...item, quantity: item.quantity - 1 } : item
+      item.id === payload ? { ...item, quantity: item.quantity - 1, totalPrice: item.totalPrice - item.price } : item
     ),
+    totalPrice: Number(state.totalPrice) - Number(state.cartProducts.filter(item => item.id === payload).map(item => item.price)),
   }),
 });
 

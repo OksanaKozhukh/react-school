@@ -4,6 +4,7 @@ import { BiCart } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 
 import { BOOK } from "book";
+import NavBar from "components/NavBar";
 import { MODALS_NAMES } from "constants/index";
 import { modalsActions } from "bus/modals/actions";
 import { selectTotalPrice } from "bus/cart/selectors";
@@ -25,7 +26,7 @@ const Header = () => {
       <button onClick={addProduct}>
         <CgAddR size={32} className={styles.icon} />
       </button>
-
+      <NavBar />
       <div className={styles.filter}>
         <div className={styles.pageFilter}>
           <FilterPerPage />
@@ -37,7 +38,7 @@ const Header = () => {
           <FilterByCountry />
         </div>
       </div>
-      
+
       <div className={styles.cart}>
         <span className={styles.total}>Total: {total} $</span>
         <Link to={BOOK.CART}>

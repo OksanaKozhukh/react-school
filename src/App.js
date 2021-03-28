@@ -1,4 +1,4 @@
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 import { BOOK } from "book";
 import Cart from "pages/Cart";
@@ -10,15 +10,10 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path={BOOK.PRODUCT_LIST} component={ProductList} />
-      </Switch>
-      <Switch>
         <Route path={BOOK.MY_PRODUCT_LIST} component={ProductList} />
-      </Switch>
-      <Switch>
         <Route path={BOOK.PRODUCT_ITEM} component={ItemInfo} />
-      </Switch>
-      <Switch>
         <Route path={BOOK.CART} component={Cart} />
+        <Redirect to={BOOK.PRODUCT_LIST} />
       </Switch>
     </BrowserRouter>
   );

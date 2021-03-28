@@ -21,17 +21,17 @@ const CartItem = ({ item }) => {
     <div className={styles.cartItemWrapper}>
       <p className={styles.nameWrapper}> {item.name}</p>
       <div className={styles.quantityWrapper}>
-        <button onClick={() => handleDecrease(item.id)}>
+        <button onClick={() => handleDecrease(item.id)} data-testid='minus-button'>
           <AiOutlineMinusSquare size={22} />
         </button>
-        <p>{item.quantity}</p>
-        <button onClick={() => handleIncrease(item.id)}>
+        <p data-testid='product-quantity'>{item.quantity}</p>
+        <button onClick={() => handleIncrease(item.id)} data-testid='plus-button'>
           <AiOutlinePlusSquare size={22} />
         </button>
       </div>
 
-      <p className={styles.priceWrapper}> {item.price}</p>
-      <button onClick={() => handleDelete(item.id)}>
+      <p className={styles.priceWrapper} data-testid='product-price'> {item.price}</p>
+      <button onClick={() => handleDelete(item.id)} data-testid='delete-button'>
         <RiDeleteBinLine size={22} />
       </button>
     </div>

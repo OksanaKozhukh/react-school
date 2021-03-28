@@ -13,7 +13,6 @@ import { productActions } from "bus/product/actions";
 
 const ProductItem = ({ item }) => {
   const dispatch = useDispatch();
-  const pathname = window.location.pathname;
   const getOriginName = (el) => el[0].toUpperCase() + el.slice(1);
 
   const handleAddClick = (item) =>
@@ -30,31 +29,28 @@ const ProductItem = ({ item }) => {
   };
 
   return (
-    <div className={styles.wrapper}>
-      {pathname === BOOK.MY_PRODUCT_LIST && (
+    <div className={styles.wrapper} data-testid="product-item">
+      {item.isEditable && (
         <GrFormClose
           size={25}
           className={styles.icon}
+          data-testid="delete-icon"
           onClick={() => handleDeleteClick(item.id)}
         />
       )}
-      <h3
-        className={
-          pathname === BOOK.MY_PRODUCT_LIST ? styles.nameWrapper : null
-        }
-      >
+      <h3 className={item.isEditable ? styles.nameWrapper : null}>
         {item.name}
       </h3>
 
       <div>
-        <p>Origin: {getOriginName(item.origin)}</p>
-        <p>Price: $ {item.price}</p>
+        <p data-testid="item-origin">Origin: {getOriginName(item.origin)}</p>
+        <p data-testid="item-price"> Price: $ {item.price}</p>
       </div>
       <div className={styles.btn}>
         <Link to={BOOK.PRODUCT_ITEM.replace(":id", item.id)}>
           <button>Details</button>
         </Link>
-        {pathname === BOOK.MY_PRODUCT_LIST ? (
+        {item.isEditable ? (
           <button onClick={() => handleEditClick(item)}>Edit</button>
         ) : (
           <button onClick={() => handleAddClick(item)}>Add to cart</button>
