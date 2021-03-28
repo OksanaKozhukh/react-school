@@ -1,6 +1,6 @@
 .wrapper {
   width: 500px;
-  height: 400px;
+  height: 500px;
   display: flex;
   padding: 30px;
   border-radius: 12px;
@@ -42,6 +42,11 @@
 
 .field {
   margin-bottom: 30px;
+
+  .title {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
 }
 
 .btn {
@@ -52,7 +57,7 @@
     margin: 80px 0 0;
   }
 
-  button:first-child{
+  button:first-child {
     margin-right: 20px;
   }
 }

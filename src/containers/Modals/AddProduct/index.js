@@ -36,7 +36,7 @@ const AddProduct = () => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form onSubmit={formik.handleSubmit} id="formAdd">
       <div className={styles.wrapper}>
         <div className={styles.header}>
           <p>Add New Product</p>
@@ -47,7 +47,12 @@ const AddProduct = () => {
           />
         </div>
         <div className={styles.field}>
+          <div className={styles.title}>
+            <label htmlFor="name">Name:</label>
+          </div>
           <input
+            required
+            id="name"
             type="text"
             name="name"
             placeholder="Enter name"
@@ -57,9 +62,14 @@ const AddProduct = () => {
           <div className={styles.error}>{formik.errors.name}</div>
         </div>
         <div className={styles.field}>
+          <div className={styles.title}>
+            <label htmlFor="price">Price:</label>
+          </div>
           <input
-            type="number"
+            required
+            id="price"
             name="price"
+            type="number"
             placeholder="Enter price"
             value={formik.values.price}
             onChange={formik.handleChange}
@@ -67,13 +77,20 @@ const AddProduct = () => {
           <div className={styles.error}>{formik.errors.price}</div>
         </div>
         <div className={styles.field}>
-          <Select
-            name="origin"
-            options={options}
-            placeholder="Select country"
-            value={formik.values.origins}
-            onChange={(value) => formik.setFieldValue("origin", value.value)}
-          />
+          <div className={styles.title}>
+            <label htmlFor="origin">Origin:</label>
+          </div>
+          <div data-testid="select-origin">
+            <Select
+              required
+              id="origin"
+              name="origin"
+              options={options}
+              placeholder="Select country"
+              value={formik.values.origins}
+              onChange={(value) => formik.setFieldValue("origin", value.value)}
+            />
+          </div>
           <div className={styles.error}>{formik.errors.origins}</div>
         </div>
         <Button

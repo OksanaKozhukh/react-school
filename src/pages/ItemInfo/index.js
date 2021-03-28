@@ -9,17 +9,20 @@ import { useParams } from "react-router-dom";
 import { cartActions } from "bus/cart/actions";
 import { productActions } from "bus/product/actions";
 
-import styles from"./styles.module.scss";
+import styles from "./styles.module.scss";
 
 const ItemInfo = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  useEffect(() => dispatch(productActions.fetchProductItem.request({ id })), [id, dispatch]);
+  useEffect(() => dispatch(productActions.fetchProductItem.request({ id })), [
+    id,
+    dispatch,
+  ]);
 
   const item = useSelector(selectProductItem);
 
-  const handleAddClick = (item) => dispatch(cartActions.addToCart(item));;
+  const handleAddClick = (item) => dispatch(cartActions.addToCart(item));
 
   return (
     <>
@@ -27,9 +30,11 @@ const ItemInfo = () => {
 
       <div className={styles.infoWrapper}>
         <h2> {item.name}</h2>
-        <p>Origin: {item.origin}</p>
-        <p>Price: $ {item.price}</p>
-        <button onClick={() => handleAddClick(item)}>Add to cart</button>
+        <p data-testid="item-origin">Origin: {item.origin}</p>
+        <p data-testid="item-price">Price: $ {item.price}</p>
+        {!item.isEditable && (
+          <button onClick={() => handleAddClick(item)}>Add to cart</button>
+        )}
       </div>
     </>
   );

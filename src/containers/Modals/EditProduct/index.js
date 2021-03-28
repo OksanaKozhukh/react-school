@@ -54,6 +54,9 @@ const EditProduct = () => {
           />
         </div>
         <div className={styles.field}>
+        <div className={styles.title}>
+            <label htmlFor="name">Name:</label>
+          </div>
           <input
             type="text"
             name="name"
@@ -64,6 +67,9 @@ const EditProduct = () => {
           <div className={styles.error}>{formik.errors.name}</div>
         </div>
         <div className={styles.field}>
+        <div className={styles.title}>
+            <label htmlFor="price">Price:</label>
+          </div>
           <input
             type="number"
             name="price"
@@ -74,9 +80,13 @@ const EditProduct = () => {
           <div className={styles.error}>{formik.errors.price}</div>
         </div>
         <div className={styles.field}>
+        <div className={styles.title}>
+            <label htmlFor="origin">Origin:</label>
+          </div>
           <Select
             name="origin"
             options={options}
+            data-testid='product-origin'
             placeholder="Select country"
             value={formik.values.origins}
             onChange={(value) => formik.setFieldValue("origin", value.value)}
