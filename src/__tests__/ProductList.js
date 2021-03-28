@@ -1,5 +1,5 @@
 import ProductList from "pages/ProductsList";
-import { renderWithReduxAndRouter } from "./renderWithReduxAndRouter";
+import { renderWithReduxAndRouter } from "utils/renderWithReduxAndRouter";
 
 const list = [
   {

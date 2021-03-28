@@ -1,6 +1,6 @@
 import { fireEvent, waitFor } from "@testing-library/react";
 
-import { renderWithRedux } from "./renderWithRedux";
+import { renderWithRedux } from "utils/renderWithRedux";
 import AddProduct from "containers/Modals/AddProduct";
 
 jest.mock("react-select", () => ({ options, value, onChange }) => {

@@ -1,6 +1,6 @@
 import { fireEvent } from "@testing-library/react";
 
-import { renderWithRedux } from "./renderWithRedux";
+import { renderWithRedux } from "utils/renderWithRedux";
 import FilterPerPage from "containers/Filters/FilterPerPage";
 
 jest.mock("react-select", () => ({ options, value, onChange }) => {

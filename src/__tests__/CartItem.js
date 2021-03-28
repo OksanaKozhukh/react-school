@@ -1,5 +1,5 @@
 import CartItem from "pages/CartItem";
-import { renderWithRedux } from "./renderWithRedux";
+import { renderWithRedux } from "utils/renderWithRedux";
 
 const product = {
   price: 100,

@@ -1,7 +1,7 @@
 import userEvent from "@testing-library/user-event";
 
 import Cart from "pages/Cart";
-import { renderWithReduxAndRouter } from "./renderWithReduxAndRouter";
+import { renderWithReduxAndRouter } from "utils/renderWithReduxAndRouter";
 
 describe("Cart page", () => {
   let getByTestId,

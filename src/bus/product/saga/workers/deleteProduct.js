@@ -1,25 +1,15 @@
-import axios from "axios";
 import { call, put } from "redux-saga/effects";
 
-import { API, apiKey } from "constants/index";
 import { toastActions } from "bus/toast/actions";
 import { modalsActions } from "bus/modals/actions";
 import { productActions } from "bus/product/actions";
-
-const deleteProductRequest = (id) =>
-  axios({
-    method: "delete",
-    url: API.PRODUCT.PRODUCT_ITEM.replace(":id", id),
-    headers: {
-      Authorization: apiKey,
-    },
-  });
+import { deleteProduct } from 'bus/product/saga/apiRequests';
 
 export function* deleteProductWorker({ payload }) {
   yield put(productActions.deleteProduct.start());
   try {
     const { id } = payload;
-    yield call(() => deleteProductRequest(id));
+    yield call(() => deleteProduct(id));
     yield put(productActions.deleteProduct.success());
 
     const message = "Product has been deleted";
