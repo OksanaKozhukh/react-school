@@ -1,6 +1,6 @@
 import userEvent from "@testing-library/user-event";
 
-import { renderWithRedux } from "./renderWithRedux";
+import { renderWithRedux } from "utils/renderWithRedux";
 import MinMaxPcice from "containers/Filters/FilterMinMaxPrice";
 
 describe("MinMaxPcice container", () => {

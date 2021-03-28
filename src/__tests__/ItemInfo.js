@@ -1,5 +1,5 @@
 import ItemInfo from "pages/ItemInfo";
-import { renderWithReduxAndRouter } from "./renderWithReduxAndRouter";
+import { renderWithReduxAndRouter } from "utils/renderWithReduxAndRouter";
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),

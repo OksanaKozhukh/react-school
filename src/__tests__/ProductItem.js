@@ -1,5 +1,5 @@
 import ProductItem from "pages/ProductItem";
-import { renderWithReduxAndRouter } from "./renderWithReduxAndRouter";
+import { renderWithReduxAndRouter } from "utils/renderWithReduxAndRouter";
 
 const productEditable = {
   price: 100,

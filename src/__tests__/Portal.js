@@ -1,5 +1,5 @@
 import Portal from "components/Portal";
-import { renderWithRedux } from "./renderWithRedux";
+import { renderWithRedux } from "utils/renderWithRedux";
 import AddProduct from "containers/Modals/AddProduct";
 
 describe("Portal component", () => {

@@ -20,11 +20,6 @@ describe("fetch product list", () => {
         name: "Black Cat",
       },
     ];
-    const mockPath = "/mock-path";
-    const mockParams = {
-      page: 5,
-      perPage: 25,
-    };
     const requestProductList = jest
       .spyOn(api, "fetchProductList")
       .mockImplementation(() => Promise.resolve(mockData));
