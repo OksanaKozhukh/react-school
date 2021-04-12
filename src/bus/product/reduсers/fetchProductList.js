@@ -1,6 +1,6 @@
-import { createReducer } from "@reduxjs/toolkit";
+import { createReducer } from '@reduxjs/toolkit';
 
-import { productActions } from "bus/product/actions";
+import { productActions } from 'bus/product/actions';
 
 const initialState = {
   origins: [],

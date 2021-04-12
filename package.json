@@ -26,13 +26,15 @@
     "redux-toolkit": "^1.1.2",
     "sass-loader": "^10.0.2",
     "web-vitals": "^0.2.4",
+    "yarn": "^1.22.10",
     "yup": "^0.32.9"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --fix --ext .js,.jsx ."
   },
   "eslintConfig": {
     "extends": [
@@ -53,16 +55,17 @@
     ]
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "eslint": "^7.24.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.1.0",
-    "prettier": "^2.2.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-redux-saga": "^1.2.1",
+    "prettier": "^2.2.1",
     "react-select-event": "^5.2.0"
   }
 }

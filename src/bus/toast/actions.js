@@ -1,6 +1,6 @@
-import { createAction } from "@reduxjs/toolkit";
+import { createAction } from '@reduxjs/toolkit';
 
-const actionType = "TOAST";
+const actionType = 'TOAST';
 
 export const toastActions = {
   showToast: createAction(`${actionType}/SHOW`),

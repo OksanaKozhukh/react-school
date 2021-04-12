@@ -1,47 +1,49 @@
-import { runSaga } from "redux-saga";
+import { runSaga } from 'redux-saga';
 
-import * as api from "bus/product/saga/apiRequests";
-import { productActions } from "bus/product/actions";
-import { editProductWorker } from "bus/product/saga/workers";
+import * as api from 'bus/product/saga/apiRequests';
+import { productActions } from 'bus/product/actions';
+import { editProductWorker } from 'bus/product/saga/workers';
 
-describe("edit product saga", () => {
-  let mockProduct, mockId, dispatched;
+describe('edit product saga', () => {
+  let mockProduct;
+  let mockId;
+  let dispatched;
   beforeEach(() => {
     mockProduct = {
       price: 200,
-      origin: "usa",
+      origin: 'usa',
       isEditable: false,
-      name: "Black Cat",
+      name: 'Black Cat',
     };
     mockId = 12;
     dispatched = [];
   });
-  
-  it("call api and dispatch success action", async () => {
+
+  it('call api and dispatch success action', async () => {
     const editProduct = jest
-      .spyOn(api, "editProduct")
+      .spyOn(api, 'editProduct')
       .mockImplementation(() => Promise.resolve(mockProduct));
     await runSaga(
       {
         dispatch: (action) => dispatched.push(action),
       },
       editProductWorker,
-      { payload: { mockProduct, mockId } }
+      { payload: { mockProduct, mockId } },
     );
     expect(editProduct).toHaveBeenCalledTimes(1);
     expect(dispatched[1]).toEqual(productActions.editProduct.success());
   });
 
-  it("call api and dispatch error action", async () => {
+  it('call api and dispatch error action', async () => {
     const editProduct = jest
-      .spyOn(api, "editProduct")
+      .spyOn(api, 'editProduct')
       .mockImplementation(() => Promise.reject());
     await runSaga(
       {
         dispatch: (action) => dispatched.push(action),
       },
       editProductWorker,
-      { payload: { mockProduct, mockId } }
+      { payload: { mockProduct, mockId } },
     );
     expect(editProduct).toHaveBeenCalledTimes(1);
     expect(dispatched[1]).toEqual(productActions.editProduct.error());

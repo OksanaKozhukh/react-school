@@ -1,17 +1,17 @@
-import Select from "react-select";
-import { useEffect } from "react";
-import { useFormik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
+import Select from 'react-select';
+import { useEffect } from 'react';
+import { useFormik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
 
-import Button from "components/Button";
-import { GrFormClose } from "react-icons/gr";
-import { modalsActions } from "bus/modals/actions";
-import { productActions } from "bus/product/actions";
-import { selectOrigins, selectAddStateLoading } from "bus/product/selectors";
+import Button from 'components/Button';
+import { GrFormClose } from 'react-icons/gr';
+import { modalsActions } from 'bus/modals/actions';
+import { productActions } from 'bus/product/actions';
+import { selectOrigins, selectAddStateLoading } from 'bus/product/selectors';
 
-import { addProduct } from "./shape";
+import { addProduct } from './shape';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 const AddProduct = () => {
   const dispatch = useDispatch();
@@ -88,7 +88,7 @@ const AddProduct = () => {
               options={options}
               placeholder="Select country"
               value={formik.values.origins}
-              onChange={(value) => formik.setFieldValue("origin", value.value)}
+              onChange={(value) => formik.setFieldValue('origin', value.value)}
             />
           </div>
           <div className={styles.error}>{formik.errors.origins}</div>

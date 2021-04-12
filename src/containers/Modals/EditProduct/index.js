@@ -1,21 +1,21 @@
-import { useEffect } from "react";
-import Select from "react-select";
-import { useFormik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from 'react';
+import Select from 'react-select';
+import { useFormik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
 
-import Button from "components/Button";
-import { GrFormClose } from "react-icons/gr";
-import { modalsActions } from "bus/modals/actions";
-import { productActions } from "bus/product/actions";
+import Button from 'components/Button';
+import { GrFormClose } from 'react-icons/gr';
+import { modalsActions } from 'bus/modals/actions';
+import { productActions } from 'bus/product/actions';
 import {
   selectCurrentProduct,
   selectEditStateLoading,
   selectOrigins,
-} from "bus/product/selectors";
+} from 'bus/product/selectors';
 
-import { editProduct } from "./shape";
+import { editProduct } from './shape';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 const EditProduct = () => {
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ const EditProduct = () => {
     onSubmit: ({ name, price, origin }) => {
       const product = { name, price, origin };
       dispatch(
-        productActions.editProduct.request({ product, id: currentProduct.id })
+        productActions.editProduct.request({ product, id: currentProduct.id }),
       );
     },
   });
@@ -54,7 +54,7 @@ const EditProduct = () => {
           />
         </div>
         <div className={styles.field}>
-        <div className={styles.title}>
+          <div className={styles.title}>
             <label htmlFor="name">Name:</label>
           </div>
           <input
@@ -67,7 +67,7 @@ const EditProduct = () => {
           <div className={styles.error}>{formik.errors.name}</div>
         </div>
         <div className={styles.field}>
-        <div className={styles.title}>
+          <div className={styles.title}>
             <label htmlFor="price">Price:</label>
           </div>
           <input
@@ -80,26 +80,30 @@ const EditProduct = () => {
           <div className={styles.error}>{formik.errors.price}</div>
         </div>
         <div className={styles.field}>
-        <div className={styles.title}>
+          <div className={styles.title}>
             <label htmlFor="origin">Origin:</label>
           </div>
           <Select
             name="origin"
             options={options}
-            data-testid='product-origin'
+            data-testid="product-origin"
             placeholder="Select country"
             value={formik.values.origins}
-            onChange={(value) => formik.setFieldValue("origin", value.value)}
+            onChange={(value) => formik.setFieldValue('origin', value.value)}
             defaultValue={
               options.filter(
-                (option) => option.value === formik.initialValues.origin
+                (option) => option.value === formik.initialValues.origin,
               )[0]
             }
           />
           <div className={styles.error}>{formik.errors.origins}</div>
         </div>
         <div className={styles.btn}>
-          <Button title="Reset" onClick={formik.handleReset} extraClass={styles.extraClass}/>
+          <Button
+            title="Reset"
+            onClick={formik.handleReset}
+            extraClass={styles.extraClass}
+          />
           <Button
             title="Edit"
             loading={loading}

@@ -1,4 +1,4 @@
-import { createAction } from "@reduxjs/toolkit";
+import { createAction } from '@reduxjs/toolkit';
 
 export const createRequestAction = (actionType, actionName) => ({
   request: createAction(`${actionType}/${actionName}_REQUEST`),

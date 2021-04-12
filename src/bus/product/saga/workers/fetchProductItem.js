@@ -1,7 +1,7 @@
-import { call, put } from "redux-saga/effects";
+import { call, put } from 'redux-saga/effects';
 
-import { productActions } from "bus/product/actions";
-import { fetchProductItem } from "bus/product/saga/apiRequests";
+import { productActions } from 'bus/product/actions';
+import { fetchProductItem } from 'bus/product/saga/apiRequests';
 
 export function* fetchProductItemWorker({ payload }) {
   yield put(productActions.fetchProductItem.start());

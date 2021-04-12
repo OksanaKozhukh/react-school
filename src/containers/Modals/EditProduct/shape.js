@@ -1,4 +1,4 @@
-import { productSchema } from "bus/product/shape";
+import { productSchema } from 'bus/product/shape';
 
 export const editProduct = {
   shema: productSchema,

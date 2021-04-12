@@ -1,8 +1,8 @@
-import { call, put } from "redux-saga/effects";
+import { call, put } from 'redux-saga/effects';
 
-import { toastActions } from "bus/toast/actions";
-import { modalsActions } from "bus/modals/actions";
-import { productActions } from "bus/product/actions";
+import { toastActions } from 'bus/toast/actions';
+import { modalsActions } from 'bus/modals/actions';
+import { productActions } from 'bus/product/actions';
 import { deleteProduct } from 'bus/product/saga/apiRequests';
 
 export function* deleteProductWorker({ payload }) {
@@ -12,7 +12,7 @@ export function* deleteProductWorker({ payload }) {
     yield call(() => deleteProduct(id));
     yield put(productActions.deleteProduct.success());
 
-    const message = "Product has been deleted";
+    const message = 'Product has been deleted';
     yield put(toastActions.showToast({ message }));
 
     yield put(modalsActions.closeModal());

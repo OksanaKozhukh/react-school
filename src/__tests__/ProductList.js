@@ -1,29 +1,29 @@
-import ProductList from "pages/ProductsList";
-import { renderWithReduxAndRouter } from "utils/renderWithReduxAndRouter";
+import ProductList from 'pages/ProductsList';
+import { renderWithReduxAndRouter } from 'utils/renderWithReduxAndRouter';
 
 const list = [
   {
     price: 100,
-    origin: "asia",
+    origin: 'asia',
     isEditable: true,
-    name: "Golden Fish",
-    id: "12",
+    name: 'Golden Fish',
+    id: '12',
   },
   {
     price: 200,
-    origin: "usa",
+    origin: 'usa',
     isEditable: false,
-    name: "Black Cat",
-    id: "10",
+    name: 'Black Cat',
+    id: '10',
   },
 ];
 
-describe("ProductList page", () => {
-  it("render list in the page", async () => {
+describe('ProductList page', () => {
+  it('render list in the page', async () => {
     const { findAllByTestId } = renderWithReduxAndRouter(<ProductList />, {
       initialState: { productList: { products: list } },
     });
-    const items = await findAllByTestId("product-item");
+    const items = await findAllByTestId('product-item');
     expect(items).toHaveLength(2);
   });
 });

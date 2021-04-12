@@ -1,7 +1,7 @@
-import { createAction } from "@reduxjs/toolkit"; 
+import { createAction } from '@reduxjs/toolkit';
 import { createRequestAction } from 'bus/common/createAction';
 
-const actionType = "PRODUCT";
+const actionType = 'PRODUCT';
 
 export const productActions = {
   editProduct: createRequestAction(actionType, 'EDIT_PRODUCT'),
@@ -11,5 +11,7 @@ export const productActions = {
   fetchProductList: createRequestAction(actionType, 'FETCH_PRODUCT_LIST'),
   fetchProductItem: createRequestAction(actionType, 'FETCH_PRODUCT_ITEM'),
   selectProductForEdit: createAction(`${actionType}/SELECT_PRODUCT_FOR_EDIT`),
-  selectProductForDelete: createAction(`${actionType}/SELECT_PRODUCT_FOR_DELETE`),
+  selectProductForDelete: createAction(
+    `${actionType}/SELECT_PRODUCT_FOR_DELETE`,
+  ),
 };

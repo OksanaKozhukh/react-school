@@ -1,26 +1,26 @@
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { GrFormClose } from "react-icons/gr";
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { GrFormClose } from 'react-icons/gr';
 
-import { BOOK } from "book";
-import { MODALS_NAMES } from "constants/index";
-import { cartActions } from "bus/cart/actions";
-import { modalsActions } from "bus/modals/actions";
+import { BOOK } from 'book';
+import { MODALS_NAMES } from 'constants/index';
+import { cartActions } from 'bus/cart/actions';
+import { modalsActions } from 'bus/modals/actions';
 
-import styles from "./styles.module.scss";
-import { productActions } from "bus/product/actions";
+import { productActions } from 'bus/product/actions';
+import styles from './styles.module.scss';
 
 const ProductItem = ({ item }) => {
   const dispatch = useDispatch();
   const getOriginName = (el) => el[0].toUpperCase() + el.slice(1);
 
-  const handleAddClick = (item) =>
-    dispatch(cartActions.addToCart({ ...item, quantity: 0 }));
+  const handleAddClick = (el) =>
+    dispatch(cartActions.addToCart({ ...el, quantity: 0 }));
 
-  const handleEditClick = (item) => {
+  const handleEditClick = (el) => {
     dispatch(modalsActions.openModal(MODALS_NAMES.EDIT_PRODUCT));
-    dispatch(productActions.selectProductForEdit(item));
+    dispatch(productActions.selectProductForEdit(el));
   };
 
   const handleDeleteClick = (id) => {
@@ -47,13 +47,17 @@ const ProductItem = ({ item }) => {
         <p data-testid="item-price"> Price: $ {item.price}</p>
       </div>
       <div className={styles.btn}>
-        <Link to={BOOK.PRODUCT_ITEM.replace(":id", item.id)}>
-          <button>Details</button>
+        <Link to={BOOK.PRODUCT_ITEM.replace(':id', item.id)}>
+          <button type="button">Details</button>
         </Link>
         {item.isEditable ? (
-          <button onClick={() => handleEditClick(item)}>Edit</button>
+          <button type="button" onClick={() => handleEditClick(item)}>
+            Edit
+          </button>
         ) : (
-          <button onClick={() => handleAddClick(item)}>Add to cart</button>
+          <button type="button" onClick={() => handleAddClick(item)}>
+            Add to cart
+          </button>
         )}
       </div>
     </div>

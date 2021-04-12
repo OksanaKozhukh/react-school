@@ -1,9 +1,9 @@
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
-import { BOOK } from "book";
-import Cart from "pages/Cart";
-import ItemInfo from "pages/ItemInfo";
-import ProductList from "pages/ProductsList";
+import { BOOK } from 'book';
+import Cart from 'pages/Cart';
+import ItemInfo from 'pages/ItemInfo';
+import ProductList from 'pages/ProductsList';
 
 function App() {
   return (

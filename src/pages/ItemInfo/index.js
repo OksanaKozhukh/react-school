@@ -1,15 +1,15 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 
-import { selectProductItem } from "bus/product/selectors";
-import Header from "components/Header";
+import { selectProductItem } from 'bus/product/selectors';
+import Header from 'components/Header';
 
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
-import { cartActions } from "bus/cart/actions";
-import { productActions } from "bus/product/actions";
+import { cartActions } from 'bus/cart/actions';
+import { productActions } from 'bus/product/actions';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 const ItemInfo = () => {
   const { id } = useParams();
@@ -22,7 +22,7 @@ const ItemInfo = () => {
 
   const item = useSelector(selectProductItem);
 
-  const handleAddClick = (item) => dispatch(cartActions.addToCart(item));
+  const handleAddClick = (el) => dispatch(cartActions.addToCart(el));
 
   return (
     <>
@@ -33,7 +33,9 @@ const ItemInfo = () => {
         <p data-testid="item-origin">Origin: {item.origin}</p>
         <p data-testid="item-price">Price: $ {item.price}</p>
         {!item.isEditable && (
-          <button onClick={() => handleAddClick(item)}>Add to cart</button>
+          <button type="button" onClick={() => handleAddClick(item)}>
+            Add to cart
+          </button>
         )}
       </div>
     </>

@@ -1,18 +1,18 @@
-import { Link } from "react-router-dom";
-import { CgAddR } from "react-icons/cg";
-import { BiCart } from "react-icons/bi";
-import { useDispatch, useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
+import { CgAddR } from 'react-icons/cg';
+import { BiCart } from 'react-icons/bi';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { BOOK } from "book";
-import NavBar from "components/NavBar";
-import { MODALS_NAMES } from "constants/index";
-import { modalsActions } from "bus/modals/actions";
-import { selectTotalPrice } from "bus/cart/selectors";
-import FilterPerPage from "containers/Filters/FilterPerPage";
-import MinMaxPcice from "containers/Filters/FilterMinMaxPrice";
-import FilterByCountry from "containers/Filters/FilterByCountry";
+import { BOOK } from 'book';
+import NavBar from 'components/NavBar';
+import { MODALS_NAMES } from 'constants/index';
+import { modalsActions } from 'bus/modals/actions';
+import { selectTotalPrice } from 'bus/cart/selectors';
+import FilterPerPage from 'containers/Filters/FilterPerPage';
+import MinMaxPcice from 'containers/Filters/FilterMinMaxPrice';
+import FilterByCountry from 'containers/Filters/FilterByCountry';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <div className={styles.header}>
-      <button onClick={addProduct}>
+      <button type="button" onClick={addProduct}>
         <CgAddR size={32} className={styles.icon} />
       </button>
       <NavBar />
