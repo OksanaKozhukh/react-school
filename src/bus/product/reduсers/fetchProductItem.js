@@ -1,6 +1,6 @@
-import { createReducer } from "@reduxjs/toolkit";
+import { createReducer } from '@reduxjs/toolkit';
 
-import { productActions } from "bus/product/actions";
+import { productActions } from 'bus/product/actions';
 
 const initialState = {
   product: {},
@@ -15,15 +15,15 @@ const fetchProductItemReducer = createReducer(initialState, {
     loading: true,
   }),
   [productActions.fetchProductItem.success]: (state, { payload }) => ({
-      ...state,
-      succeed: true,
-      loading: false,
-      product: payload.data
+    ...state,
+    succeed: true,
+    loading: false,
+    product: payload.data,
   }),
   [productActions.fetchProductItem.error]: (state, { payload }) => ({
-      ...state,
-      error: payload.error.code
-  })
+    ...state,
+    error: payload.error.code,
+  }),
 });
 
 export default fetchProductItemReducer;

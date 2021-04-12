@@ -1,6 +1,6 @@
-import { createReducer } from "@reduxjs/toolkit";
+import { createReducer } from '@reduxjs/toolkit';
 
-import { productActions } from "bus/product/actions";
+import { productActions } from 'bus/product/actions';
 
 const initialState = {
   id: null,
@@ -18,15 +18,15 @@ const deleteProductReducer = createReducer(initialState, {
     ...state,
     loading: true,
   }),
-  [productActions.deleteProduct.success]: (state, { payload }) => ({
-      ...state,
-      succeed: true,
-      loading: false,
+  [productActions.deleteProduct.success]: (state) => ({
+    ...state,
+    succeed: true,
+    loading: false,
   }),
   [productActions.deleteProduct.error]: (state, { payload }) => ({
-      ...state,
-      error: payload.error.code
-  })
+    ...state,
+    error: payload.error.code,
+  }),
 });
 
 export default deleteProductReducer;

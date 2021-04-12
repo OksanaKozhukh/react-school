@@ -1,7 +1,7 @@
-import { createReducer } from "@reduxjs/toolkit";
+import { createReducer } from '@reduxjs/toolkit';
 
-import { toastActions } from "bus/toast/actions";
-import { makeToast } from "bus/toast/helpers/makeToast";
+import { toastActions } from 'bus/toast/actions';
+import { makeToast } from 'bus/toast/helpers/makeToast';
 
 const initialState = {};
 

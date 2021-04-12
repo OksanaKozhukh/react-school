@@ -1,15 +1,16 @@
-import qs from "query-string";
-import { call, put, delay } from "redux-saga/effects";
+/* eslint-disable no-undef */
+import qs from 'query-string';
+import { call, put, delay } from 'redux-saga/effects';
 
-import { BOOK } from "book";
-import { productActions } from "bus/product/actions";
-import { fetchProductList } from "bus/product/saga/apiRequests";
+import { BOOK } from 'book';
+import { productActions } from 'bus/product/actions';
+import { fetchProductList } from 'bus/product/saga/apiRequests';
 
 export function* fetchProductListWorker() {
   const queryParams = qs.parse(window.location.search.substr(1));
   if (queryParams) yield delay(1000);
 
-  const pathname = window.location.pathname;
+  const { pathname } = window.location;
   const defaultParams = {
     page: 1,
     perPage: 50,

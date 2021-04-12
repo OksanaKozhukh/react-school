@@ -1,8 +1,9 @@
-import uniqBy from "lodash/uniqBy";
+/* eslint-disable indent */
+import uniqBy from 'lodash/uniqBy';
 
-import { createReducer } from "@reduxjs/toolkit";
+import { createReducer } from '@reduxjs/toolkit';
 
-import { cartActions } from "bus/cart/actions";
+import { cartActions } from 'bus/cart/actions';
 
 const initialState = {
   cartProducts: [],
@@ -11,19 +12,21 @@ const initialState = {
 
 const cartReducer = createReducer(initialState, {
   [cartActions.addToCart]: (state, { payload }) => {
-    const list = [...state.cartProducts, payload].map((item) =>
-      item.id === payload.id
-        ? {
-            ...item,
-            quantity: item.quantity + 1,
-          }
-        : item
-    ).map(el => Object.assign(el, {totalPrice: el.price}));
-    const uniqList = uniqBy(list, "id");
+    const list = [...state.cartProducts, payload]
+      .map((item) =>
+        item.id === payload.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item,
+      )
+      .map((el) => Object.assign(el, { totalPrice: el.price }));
+    const uniqList = uniqBy(list, 'id');
     return {
       ...state,
       cartProducts: uniqList,
-      totalPrice: uniqList.reduce((sum, cur) => sum + (cur.quantity * cur.price), 0),
+      totalPrice: uniqList.reduce(
+        (sum, cur) => sum + cur.quantity * cur.price,
+        0,
+      ),
     };
   },
   [cartActions.deleteFromCart]: (state, { payload }) => ({
@@ -33,16 +36,40 @@ const cartReducer = createReducer(initialState, {
   [cartActions.increaseItem]: (state, { payload }) => ({
     ...state,
     cartProducts: state.cartProducts.map((item) =>
-      item.id === payload ? { ...item, quantity: item.quantity + 1, totalPrice: item.totalPrice + item.price } : item
+      item.id === payload
+        ? {
+            ...item,
+            quantity: item.quantity + 1,
+            totalPrice: item.totalPrice + item.price,
+          }
+        : item,
     ),
-    totalPrice: Number(state.totalPrice) + Number(state.cartProducts.filter(item => item.id === payload).map(item => item.price)),
+    totalPrice:
+      Number(state.totalPrice) +
+      Number(
+        state.cartProducts
+          .filter((item) => item.id === payload)
+          .map((item) => item.price),
+      ),
   }),
   [cartActions.decreaseItem]: (state, { payload }) => ({
     ...state,
     cartProducts: state.cartProducts.map((item) =>
-      item.id === payload ? { ...item, quantity: item.quantity - 1, totalPrice: item.totalPrice - item.price } : item
+      item.id === payload
+        ? {
+            ...item,
+            quantity: item.quantity - 1,
+            totalPrice: item.totalPrice - item.price,
+          }
+        : item,
     ),
-    totalPrice: Number(state.totalPrice) - Number(state.cartProducts.filter(item => item.id === payload).map(item => item.price)),
+    totalPrice:
+      Number(state.totalPrice) -
+      Number(
+        state.cartProducts
+          .filter((item) => item.id === payload)
+          .map((item) => item.price),
+      ),
   }),
 });
 

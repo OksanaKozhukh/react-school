@@ -1,17 +1,17 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import Header from "components/Header";
-import ProductItem from "pages/ProductItem";
-import Pagination from "components/Pagination";
-import MainLoader from "components/MainLoader";
-import { productActions } from "bus/product/actions";
+import Header from 'components/Header';
+import ProductItem from 'pages/ProductItem';
+import Pagination from 'components/Pagination';
+import MainLoader from 'components/MainLoader';
+import { productActions } from 'bus/product/actions';
 import {
   selectProductList,
   selectProductListLoading,
-} from "bus/product/selectors";
+} from 'bus/product/selectors';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 const ProductList = () => {
   const dispatch = useDispatch();

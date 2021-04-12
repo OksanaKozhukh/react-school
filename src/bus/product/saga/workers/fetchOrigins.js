@@ -1,6 +1,6 @@
-import { call, put } from "redux-saga/effects";
+import { call, put } from 'redux-saga/effects';
 
-import { productActions } from "bus/product/actions";
+import { productActions } from 'bus/product/actions';
 import { fetchOrigins } from 'bus/product/saga/apiRequests';
 
 export function* fetchOriginsWorker() {

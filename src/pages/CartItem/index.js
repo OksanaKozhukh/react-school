@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
-import { useDispatch } from "react-redux";
-import { RiDeleteBinLine } from "react-icons/ri";
-import { AiOutlinePlusSquare } from "react-icons/ai";
-import { AiOutlineMinusSquare } from "react-icons/ai";
+import { useDispatch } from 'react-redux';
+import { RiDeleteBinLine } from 'react-icons/ri';
+import { AiOutlinePlusSquare, AiOutlineMinusSquare } from 'react-icons/ai';
 
-import { cartActions } from "bus/cart/actions";
+import { cartActions } from 'bus/cart/actions';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
@@ -21,17 +20,32 @@ const CartItem = ({ item }) => {
     <div className={styles.cartItemWrapper}>
       <p className={styles.nameWrapper}> {item.name}</p>
       <div className={styles.quantityWrapper}>
-        <button onClick={() => handleDecrease(item.id)} data-testid='minus-button'>
+        <button
+          type="button"
+          onClick={() => handleDecrease(item.id)}
+          data-testid="minus-button"
+        >
           <AiOutlineMinusSquare size={22} />
         </button>
-        <p data-testid='product-quantity'>{item.quantity}</p>
-        <button onClick={() => handleIncrease(item.id)} data-testid='plus-button'>
+        <p data-testid="product-quantity">{item.quantity}</p>
+        <button
+          type="button"
+          onClick={() => handleIncrease(item.id)}
+          data-testid="plus-button"
+        >
           <AiOutlinePlusSquare size={22} />
         </button>
       </div>
 
-      <p className={styles.priceWrapper} data-testid='product-price'> {item.price}</p>
-      <button onClick={() => handleDelete(item.id)} data-testid='delete-button'>
+      <p className={styles.priceWrapper} data-testid="product-price">
+        {' '}
+        {item.price}
+      </p>
+      <button
+        type="button"
+        onClick={() => handleDelete(item.id)}
+        data-testid="delete-button"
+      >
         <RiDeleteBinLine size={22} />
       </button>
     </div>
@@ -40,6 +54,6 @@ const CartItem = ({ item }) => {
 
 CartItem.propTypes = {
   item: PropTypes.object,
-}
+};
 
 export default CartItem;

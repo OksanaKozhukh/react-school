@@ -1,8 +1,8 @@
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
-import Portal from "components/Portal";
-import { Modals } from "containers/Modals/register";
-import { selectModalName, selectIsModalOpened } from "bus/modals/selector";
+import Portal from 'components/Portal';
+import { Modals } from 'containers/Modals/register';
+import { selectModalName, selectIsModalOpened } from 'bus/modals/selector';
 
 const ModalsContainer = () => {
   const modalName = useSelector(selectModalName);

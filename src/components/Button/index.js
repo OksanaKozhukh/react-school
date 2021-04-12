@@ -1,9 +1,9 @@
-import cn from "classnames";
-import PropTypes from "prop-types";
+import cn from 'classnames';
+import PropTypes from 'prop-types';
 
-import ButtonLoader from "components/ButtonLoader";
+import ButtonLoader from 'components/ButtonLoader';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 const Button = ({ title, loading, disabled, onClick, extraClass }) => (
   <div className={cn(styles.btn, extraClass)}>

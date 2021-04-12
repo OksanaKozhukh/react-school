@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import "./styles.module.scss";
+import './styles.module.scss';
 
 const Toast = ({ message }) => <h4>{message}</h4>;
 

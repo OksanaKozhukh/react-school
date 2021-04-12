@@ -1,9 +1,9 @@
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
 
-import { productActions } from "bus/product/actions";
-import { formUrlQuery } from "bus/product/helpers/formUrlQuery";
+import { productActions } from 'bus/product/actions';
+import { formUrlQuery } from 'bus/product/helpers/formUrlQuery';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 const MinMaxPcice = () => {
   const dispatch = useDispatch();
