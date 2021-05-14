@@ -15,10 +15,10 @@ const ItemInfo = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  useEffect(() => dispatch(productActions.fetchProductItem.request({ id })), [
-    id,
-    dispatch,
-  ]);
+  useEffect(
+    () => dispatch(productActions.fetchProductItem.request({ id })),
+    [id, dispatch],
+  );
 
   const item = useSelector(selectProductItem);
 
