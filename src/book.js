@@ -1,6 +1,6 @@
 export const BOOK = Object.freeze({
-  CART: '/cart',
-  PRODUCT_LIST: '/products',
-  MY_PRODUCT_LIST: '/my-products',
-  PRODUCT_ITEM: '/product-info/:id',
+  CART: '/react-school/cart',
+  PRODUCT_LIST: '/react-school/products',
+  MY_PRODUCT_LIST: '/react-school/my-products',
+  PRODUCT_ITEM: '/react-school/product-info/:id',
 });
