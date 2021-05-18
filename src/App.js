@@ -7,7 +7,7 @@ import ProductList from 'pages/ProductsList';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/react-school">
       <Switch>
         <Route path={BOOK.PRODUCT_LIST} component={ProductList} />
         <Route path={BOOK.MY_PRODUCT_LIST} component={ProductList} />
