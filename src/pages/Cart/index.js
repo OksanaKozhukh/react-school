@@ -27,7 +27,7 @@ const Cart = () => {
     </div>
   ) : (
     <div className={styles.empty}>
-      <p>Your cart is empty. Please, choose any product.</p>
+      <p>Your cart is empty</p>
     </div>
   );
 };
