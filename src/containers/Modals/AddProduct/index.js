@@ -39,7 +39,7 @@ const AddProduct = () => {
     <form onSubmit={formik.handleSubmit} id="formAdd">
       <div className={styles.wrapper}>
         <div className={styles.header}>
-          <p>Add New Product</p>
+          <p>Add Product</p>
           <GrFormClose
             size={25}
             className={styles.icon}
