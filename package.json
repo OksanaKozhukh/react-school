@@ -91,7 +91,7 @@
     "ts-migrate": "^0.1.21"
   },
   "lint-staged": {
-    "**/*.tsб **/*.tsx": [
+    "*.{ts, tsx}": [
       "yarn lint:fix",
       "yarn test --watchAll=false --findRelatedTests --bail"
     ]
