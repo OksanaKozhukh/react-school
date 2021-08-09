@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { GrFormClose } from 'react-icons/gr';
@@ -11,20 +10,29 @@ import { modalsActions } from 'bus/modals/actions';
 import { productActions } from 'bus/product/actions';
 import styles from './styles.module.scss';
 
-const ProductItem = ({ item }) => {
+type Props = {
+  item?: any;
+};
+
+const ProductItem = ({ item }: Props) => {
   const dispatch = useDispatch();
   const getOriginName = (el) => el[0].toUpperCase() + el.slice(1);
 
   const handleAddClick = (el) =>
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
     dispatch(cartActions.addToCart({ ...el, quantity: 0 }));
 
   const handleEditClick = (el) => {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
     dispatch(modalsActions.openModal(MODALS_NAMES.EDIT_PRODUCT));
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
     dispatch(productActions.selectProductForEdit(el));
   };
 
   const handleDeleteClick = (id) => {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
     dispatch(modalsActions.openModal(MODALS_NAMES.DELETE_PRODUCT));
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
     dispatch(productActions.selectProductForDelete(id));
   };
 
@@ -38,6 +46,7 @@ const ProductItem = ({ item }) => {
           onClick={() => handleDeleteClick(item.id)}
         />
       )}
+      {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'string | null' is not assignable to type 'st... Remove this comment to see the full error message */}
       <h3 className={item.isEditable ? styles.nameWrapper : null}>
         {item.name}
       </h3>
@@ -62,10 +71,6 @@ const ProductItem = ({ item }) => {
       </div>
     </div>
   );
-};
-
-ProductItem.propTypes = {
-  item: PropTypes.object,
 };
 
 export default ProductItem;

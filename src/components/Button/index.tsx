@@ -1,24 +1,23 @@
 import cn from 'classnames';
-import PropTypes from 'prop-types';
 
 import ButtonLoader from 'components/ButtonLoader';
 
 import styles from './styles.module.scss';
 
-const Button = ({ title, loading, disabled, onClick, extraClass }) => (
+type Props = {
+  title?: string;
+  loading?: boolean;
+  onClick?: (...args: any[]) => any;
+  disabled?: boolean;
+  extraClass?: string;
+};
+
+const Button = ({ title, loading, disabled, onClick, extraClass }: Props) => (
   <div className={cn(styles.btn, extraClass)}>
     <button type="submit" disabled={disabled} onClick={onClick}>
       {loading ? <ButtonLoader /> : <div>{title}</div>}
     </button>
   </div>
 );
-
-Button.propTypes = {
-  title: PropTypes.string,
-  loading: PropTypes.bool,
-  onClick: PropTypes.func,
-  disabled: PropTypes.bool,
-  extraClass: PropTypes.string,
-};
 
 export default Button;

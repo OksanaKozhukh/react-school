@@ -7,7 +7,7 @@ import { rootReducer } from 'rootReducer';
 
 export const renderWithReduxAndRouter = (
   ui,
-  { initialState, store = createStore(rootReducer, initialState) } = {},
+  { initialState, store = createStore(rootReducer, initialState) }: any = {},
 ) => ({
   ...render(
     <Provider store={store}>

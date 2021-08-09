@@ -19,8 +19,10 @@ const Pagination = () => {
   const currentPage = options.page || 1;
 
   const pageNumbers = [];
+  // @ts-expect-error ts-migrate(2363) FIXME: The right-hand side of an arithmetic operation mus... Remove this comment to see the full error message
   // eslint-disable-next-line no-plusplus
   for (let i = 1; i <= Math.ceil(total / perPage); i++) {
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'number' is not assignable to par... Remove this comment to see the full error message
     pageNumbers.push(i);
   }
 
@@ -32,7 +34,9 @@ const Pagination = () => {
 
   return (
     <ul className={styles.pageNumbers}>
+      {/* @ts-expect-error ts-migrate(2362) FIXME: The left-hand side of an arithmetic operation must... Remove this comment to see the full error message */}
       {pageNumbers.includes(currentPage - 1) && (
+        // @ts-expect-error ts-migrate(2362) FIXME: The left-hand side of an arithmetic operation must... Remove this comment to see the full error message
         <li onClick={() => changeCurrentPage(currentPage - 1)}>Prev</li>
       )}
       {pageNumbers.map((number) => (
@@ -40,7 +44,9 @@ const Pagination = () => {
           {number}
         </li>
       ))}
+      {/* @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'any' is not assignable to parame... Remove this comment to see the full error message */}
       {pageNumbers.includes(currentPage + 1) && (
+        // @ts-expect-error ts-migrate(2365) FIXME: Operator '+' cannot be applied to types 'string | ... Remove this comment to see the full error message
         <li onClick={() => changeCurrentPage(currentPage + 1)}>Next</li>
       )}
     </ul>

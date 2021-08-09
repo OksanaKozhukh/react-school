@@ -12,16 +12,19 @@ import { productActions } from 'bus/product/actions';
 import styles from './styles.module.scss';
 
 const ItemInfo = () => {
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'id' does not exist on type '{}'.
   const { id } = useParams();
   const dispatch = useDispatch();
 
   useEffect(
+    // @ts-expect-error ts-migrate(2322) FIXME: Type '{ payload: undefined; type: string; }' is no... Remove this comment to see the full error message
     () => dispatch(productActions.fetchProductItem.request({ id })),
     [id, dispatch],
   );
 
   const item = useSelector(selectProductItem);
 
+  // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
   const handleAddClick = (el) => dispatch(cartActions.addToCart(el));
 
   return (

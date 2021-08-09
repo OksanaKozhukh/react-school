@@ -6,7 +6,7 @@ import { rootReducer } from 'rootReducer';
 
 export const renderWithRedux = (
   component,
-  { initialState, store = createStore(rootReducer, initialState) } = {},
+  { initialState, store = createStore(rootReducer, initialState) }: any = {},
 ) => ({
   ...render(<Provider store={store}>{component}</Provider>),
   store,

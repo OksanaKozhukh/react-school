@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-undef */
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -17,8 +18,8 @@ import './index.module.scss';
 const sagaMiddleware = createSagaMiddleware();
 
 const reduxDevTools =
-  // eslint-disable-next-line no-underscore-dangle
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+  (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
+  (window as any).__REDUX_DEVTOOLS_EXTENSION__();
 
 const store = createStore(
   rootReducer,

@@ -22,6 +22,7 @@ const EditProduct = () => {
   const loading = useSelector(selectEditStateLoading);
   const currentProduct = useSelector(selectCurrentProduct);
 
+  // @ts-expect-error ts-migrate(2322) FIXME: Type '{ payload: undefined; type: string; }' is no... Remove this comment to see the full error message
   useEffect(() => dispatch(productActions.fetchOrigins.request()), [dispatch]);
 
   const handleCloseModal = () => dispatch(modalsActions.closeModal());
@@ -37,6 +38,7 @@ const EditProduct = () => {
     onSubmit: ({ name, price, origin }) => {
       const product = { name, price, origin };
       dispatch(
+        // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
         productActions.editProduct.request({ product, id: currentProduct.id }),
       );
     },

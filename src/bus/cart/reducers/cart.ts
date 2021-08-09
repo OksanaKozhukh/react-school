@@ -11,6 +11,7 @@ const initialState = {
 };
 
 const cartReducer = createReducer(initialState, {
+  // @ts-expect-error ts-migrate(2464) FIXME: A computed property name must be of type 'string',... Remove this comment to see the full error message
   [cartActions.addToCart]: (state, { payload }) => {
     const list = [...state.cartProducts, payload]
       .map((item) =>
@@ -29,15 +30,20 @@ const cartReducer = createReducer(initialState, {
       ),
     };
   },
+  // @ts-expect-error ts-migrate(2464) FIXME: A computed property name must be of type 'string',... Remove this comment to see the full error message
   [cartActions.deleteFromCart]: (state, { payload }) => ({
     ...state,
-    cartProducts: state.cartProducts.filter((item) => item.id !== payload),
+    cartProducts: state.cartProducts.filter(
+      (item) => (item as any).id !== payload,
+    ),
   }),
+  // @ts-expect-error ts-migrate(2464) FIXME: A computed property name must be of type 'string',... Remove this comment to see the full error message
   [cartActions.increaseItem]: (state, { payload }) => ({
     ...state,
     cartProducts: state.cartProducts.map((item) =>
-      item.id === payload
+      (item as any).id === payload
         ? {
+            // @ts-expect-error ts-migrate(2698) FIXME: Spread types may only be created from object types... Remove this comment to see the full error message
             ...item,
             quantity: item.quantity + 1,
             totalPrice: item.totalPrice + item.price,
@@ -48,15 +54,17 @@ const cartReducer = createReducer(initialState, {
       Number(state.totalPrice) +
       Number(
         state.cartProducts
-          .filter((item) => item.id === payload)
-          .map((item) => item.price),
+          .filter((item) => (item as any).id === payload)
+          .map((item) => (item as any).price),
       ),
   }),
+  // @ts-expect-error ts-migrate(2464) FIXME: A computed property name must be of type 'string',... Remove this comment to see the full error message
   [cartActions.decreaseItem]: (state, { payload }) => ({
     ...state,
     cartProducts: state.cartProducts.map((item) =>
-      item.id === payload
+      (item as any).id === payload
         ? {
+            // @ts-expect-error ts-migrate(2698) FIXME: Spread types may only be created from object types... Remove this comment to see the full error message
             ...item,
             quantity: item.quantity - 1,
             totalPrice: item.totalPrice - item.price,
@@ -67,8 +75,8 @@ const cartReducer = createReducer(initialState, {
       Number(state.totalPrice) -
       Number(
         state.cartProducts
-          .filter((item) => item.id === payload)
-          .map((item) => item.price),
+          .filter((item) => (item as any).id === payload)
+          .map((item) => (item as any).price),
       ),
   }),
 });

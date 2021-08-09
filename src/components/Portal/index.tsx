@@ -1,11 +1,14 @@
 /* eslint-disable no-undef */
 import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
 
 import styles from './styles.module.scss';
 
-const Portal = ({ children }) => {
+type Props = {
+  children: React.ReactElement;
+};
+
+const Portal = ({ children }: Props) => {
   const [container] = useState(document.createElement('div'));
   container.classList.add('root-modal');
 
@@ -20,10 +23,6 @@ const Portal = ({ children }) => {
   }, [container]);
 
   return createPortal(children, container);
-};
-
-Portal.propTypes = {
-  children: PropTypes.element.isRequired,
 };
 
 export default Portal;

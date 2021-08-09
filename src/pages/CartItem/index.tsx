@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { AiOutlinePlusSquare, AiOutlineMinusSquare } from 'react-icons/ai';
@@ -7,13 +6,20 @@ import { cartActions } from 'bus/cart/actions';
 
 import styles from './styles.module.scss';
 
-const CartItem = ({ item }) => {
+type Props = {
+  item?: any;
+};
+
+const CartItem = ({ item }: Props) => {
   const dispatch = useDispatch();
 
+  // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
   const handleDecrease = (id) => dispatch(cartActions.decreaseItem(id));
 
+  // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
   const handleIncrease = (id) => dispatch(cartActions.increaseItem(id));
 
+  // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
   const handleDelete = (id) => dispatch(cartActions.deleteFromCart(id));
 
   return (
@@ -50,10 +56,6 @@ const CartItem = ({ item }) => {
       </button>
     </div>
   );
-};
-
-CartItem.propTypes = {
-  item: PropTypes.object,
 };
 
 export default CartItem;
