@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { IProduct } from 'interfaces';
+import { IOrigin, IProduct } from 'interfaces';
 import Button from 'components/Button';
 import { GrFormClose } from 'react-icons/gr';
 import { modalsActions } from 'bus/modals/actions';
@@ -16,17 +16,19 @@ import styles from './styles.module.scss';
 
 const AddProduct = () => {
   const dispatch = useDispatch();
-  const loading = useSelector(selectAddStateLoading);
+  const loading: boolean = useSelector(selectAddStateLoading);
 
   // @ts-expect-error ts-migrate(2322) FIXME: Type '{ payload: undefined; type: string; }' is no... Remove this comment to see the full error message
   useEffect(() => dispatch(productActions.fetchOrigins.request()), [dispatch]);
 
   const handleCloseModal = () => dispatch(modalsActions.closeModal());
 
-  const options = useSelector(selectOrigins).map((el) => ({
-    value: el.value,
-    label: el.displayName,
-  }));
+  const options: Array<IOrigin> = useSelector(selectOrigins).map(
+    (el: IOrigin) => ({
+      value: el.value,
+      label: el.displayName,
+    }),
+  );
 
   const formik = useFormik({
     initialValues: addProduct.shape,

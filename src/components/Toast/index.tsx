@@ -1,7 +1,7 @@
 import './styles.module.scss';
 
 type Props = {
-  message?: string;
+  message: string;
 };
 
 const Toast = ({ message }: Props) => <h4>{message}</h4>;

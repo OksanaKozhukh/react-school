@@ -5,8 +5,8 @@ import { Modals } from 'containers/Modals/register';
 import { selectModalName, selectIsModalOpened } from 'bus/modals/selector';
 
 const ModalsContainer = () => {
-  const modalName = useSelector(selectModalName);
-  const modalOpened = useSelector(selectIsModalOpened);
+  const modalName: string = useSelector(selectModalName);
+  const modalOpened: boolean = useSelector(selectIsModalOpened);
   const ModalComponent = Modals[modalName];
 
   if (!modalOpened || !ModalComponent) return null;

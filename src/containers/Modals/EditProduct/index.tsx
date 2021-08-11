@@ -3,7 +3,7 @@ import Select from 'react-select';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { IProduct } from 'interfaces';
+import { IProduct, IItem } from 'interfaces';
 import Button from 'components/Button';
 import { GrFormClose } from 'react-icons/gr';
 import { modalsActions } from 'bus/modals/actions';
@@ -20,10 +20,9 @@ import styles from './styles.module.scss';
 
 const EditProduct = () => {
   const dispatch = useDispatch();
-  const loading = useSelector(selectEditStateLoading);
-  const currentProduct = useSelector(selectCurrentProduct);
-
-  // @ts-expect-error ts-migrate(2322) FIXME: Type '{ payload: undefined; type: string; }' is no... Remove this comment to see the full error message
+  const loading: boolean = useSelector(selectEditStateLoading);
+  const currentProduct: IItem = useSelector(selectCurrentProduct);
+  // @ts-expect-error ts-migrate(2464) FIXME: A computed property name must be of type 'string',... Remove this comment to see the full error message
   useEffect(() => dispatch(productActions.fetchOrigins.request()), [dispatch]);
 
   const handleCloseModal = () => dispatch(modalsActions.closeModal());
@@ -90,7 +89,7 @@ const EditProduct = () => {
             options={options}
             data-testid="product-origin"
             placeholder="Select country"
-            value={formik.values.origins}
+            value={formik.values.origin}
             onChange={(value) => formik.setFieldValue('origin', value.value)}
             defaultValue={
               options.filter(
@@ -98,7 +97,7 @@ const EditProduct = () => {
               )[0]
             }
           />
-          <div className={styles.error}>{formik.errors.origins}</div>
+          <div className={styles.error}>{formik.errors.origin}</div>
         </div>
         <div className={styles.btn}>
           <Button

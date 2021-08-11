@@ -7,20 +7,19 @@ export interface IItem {
   updatedAt: string;
   isEditable: boolean;
 }
-export interface IItemWithQuantity {
+
+export interface IItemWithQuantity extends IItem {
   quantity: number;
-  id: string;
-  name: string;
-  price: number;
-  origin: string;
-  createdAt: string;
-  updatedAt: string;
-  isEditable: boolean;
 }
 
 export interface IOrigin {
   value: string;
   displayName: string;
+}
+
+export interface IOption {
+  value: string;
+  label: string;
 }
 
 export interface IList {
@@ -29,8 +28,8 @@ export interface IList {
 
 export interface IProduct {
   name: string | null;
-  price: string | null;
   origin: string | null;
+  price: number | string | null;
 }
 // price should be number
 

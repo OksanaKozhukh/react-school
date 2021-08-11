@@ -6,6 +6,7 @@ import Header from 'components/Header';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { IItemWithQuantity } from 'interfaces';
 import { cartActions } from 'bus/cart/actions';
 import { productActions } from 'bus/product/actions';
 
@@ -21,9 +22,10 @@ const ItemInfo = () => {
     [id, dispatch],
   );
 
-  const item = useSelector(selectProductItem);
+  const item: IItemWithQuantity = useSelector(selectProductItem);
 
-  const handleAddClick = (el) => dispatch(cartActions.addToCart(el));
+  const handleAddClick = (el: IItemWithQuantity) =>
+    dispatch(cartActions.addToCart(el));
 
   return (
     <>

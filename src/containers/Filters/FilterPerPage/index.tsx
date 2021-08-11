@@ -1,10 +1,11 @@
 import Select from 'react-select';
 import { useDispatch } from 'react-redux';
 
+import { IOption } from 'interfaces';
 import { productActions } from 'bus/product/actions';
 import { formUrlQuery } from 'bus/product/helpers/formUrlQuery';
 
-const options = [
+const options: Array<IOption> = [
   { value: '10', label: '10' },
   { value: '25', label: '25' },
   { value: '50', label: '50' },

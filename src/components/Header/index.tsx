@@ -16,7 +16,7 @@ import styles from './styles.module.scss';
 
 const Header = () => {
   const dispatch = useDispatch();
-  const total = useSelector(selectTotalPrice);
+  const total: number = useSelector(selectTotalPrice);
 
   const addProduct = () =>
     dispatch(modalsActions.openModal(MODALS_NAMES.ADD_PRODUCT));

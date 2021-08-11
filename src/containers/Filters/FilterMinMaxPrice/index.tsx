@@ -8,7 +8,7 @@ import styles from './styles.module.scss';
 const MinMaxPcice = () => {
   const dispatch = useDispatch();
 
-  const handleChange = (ev) => {
+  const handleChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     const data = { [ev.target.name]: ev.target.value };
     formUrlQuery(data);
     dispatch(productActions.fetchProductList.request());

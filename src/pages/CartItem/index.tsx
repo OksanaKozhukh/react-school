@@ -4,10 +4,11 @@ import { AiOutlinePlusSquare, AiOutlineMinusSquare } from 'react-icons/ai';
 
 import { cartActions } from 'bus/cart/actions';
 
+import { IItemWithQuantity } from 'interfaces';
 import styles from './styles.module.scss';
 
 type Props = {
-  item?: any;
+  item: IItemWithQuantity;
 };
 
 const CartItem = ({ item }: Props) => {

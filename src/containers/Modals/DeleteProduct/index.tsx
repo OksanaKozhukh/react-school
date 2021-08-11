@@ -12,8 +12,8 @@ import styles from './styles.module.scss';
 
 const DeleteProduct = () => {
   const dispatch = useDispatch();
-  const id = useSelector(selectProductId);
-  const loading = useSelector(selectDeleteStateLoading);
+  const id: string = useSelector(selectProductId);
+  const loading: boolean = useSelector(selectDeleteStateLoading);
 
   const handleCancel = () => dispatch(modalsActions.closeModal());
 
