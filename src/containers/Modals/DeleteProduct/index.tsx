@@ -18,7 +18,6 @@ const DeleteProduct = () => {
   const handleCancel = () => dispatch(modalsActions.closeModal());
 
   const handleDelete = () => {
-    // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
     dispatch(productActions.deleteProduct.request({ id }));
   };
 

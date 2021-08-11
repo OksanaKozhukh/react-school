@@ -13,13 +13,11 @@ export function* deleteProductWorker({ payload }) {
     yield put(productActions.deleteProduct.success());
 
     const message = 'Product has been deleted';
-    // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
     yield put(toastActions.showToast({ message }));
 
     yield put(modalsActions.closeModal());
     yield put(productActions.fetchProductList.request());
   } catch (err) {
-    // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
     yield put(productActions.deleteProduct.error(err));
   }
 }

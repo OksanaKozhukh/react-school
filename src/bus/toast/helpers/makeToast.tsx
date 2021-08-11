@@ -3,7 +3,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import Toast from 'components/Toast';
 
-export function makeToast(message, options) {
+export function makeToast(message: string) {
   return toast(<Toast {...{ message }} />, {
     hideProgressBar: true,
     position: 'top-right',
@@ -11,6 +11,5 @@ export function makeToast(message, options) {
     pauseOnHover: true,
     transition: Slide,
     autoClose: 4000,
-    ...options,
   });
 }

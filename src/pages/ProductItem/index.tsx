@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { GrFormClose } from 'react-icons/gr';
 
 import { BOOK } from 'book';
+import { IItem } from 'interfaces';
 import { MODALS_NAMES } from 'constants/index';
 import { cartActions } from 'bus/cart/actions';
 import { modalsActions } from 'bus/modals/actions';
@@ -11,28 +12,23 @@ import { productActions } from 'bus/product/actions';
 import styles from './styles.module.scss';
 
 type Props = {
-  item?: any;
+  item: IItem;
 };
 
 const ProductItem = ({ item }: Props) => {
   const dispatch = useDispatch();
-  const getOriginName = (el) => el[0].toUpperCase() + el.slice(1);
+  const getOriginName = (el: string) => el[0].toUpperCase() + el.slice(1);
 
-  const handleAddClick = (el) =>
-    // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
+  const handleAddClick = (el: IItem) =>
     dispatch(cartActions.addToCart({ ...el, quantity: 0 }));
 
-  const handleEditClick = (el) => {
-    // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
+  const handleEditClick = (el: IItem) => {
     dispatch(modalsActions.openModal(MODALS_NAMES.EDIT_PRODUCT));
-    // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
     dispatch(productActions.selectProductForEdit(el));
   };
 
-  const handleDeleteClick = (id) => {
-    // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
+  const handleDeleteClick = (id: string) => {
     dispatch(modalsActions.openModal(MODALS_NAMES.DELETE_PRODUCT));
-    // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
     dispatch(productActions.selectProductForDelete(id));
   };
 

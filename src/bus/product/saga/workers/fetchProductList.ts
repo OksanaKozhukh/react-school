@@ -3,6 +3,7 @@ import qs from 'query-string';
 import { call, put, delay } from 'redux-saga/effects';
 
 import { BOOK } from 'book';
+import { IList } from 'interfaces';
 import { productActions } from 'bus/product/actions';
 import { fetchProductList } from 'bus/product/saga/apiRequests';
 
@@ -21,11 +22,9 @@ export function* fetchProductListWorker() {
   yield put(productActions.fetchProductList.start());
 
   try {
-    const data = yield call(() => fetchProductList(params, pathname));
-    // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
+    const data: IList = yield call(() => fetchProductList(params, pathname));
     yield put(productActions.fetchProductList.success(data));
   } catch (error) {
-    // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
     yield put(productActions.fetchProductList.error(error));
   }
 }

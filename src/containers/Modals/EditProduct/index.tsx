@@ -3,6 +3,7 @@ import Select from 'react-select';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { IProduct } from 'interfaces';
 import Button from 'components/Button';
 import { GrFormClose } from 'react-icons/gr';
 import { modalsActions } from 'bus/modals/actions';
@@ -36,9 +37,8 @@ const EditProduct = () => {
     initialValues: currentProduct,
     validationSchema: editProduct.shema,
     onSubmit: ({ name, price, origin }) => {
-      const product = { name, price, origin };
+      const product: IProduct = { name, price, origin };
       dispatch(
-        // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
         productActions.editProduct.request({ product, id: currentProduct.id }),
       );
     },

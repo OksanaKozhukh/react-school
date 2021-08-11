@@ -45,7 +45,9 @@ const cartReducer = createReducer(initialState, {
         ? {
             // @ts-expect-error ts-migrate(2698) FIXME: Spread types may only be created from object types... Remove this comment to see the full error message
             ...item,
+            // @ts-expect-error ts-migrate(2698) FIXME: Spread types may only be created from object types... Remove this comment to see the full error message
             quantity: item.quantity + 1,
+            // @ts-expect-error ts-migrate(2698) FIXME: Spread types may only be created from object types... Remove this comment to see the full error message
             totalPrice: item.totalPrice + item.price,
           }
         : item,
@@ -66,7 +68,9 @@ const cartReducer = createReducer(initialState, {
         ? {
             // @ts-expect-error ts-migrate(2698) FIXME: Spread types may only be created from object types... Remove this comment to see the full error message
             ...item,
+            // @ts-expect-error ts-migrate(2698) FIXME: Spread types may only be created from object types... Remove this comment to see the full error message
             quantity: item.quantity - 1,
+            // @ts-expect-error ts-migrate(2698) FIXME: Spread types may only be created from object types... Remove this comment to see the full error message
             totalPrice: item.totalPrice - item.price,
           }
         : item,

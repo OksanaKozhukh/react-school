@@ -1,8 +1,17 @@
 import { createAction } from '@reduxjs/toolkit';
 
-export const createRequestAction = (actionType, actionName) => ({
-  request: createAction(`${actionType}/${actionName}_REQUEST`),
+import { IItem, IOrigin, IList, IProduct } from 'interfaces';
+
+export const createRequestAction = (
+  actionType: string,
+  actionName: string,
+) => ({
+  request: createAction<undefined | { id: string } | { product: IProduct }>(
+    `${actionType}/${actionName}_REQUEST`,
+  ),
   start: createAction(`${actionType}/${actionName}_START`),
-  success: createAction(`${actionType}/${actionName}_SUCCESS`),
-  error: createAction(`${actionType}/${actionName}_ERROR`),
+  success: createAction<undefined | IItem | IOrigin | IList>(
+    `${actionType}/${actionName}_SUCCESS`,
+  ),
+  error: createAction<string>(`${actionType}/${actionName}_ERROR`),
 });

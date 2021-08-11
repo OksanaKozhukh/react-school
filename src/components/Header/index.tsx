@@ -19,7 +19,6 @@ const Header = () => {
   const total = useSelector(selectTotalPrice);
 
   const addProduct = () =>
-    // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
     dispatch(modalsActions.openModal(MODALS_NAMES.ADD_PRODUCT));
 
   return (

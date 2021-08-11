@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { IProduct } from 'interfaces';
 import Button from 'components/Button';
 import { GrFormClose } from 'react-icons/gr';
 import { modalsActions } from 'bus/modals/actions';
@@ -31,8 +32,7 @@ const AddProduct = () => {
     initialValues: addProduct.shape,
     validationSchema: addProduct.schema,
     onSubmit: ({ name, price, origin }) => {
-      const product = { name, price, origin };
-      // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
+      const product: IProduct = { name, price, origin };
       dispatch(productActions.addNewProduct.request({ product }));
     },
   });

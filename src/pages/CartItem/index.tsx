@@ -13,14 +13,11 @@ type Props = {
 const CartItem = ({ item }: Props) => {
   const dispatch = useDispatch();
 
-  // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
-  const handleDecrease = (id) => dispatch(cartActions.decreaseItem(id));
+  const handleDecrease = (id: string) => dispatch(cartActions.decreaseItem(id));
 
-  // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
-  const handleIncrease = (id) => dispatch(cartActions.increaseItem(id));
+  const handleIncrease = (id: string) => dispatch(cartActions.increaseItem(id));
 
-  // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
-  const handleDelete = (id) => dispatch(cartActions.deleteFromCart(id));
+  const handleDelete = (id: string) => dispatch(cartActions.deleteFromCart(id));
 
   return (
     <div className={styles.cartItemWrapper}>
