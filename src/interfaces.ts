@@ -7,13 +7,12 @@ export interface IItem {
   updatedAt: string;
   isEditable: boolean;
 }
-
 export interface IItemWithQuantity {
+  quantity: number;
   id: string;
   name: string;
   price: number;
   origin: string;
-  quantity: number;
   createdAt: string;
   updatedAt: string;
   isEditable: boolean;
@@ -34,3 +33,9 @@ export interface IProduct {
   origin: string | null;
 }
 // price should be number
+
+export interface IError {
+  error: {
+    code: string;
+  };
+}

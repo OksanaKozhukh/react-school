@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 
-import { IItem, IOrigin, IList, IProduct } from 'interfaces';
+import { IItem, IOrigin, IList, IProduct, IError } from 'interfaces';
 
 export const createRequestAction = (
   actionType: string,
@@ -13,5 +13,5 @@ export const createRequestAction = (
   success: createAction<undefined | IItem | IOrigin | IList>(
     `${actionType}/${actionName}_SUCCESS`,
   ),
-  error: createAction<string>(`${actionType}/${actionName}_ERROR`),
+  error: createAction<boolean | IError>(`${actionType}/${actionName}_ERROR`),
 });

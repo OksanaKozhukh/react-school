@@ -5,12 +5,11 @@ import { makeToast } from 'bus/toast/helpers/makeToast';
 
 const initialState = {};
 
-const toastReducer = createReducer(initialState, {
-  // @ts-expect-error ts-migrate(2464) FIXME: A computed property name must be of type 'string',... Remove this comment to see the full error message
-  [toastActions.showToast]: (state, { payload }) => {
-    const { message } = payload;
+const toastReducer = createReducer(initialState, (builder) => {
+  builder.addCase(toastActions.showToast, (state, action) => {
+    const { message } = action.payload;
     makeToast(message);
-  },
+  });
 });
 
 export default toastReducer;
