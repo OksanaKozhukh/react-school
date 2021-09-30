@@ -3,6 +3,7 @@ import { object, string, number } from 'yup';
 import { FORM_FIELDS } from 'constants/index';
 
 const { NAME, PRICE, ORIGIN } = FORM_FIELDS;
+
 export const productSchema = () =>
   object().shape({
     [ORIGIN]: string().required('This field is required'),

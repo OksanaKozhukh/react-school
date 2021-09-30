@@ -1,3 +1,4 @@
+import { FC, ReactElement, ChangeEvent } from 'react';
 import Select from 'react-select';
 import { useDispatch } from 'react-redux';
 
@@ -12,11 +13,12 @@ const options: Array<IOption> = [
   { value: 'asia', label: 'Asia' },
 ];
 
-const FilterByCountry = () => {
+const FilterByCountry: FC = (): ReactElement => {
   const dispatch = useDispatch();
 
-  const handleChange = (ev) => {
+  const handleChange = (ev: ChangeEvent<HTMLSelectElement>) => {
     const data = {
+      // @ts-expect-error
       origins: ev.map((el: IOption) => el.value).join(','),
     };
     formUrlQuery(data);
@@ -29,7 +31,7 @@ const FilterByCountry = () => {
         isMulti
         options={options}
         placeholder="Country filter"
-        onChange={(ev) => handleChange(ev)}
+        onChange={(ev: ChangeEvent<HTMLSelectElement>) => handleChange(ev)}
       />
     </div>
   );

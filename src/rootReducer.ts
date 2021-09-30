@@ -19,3 +19,5 @@ export const rootReducer = combineReducers({
   productList: fetchProductListReducer,
   productItem: fetchProductItemReducer,
 });
+
+export type AppState = ReturnType<typeof rootReducer>;

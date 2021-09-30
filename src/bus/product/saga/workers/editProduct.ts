@@ -1,11 +1,12 @@
 import { call, put } from 'redux-saga/effects';
+import { SagaIterator } from '@redux-saga/core';
 
 import { toastActions } from 'bus/toast/actions';
 import { modalsActions } from 'bus/modals/actions';
 import { productActions } from 'bus/product/actions';
 import { editProduct } from 'bus/product/saga/apiRequests';
 
-export function* editProductWorker({ payload }) {
+export function* editProductWorker({ payload }): SagaIterator {
   yield put(productActions.editProduct.start());
   try {
     const { product, id } = payload;

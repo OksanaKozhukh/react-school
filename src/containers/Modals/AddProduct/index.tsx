@@ -1,5 +1,5 @@
 import Select from 'react-select';
-import { useEffect } from 'react';
+import { useEffect, FC, ReactElement } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -14,21 +14,20 @@ import { addProduct } from './shape';
 
 import styles from './styles.module.scss';
 
-const AddProduct = () => {
+const AddProduct: FC = (): ReactElement => {
   const dispatch = useDispatch();
   const loading: boolean = useSelector(selectAddStateLoading);
 
-  // @ts-expect-error ts-migrate(2322) FIXME: Type '{ payload: undefined; type: string; }' is no... Remove this comment to see the full error message
-  useEffect(() => dispatch(productActions.fetchOrigins.request()), [dispatch]);
+  useEffect(() => {
+    dispatch(productActions.fetchOrigins.request());
+  }, [dispatch]);
 
   const handleCloseModal = () => dispatch(modalsActions.closeModal());
 
-  const options: Array<IOrigin> = useSelector(selectOrigins).map(
-    (el: IOrigin) => ({
-      value: el.value,
-      label: el.displayName,
-    }),
-  );
+  const options = useSelector(selectOrigins).map((el: IOrigin) => ({
+    value: el.value,
+    label: el.displayName,
+  }));
 
   const formik = useFormik({
     initialValues: addProduct.shape,

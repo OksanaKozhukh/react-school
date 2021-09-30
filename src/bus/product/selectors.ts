@@ -1,9 +1,11 @@
 import get from 'lodash/get';
 import { createSelector } from '@reduxjs/toolkit';
 
+import { AppState } from 'rootReducer';
+
 // PRODUCT LIST
 
-const selectProductState = (state) => get(state, 'productList');
+const selectProductState = (state: AppState) => state.productList;
 
 export const selectProductList = createSelector([selectProductState], (state) =>
   get(state, 'products'),
@@ -20,7 +22,7 @@ export const selectTotalItems = createSelector([selectProductState], (state) =>
 
 // PRODUCT ITEM
 
-const selectProductItemState = (state) => get(state, 'productItem');
+const selectProductItemState = (state: AppState) => state.productItem;
 
 export const selectProductItem = createSelector(
   [selectProductItemState],
@@ -35,14 +37,14 @@ export const selectOrigins = createSelector(selectProductState, (state) =>
 
 // ADD
 
-const selectAddState = (state) => get(state, 'add');
+const selectAddState = (state: AppState) => state.add;
 
 export const selectAddStateLoading = createSelector([selectAddState], (state) =>
   get(state, 'loading'),
 );
 // EDIT
 
-const selectEditState = (state) => get(state, 'edit');
+const selectEditState = (state: AppState) => state.edit;
 
 export const selectCurrentProduct = createSelector([selectEditState], (state) =>
   get(state, 'currentProduct'),
@@ -55,7 +57,7 @@ export const selectEditStateLoading = createSelector(
 
 // DELETE
 
-const selectDeleteState = (state) => get(state, 'delete');
+const selectDeleteState = (state: AppState) => state.delete;
 
 export const selectProductId = createSelector([selectDeleteState], (state) =>
   get(state, 'id'),

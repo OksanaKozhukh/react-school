@@ -1,3 +1,4 @@
+import { FC, ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -8,7 +9,7 @@ import { selectCartProducts, selectTotalPrice } from 'bus/cart/selectors';
 
 import styles from './styles.module.scss';
 
-const Cart = () => {
+const Cart: FC = (): ReactElement => {
   const total: number = useSelector(selectTotalPrice);
   const cartProducts: Array<IItemWithQuantity> =
     useSelector(selectCartProducts);

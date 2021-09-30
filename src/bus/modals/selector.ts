@@ -1,7 +1,9 @@
 import get from 'lodash/get';
 import { createSelector } from '@reduxjs/toolkit';
 
-const selectModalState = (state) => get(state, 'modals');
+import { AppState } from 'rootReducer';
+
+const selectModalState = (state: AppState) => state.modals;
 
 export const selectModalName = createSelector(selectModalState, (state) =>
   get(state, 'name'),

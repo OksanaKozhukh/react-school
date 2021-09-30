@@ -1,13 +1,14 @@
 import { createReducer } from '@reduxjs/toolkit';
 
+import { IFetchProductItem } from 'interfaces';
 import { productActions } from 'bus/product/actions';
 
 const initialState = {
   product: {},
-  error: false,
+  error: null,
   loading: false,
   succeed: false,
-};
+} as IFetchProductItem;
 
 const fetchProductItemReducer = createReducer(initialState, (builder) => {
   builder
@@ -19,14 +20,11 @@ const fetchProductItemReducer = createReducer(initialState, (builder) => {
       ...state,
       succeed: true,
       loading: false,
-      // @ts-expect-error ts-migrate(2464) FIXME: A computed property name must be of type 'string',... Remove this comment to see the full error message
       product: action.payload?.data,
     }))
     .addCase(productActions.fetchProductItem.error, (state, action) => ({
       ...state,
-      // @ts-expect-error ts-migrate(2464) FIXME: A computed property name must be of type 'string',... Remove this comment to see the full error message
-
-      error: action.payload.error.code,
+      error: action.payload,
     }));
 });
 

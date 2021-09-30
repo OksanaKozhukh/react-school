@@ -1,4 +1,5 @@
 import { takeLatest } from 'redux-saga/effects';
+import { SagaIterator } from '@redux-saga/core';
 
 import { productActions } from '../actions';
 import {
@@ -10,7 +11,7 @@ import {
   fetchProductItemWorker,
 } from './workers';
 
-export function* productWatcher() {
+export function* productWatcher(): SagaIterator {
   yield takeLatest(
     [productActions.fetchProductList.request],
     fetchProductListWorker,

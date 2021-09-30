@@ -1,10 +1,11 @@
+import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
 import Portal from 'components/Portal';
 import { Modals } from 'containers/Modals/register';
 import { selectModalName, selectIsModalOpened } from 'bus/modals/selector';
 
-const ModalsContainer = () => {
+const ModalsContainer: FC = () => {
   const modalName: string = useSelector(selectModalName);
   const modalOpened: boolean = useSelector(selectIsModalOpened);
   const ModalComponent = Modals[modalName];

@@ -1,3 +1,4 @@
+import { FC, ReactElement } from 'react';
 import Select from 'react-select';
 import { useDispatch } from 'react-redux';
 
@@ -11,11 +12,11 @@ const options: Array<IOption> = [
   { value: '50', label: '50' },
 ];
 
-const FilterPerPage = () => {
+const FilterPerPage: FC = (): ReactElement => {
   const dispatch = useDispatch();
 
   const handleChange = (ev) => {
-    const data = { perPage: ev.value };
+    const data = { perPage: ev.target.value };
     formUrlQuery(data);
     dispatch(productActions.fetchProductList.request());
   };

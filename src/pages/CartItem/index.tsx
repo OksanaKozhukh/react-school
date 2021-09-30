@@ -1,3 +1,4 @@
+import { FC, ReactElement } from 'react';
 import { useDispatch } from 'react-redux';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { AiOutlinePlusSquare, AiOutlineMinusSquare } from 'react-icons/ai';
@@ -11,7 +12,7 @@ type Props = {
   item: IItemWithQuantity;
 };
 
-const CartItem = ({ item }: Props) => {
+const CartItem: FC<Props> = ({ item }: Props): ReactElement => {
   const dispatch = useDispatch();
 
   const handleDecrease = (id: string) => dispatch(cartActions.decreaseItem(id));

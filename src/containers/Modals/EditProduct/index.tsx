@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, FC, ReactElement } from 'react';
 import Select from 'react-select';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { IProduct, IItem } from 'interfaces';
+import { IProduct } from 'interfaces';
 import Button from 'components/Button';
 import { GrFormClose } from 'react-icons/gr';
 import { modalsActions } from 'bus/modals/actions';
@@ -18,15 +18,15 @@ import { editProduct } from './shape';
 
 import styles from './styles.module.scss';
 
-const EditProduct = () => {
+const EditProduct: FC = (): ReactElement => {
   const dispatch = useDispatch();
-  const loading: boolean = useSelector(selectEditStateLoading);
-  const currentProduct: IItem = useSelector(selectCurrentProduct);
-  // @ts-expect-error ts-migrate(2464) FIXME: A computed property name must be of type 'string',... Remove this comment to see the full error message
-  useEffect(() => dispatch(productActions.fetchOrigins.request()), [dispatch]);
+  const loading = useSelector(selectEditStateLoading);
+  const currentProduct = useSelector(selectCurrentProduct);
+  useEffect(() => {
+    dispatch(productActions.fetchOrigins.request());
+  }, [dispatch]);
 
   const handleCloseModal = () => dispatch(modalsActions.closeModal());
-
   const options = useSelector(selectOrigins).map((el) => ({
     value: el.value,
     label: el.displayName,
@@ -35,7 +35,7 @@ const EditProduct = () => {
   const formik = useFormik({
     initialValues: currentProduct,
     validationSchema: editProduct.shema,
-    onSubmit: ({ name, price, origin }) => {
+    onSubmit: ({ name, price, origin }: IProduct) => {
       const product: IProduct = { name, price, origin };
       dispatch(
         productActions.editProduct.request({ product, id: currentProduct.id }),

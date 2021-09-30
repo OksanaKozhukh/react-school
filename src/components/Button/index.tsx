@@ -1,3 +1,4 @@
+import { FC, ReactElement } from 'react';
 import cn from 'classnames';
 
 import ButtonLoader from 'components/ButtonLoader';
@@ -12,7 +13,13 @@ type Props = {
   extraClass?: string;
 };
 
-const Button = ({ title, loading, disabled, onClick, extraClass }: Props) => (
+const Button: FC<Props> = ({
+  title,
+  loading,
+  disabled,
+  onClick,
+  extraClass,
+}: Props): ReactElement => (
   <div className={cn(styles.btn, extraClass)}>
     <button type="submit" disabled={disabled} onClick={onClick}>
       {loading ? <ButtonLoader /> : <div>{title}</div>}

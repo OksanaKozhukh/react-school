@@ -1,17 +1,17 @@
 import { createAction } from '@reduxjs/toolkit';
 
-import { IItem, IOrigin, IList, IProduct, IError } from 'interfaces';
+import { IError, IProduct } from 'interfaces';
+
+type RequestPayload = { id: string } | { product: IProduct };
 
 export const createRequestAction = (
   actionType: string,
   actionName: string,
 ) => ({
-  request: createAction<undefined | { id: string } | { product: IProduct }>(
-    `${actionType}/${actionName}_REQUEST`,
-  ),
+  request: createAction<RequestPayload>(`${actionType}/${actionName}_REQUEST`),
   start: createAction(`${actionType}/${actionName}_START`),
-  success: createAction<undefined | IItem | IOrigin | IList>(
-    `${actionType}/${actionName}_SUCCESS`,
-  ),
-  error: createAction<boolean | IError>(`${actionType}/${actionName}_ERROR`),
+  success: createAction(`${actionType}/${actionName}_SUCCESS`),
+  error: createAction<IError>(`${actionType}/${actionName}_ERROR`),
 });
+
+// нужно ли прописывать типы экшенов не строками, а конкретными названиями

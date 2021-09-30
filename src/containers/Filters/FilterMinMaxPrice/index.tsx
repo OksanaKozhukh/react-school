@@ -1,3 +1,4 @@
+import { FC, ReactElement, ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { productActions } from 'bus/product/actions';
@@ -5,10 +6,10 @@ import { formUrlQuery } from 'bus/product/helpers/formUrlQuery';
 
 import styles from './styles.module.scss';
 
-const MinMaxPcice = () => {
+const MinMaxPcice: FC = (): ReactElement => {
   const dispatch = useDispatch();
 
-  const handleChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (ev: ChangeEvent<HTMLInputElement>) => {
     const data = { [ev.target.name]: ev.target.value };
     formUrlQuery(data);
     dispatch(productActions.fetchProductList.request());

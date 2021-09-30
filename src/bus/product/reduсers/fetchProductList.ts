@@ -1,15 +1,16 @@
 import { createReducer } from '@reduxjs/toolkit';
 
+import { IFetchProductList } from 'interfaces';
 import { productActions } from 'bus/product/actions';
 
 const initialState = {
   origins: [],
   products: [],
-  error: false,
+  error: null,
+  totalItems: 0,
   loading: false,
   succeed: false,
-  totalItems: null,
-};
+} as IFetchProductList;
 
 const fetchProductListReducer = createReducer(initialState, (builder) => {
   builder
@@ -21,21 +22,16 @@ const fetchProductListReducer = createReducer(initialState, (builder) => {
       ...state,
       succeed: true,
       loading: false,
-      // @ts-expect-error ts-migrate(2464) FIXME: A computed property name must be of type 'string',... Remove this comment to see the full error message
-      products: action.payload.data.items,
-      // @ts-expect-error ts-migrate(2464) FIXME: A computed property name must be of type 'string',... Remove this comment to see the full error message
-
-      totalItems: action.payload.data.totalItems,
+      products: action.payload?.data.items,
+      totalItems: action.payload?.data.totalItems,
     }))
     .addCase(productActions.fetchOrigins.success, (state, action) => ({
       ...state,
-      // @ts-expect-error ts-migrate(2464) FIXME: A computed property name must be of type 'string',... Remove this comment to see the full error message
-      origins: action.payload.data.items,
+      origins: action.payload?.data.items,
     }))
     .addCase(productActions.fetchProductList.error, (state, action) => ({
       ...state,
-      // @ts-expect-error ts-migrate(2464) FIXME: A computed property name must be of type 'string',... Remove this comment to see the full error message
-      error: action.payload.error.code,
+      error: action.payload,
     }));
 });
 

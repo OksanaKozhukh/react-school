@@ -1,3 +1,4 @@
+import { FC, ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import { CgAddR } from 'react-icons/cg';
 import { BiCart } from 'react-icons/bi';
@@ -14,7 +15,7 @@ import FilterByCountry from 'containers/Filters/FilterByCountry';
 
 import styles from './styles.module.scss';
 
-const Header = () => {
+const Header: FC = (): ReactElement => {
   const dispatch = useDispatch();
   const total: number = useSelector(selectTotalPrice);
 

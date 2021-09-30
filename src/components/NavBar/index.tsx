@@ -1,8 +1,10 @@
+import { FC, ReactElement } from 'react';
+
 import { BOOK } from 'book';
 
 import styles from './styles.module.scss';
 
-const NavBar = () => {
+const NavBar: FC = (): ReactElement => {
   // eslint-disable-next-line no-undef
   const { pathname } = window.location;
   return (

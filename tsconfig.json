@@ -2,7 +2,11 @@
   "compilerOptions": {
     "noImplicitAny": false,
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -16,8 +20,13 @@
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "jsx": "react-jsx",
-    "baseUrl": "./src",
+    "baseUrl": "./src"
   },
-  "include": ["src", ".eslintrc.js",],
-  "exclude": ["src/__tests__"]
+  "include": [
+    "src",
+    ".eslintrc.js"
+  ],
+  "exclude": [
+    "src/__tests__"
+  ]
 }

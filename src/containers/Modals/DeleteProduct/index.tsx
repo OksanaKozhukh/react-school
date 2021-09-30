@@ -1,3 +1,4 @@
+import { FC, ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Button from 'components/Button';
@@ -10,9 +11,9 @@ import {
 
 import styles from './styles.module.scss';
 
-const DeleteProduct = () => {
+const DeleteProduct: FC = (): ReactElement => {
   const dispatch = useDispatch();
-  const id: string = useSelector(selectProductId);
+  const id = useSelector(selectProductId);
   const loading: boolean = useSelector(selectDeleteStateLoading);
 
   const handleCancel = () => dispatch(modalsActions.closeModal());

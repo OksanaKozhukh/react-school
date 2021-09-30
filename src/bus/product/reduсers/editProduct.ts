@@ -1,13 +1,14 @@
 import { createReducer } from '@reduxjs/toolkit';
 
+import { IEditProduct } from 'interfaces';
 import { productActions } from 'bus/product/actions';
 
 const initialState = {
   currentProduct: {},
-  error: false,
+  error: null,
   loading: false,
   succeed: false,
-};
+} as IEditProduct;
 
 const editProductReducer = createReducer(initialState, (builder) => {
   builder
@@ -26,8 +27,7 @@ const editProductReducer = createReducer(initialState, (builder) => {
     }))
     .addCase(productActions.editProduct.error, (state, action) => ({
       ...state,
-      // @ts-expect-error ts-migrate(2464) FIXME: A computed property name must be of type 'string',... Remove this comment to see the full error message
-      error: action.payload.error.code,
+      error: action.payload,
     }));
 });
 

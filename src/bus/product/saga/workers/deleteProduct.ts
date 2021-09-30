@@ -1,11 +1,12 @@
 import { call, put } from 'redux-saga/effects';
+import { SagaIterator } from '@redux-saga/core';
 
 import { toastActions } from 'bus/toast/actions';
 import { modalsActions } from 'bus/modals/actions';
 import { productActions } from 'bus/product/actions';
 import { deleteProduct } from 'bus/product/saga/apiRequests';
 
-export function* deleteProductWorker({ payload }) {
+export function* deleteProductWorker({ payload }): SagaIterator {
   yield put(productActions.deleteProduct.start());
   try {
     const { id } = payload;

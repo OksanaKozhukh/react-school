@@ -1,9 +1,13 @@
-import axios from 'axios';
+import axios, { AxiosPromise } from 'axios';
 
 import { BOOK } from 'book';
+import { IItem, IList, IOriginList, IProductState } from 'interfaces';
 import { API, apiKey } from 'constants/index';
 
-export const fetchProductList = (params, pathname) =>
+export const fetchProductList = (
+  params: object,
+  pathname: string,
+): AxiosPromise<IList> =>
   axios({
     method: 'get',
     url: API.PRODUCT.PRODUCT_LIST,
@@ -15,16 +19,16 @@ export const fetchProductList = (params, pathname) =>
     }),
   });
 
-export const fetchProductItem = (id) =>
+export const fetchProductItem = (id: string): AxiosPromise<IItem> =>
   axios({
     method: 'get',
     url: API.PRODUCT.PRODUCT_ITEM.replace(':id', id),
   });
 
-export const fetchOrigins = () =>
+export const fetchOrigins = (): AxiosPromise<IOriginList> =>
   axios({ method: 'get', url: API.PRODUCT.FETCH_ORIGINS });
 
-export const deleteProduct = (id) =>
+export const deleteProduct = (id: string) =>
   axios({
     method: 'delete',
     url: API.PRODUCT.PRODUCT_ITEM.replace(':id', id),
@@ -33,7 +37,7 @@ export const deleteProduct = (id) =>
     },
   });
 
-export const addNewProduct = (product) =>
+export const addNewProduct = (product: IProductState) =>
   axios({
     method: 'post',
     data: { product },
@@ -43,7 +47,7 @@ export const addNewProduct = (product) =>
     url: API.PRODUCT.PRODUCT_LIST,
   });
 
-export const editProduct = (product, id) =>
+export const editProduct = (product: IProductState, id: string) =>
   axios({
     method: 'patch',
     data: { product },

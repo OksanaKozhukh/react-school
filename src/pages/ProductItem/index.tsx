@@ -1,26 +1,30 @@
+/* eslint-disable indent */
+import { FC, ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { GrFormClose } from 'react-icons/gr';
 
 import { BOOK } from 'book';
-import { IItem } from 'interfaces';
+import { IItem, IItemWithQuantity } from 'interfaces';
 import { MODALS_NAMES } from 'constants/index';
 import { cartActions } from 'bus/cart/actions';
 import { modalsActions } from 'bus/modals/actions';
-
 import { productActions } from 'bus/product/actions';
+
 import styles from './styles.module.scss';
 
 type Props = {
   item: IItem;
 };
 
-const ProductItem = ({ item }: Props) => {
+const ProductItem: FC<Props> = ({ item }: Props): ReactElement => {
   const dispatch = useDispatch();
   const getOriginName = (el: string) => el[0].toUpperCase() + el.slice(1);
 
   const handleAddClick = (el: IItem) =>
-    dispatch(cartActions.addToCart({ ...el, quantity: 0 }));
+    dispatch(
+      cartActions.addToCart({ ...el, quantity: 0 } as IItemWithQuantity),
+    );
 
   const handleEditClick = (el: IItem) => {
     dispatch(modalsActions.openModal(MODALS_NAMES.EDIT_PRODUCT));
@@ -29,6 +33,7 @@ const ProductItem = ({ item }: Props) => {
 
   const handleDeleteClick = (id: string) => {
     dispatch(modalsActions.openModal(MODALS_NAMES.DELETE_PRODUCT));
+
     dispatch(productActions.selectProductForDelete(id));
   };
 
@@ -42,10 +47,7 @@ const ProductItem = ({ item }: Props) => {
           onClick={() => handleDeleteClick(item.id)}
         />
       )}
-      {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'string | null' is not assignable to type 'st... Remove this comment to see the full error message */}
-      <h3 className={item.isEditable ? styles.nameWrapper : null}>
-        {item.name}
-      </h3>
+      <h3 className={item.isEditable ? styles.nameWrapper : ''}>{item.name}</h3>
 
       <div>
         <p data-testid="item-origin">Origin: {getOriginName(item.origin)}</p>

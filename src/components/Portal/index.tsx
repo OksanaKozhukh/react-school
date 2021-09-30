@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { useEffect, useState } from 'react';
+import { useEffect, useState, FC, ReactElement } from 'react';
 import { createPortal } from 'react-dom';
 
 import styles from './styles.module.scss';
@@ -8,7 +8,7 @@ type Props = {
   children: React.ReactElement;
 };
 
-const Portal = ({ children }: Props) => {
+const Portal: FC<Props> = ({ children }: Props): ReactElement => {
   const [container] = useState(document.createElement('div'));
   container.classList.add('root-modal');
 
