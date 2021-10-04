@@ -21,6 +21,7 @@ export interface IOrigin {
 export interface IOriginList {
   items: IOrigin[];
 }
+
 export interface IOption {
   value: string;
   label: string;
@@ -55,8 +56,6 @@ export interface IProductWithId extends IProduct {
   id: string;
 }
 
-// price should be number
-
 export interface IError {
   error: {
     code: number;
@@ -85,4 +84,18 @@ export interface IFetchProductList extends IProductState {
   origins: IOrigin[];
   products: IItem[];
   totalItems: number;
+}
+
+export interface Toast {
+  message: string;
+}
+
+export interface CartState {
+  cartProducts: IItemWithQuantity[];
+  totalPrice: number;
+}
+
+export interface ModalState {
+  name: string;
+  opened: boolean;
 }

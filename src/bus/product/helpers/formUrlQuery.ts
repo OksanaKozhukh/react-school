@@ -2,7 +2,7 @@ import qs from 'query-string';
 
 import history from 'utils/history';
 
-export const formUrlQuery = (data) => {
+export const formUrlQuery = (data: object) => {
   // eslint-disable-next-line no-undef
   const params = qs.parse(window.location.search.substr(1));
   const newParams = { ...params, ...data };

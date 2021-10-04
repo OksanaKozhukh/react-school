@@ -4,11 +4,24 @@ import { IItemWithQuantity } from 'interfaces';
 
 const actionType = 'CART';
 
+enum CartActionName {
+  ADD_TO_CART = 'ADD_TO_CART',
+  INCREASE_ITEM = 'INCREASE_ITEM',
+  DECREASE_ITEM = 'DECREASE_ITEM',
+  DELETE_FROM_CART = 'DELETE_FROM_CART',
+}
+
 export const cartActions = {
-  addToCart: createAction<IItemWithQuantity, 'CART/ADD_TO_CART'>(
-    `${actionType}/ADD_TO_CART`,
+  addToCart: createAction<IItemWithQuantity>(
+    `${actionType}/${CartActionName.ADD_TO_CART}`,
   ),
-  deleteFromCart: createAction<string>(`${actionType}/DELETE_FROM_CART`),
-  increaseItem: createAction<string>(`${actionType}/INCREASE_ITEM`),
-  decreaseItem: createAction<string>(`${actionType}/DECREASE_ITEM`),
+  deleteFromCart: createAction<string>(
+    `${actionType}/${CartActionName.DELETE_FROM_CART}`,
+  ),
+  increaseItem: createAction<string>(
+    `${actionType}/${CartActionName.INCREASE_ITEM}`,
+  ),
+  decreaseItem: createAction<string>(
+    `${actionType}/${CartActionName.DECREASE_ITEM}`,
+  ),
 };

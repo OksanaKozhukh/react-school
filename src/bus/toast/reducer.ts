@@ -2,8 +2,11 @@ import { createReducer } from '@reduxjs/toolkit';
 
 import { toastActions } from 'bus/toast/actions';
 import { makeToast } from 'bus/toast/helpers/makeToast';
+import { Toast } from 'interfaces';
 
-const initialState = {};
+const initialState = {
+  message: '',
+} as Toast;
 
 const toastReducer = createReducer(initialState, (builder) => {
   builder.addCase(toastActions.showToast, (state, action) => {

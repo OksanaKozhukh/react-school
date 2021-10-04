@@ -2,7 +2,12 @@ import { createAction } from '@reduxjs/toolkit';
 
 const actionType = 'MODALS';
 
+enum ModalActionName {
+  OPEN = 'OPEN',
+  CLOSE = 'CLOSE',
+}
+
 export const modalsActions = {
-  openModal: createAction<string, 'MODALS/OPEN'>(`${actionType}/OPEN`),
-  closeModal: createAction(`${actionType}/CLOSE`),
+  openModal: createAction<string>(`${actionType}/${ModalActionName.OPEN}`),
+  closeModal: createAction(`${actionType}/${ModalActionName.CLOSE}`),
 };

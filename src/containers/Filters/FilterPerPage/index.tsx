@@ -16,7 +16,7 @@ const FilterPerPage: FC = (): ReactElement => {
   const dispatch = useDispatch();
 
   const handleChange = (ev) => {
-    const data = { perPage: ev.target.value };
+    const data = { perPage: ev.value };
     formUrlQuery(data);
     dispatch(productActions.fetchProductList.request());
   };

@@ -6,7 +6,13 @@ import { modalsActions } from 'bus/modals/actions';
 import { productActions } from 'bus/product/actions';
 import { deleteProduct } from 'bus/product/saga/apiRequests';
 
-export function* deleteProductWorker({ payload }): SagaIterator {
+type DeleteProductPayload = {
+  payload: { id: string };
+};
+
+export function* deleteProductWorker({
+  payload,
+}: DeleteProductPayload): SagaIterator {
   yield put(productActions.deleteProduct.start());
   try {
     const { id } = payload;

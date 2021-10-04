@@ -5,7 +5,13 @@ import { DataItem } from 'interfaces';
 import { productActions } from 'bus/product/actions';
 import { fetchProductItem } from 'bus/product/saga/apiRequests';
 
-export function* fetchProductItemWorker({ payload }): SagaIterator {
+type ProductItemPayload = {
+  payload: { id: string };
+};
+
+export function* fetchProductItemWorker({
+  payload,
+}: ProductItemPayload): SagaIterator {
   yield put(productActions.fetchProductItem.start());
   try {
     const { id } = payload;

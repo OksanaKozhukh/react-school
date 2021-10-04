@@ -1,17 +1,14 @@
+/* eslint-disable prettier/prettier */
 import { createAction } from '@reduxjs/toolkit';
 
-import { IError, IProduct } from 'interfaces';
+import { IError } from 'interfaces';
 
-type RequestPayload = { id: string } | { product: IProduct };
-
-export const createRequestAction = (
+export const createRequestAction = <T, K>(
   actionType: string,
   actionName: string,
 ) => ({
-  request: createAction<RequestPayload>(`${actionType}/${actionName}_REQUEST`),
-  start: createAction(`${actionType}/${actionName}_START`),
-  success: createAction(`${actionType}/${actionName}_SUCCESS`),
-  error: createAction<IError>(`${actionType}/${actionName}_ERROR`),
-});
-
-// нужно ли прописывать типы экшенов не строками, а конкретными названиями
+    request: createAction<T>(`${actionType}/${actionName}_REQUEST`),
+    start: createAction(`${actionType}/${actionName}_START`),
+    success: createAction<K>(`${actionType}/${actionName}_SUCCESS`),
+    error: createAction<IError>(`${actionType}/${actionName}_ERROR`),
+  });

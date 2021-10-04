@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { ModalState } from 'types';
+import { ModalState } from 'interfaces';
 import { modalsActions } from 'bus/modals/actions';
 
 const initialState = {

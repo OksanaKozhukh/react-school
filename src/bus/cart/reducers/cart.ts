@@ -1,9 +1,10 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable indent */
 import uniqBy from 'lodash/uniqBy';
 
 import { createReducer } from '@reduxjs/toolkit';
 
-import { CartState } from 'types';
+import { CartState } from 'interfaces';
 import { cartActions } from 'bus/cart/actions';
 
 const initialState = {
@@ -42,10 +43,10 @@ const cartReducer = createReducer(initialState, (builder) => {
       cartProducts: state.cartProducts.map((item) =>
         item.id === action.payload
           ? {
-              ...item,
-              quantity: item.quantity + 1,
-              totalPrice: item.totalPrice + item.price,
-            }
+            ...item,
+            quantity: item.quantity + 1,
+            totalPrice: item.totalPrice + item.price,
+          }
           : item,
       ),
       totalPrice:
@@ -61,10 +62,10 @@ const cartReducer = createReducer(initialState, (builder) => {
       cartProducts: state.cartProducts.map((item) =>
         item.id === action.payload
           ? {
-              ...item,
-              quantity: item.quantity - 1,
-              totalPrice: item.totalPrice - item.price,
-            }
+            ...item,
+            quantity: item.quantity - 1,
+            totalPrice: item.totalPrice - item.price,
+          }
           : item,
       ),
       totalPrice:
