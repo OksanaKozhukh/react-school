@@ -17,10 +17,10 @@ enum ProductActionName {
 }
 
 export const productActions = {
-  editProduct: createRequestAction<
-    { id: string } | { product: IProduct },
-    void
-  >(actionType, `${ProductActionName.EDIT_PRODUCT}`),
+  editProduct: createRequestAction<{ id: string; product: IProduct }, void>(
+    actionType,
+    `${ProductActionName.EDIT_PRODUCT}`,
+  ),
   fetchOrigins: createRequestAction<void, DataOrigins>(
     actionType,
     `${ProductActionName.FETCH_ORIGINS}`,

@@ -1,8 +1,8 @@
 import axios, { AxiosPromise } from 'axios';
 
 import { BOOK } from 'book';
-import { IItem, IList, IOriginList, IProductState } from 'interfaces';
 import { API, apiKey } from 'constants/index';
+import { IItem, IList, IOriginList, IProduct } from 'interfaces';
 
 export const fetchProductList = (
   params: object,
@@ -37,7 +37,7 @@ export const deleteProduct = (id: string) =>
     },
   });
 
-export const addNewProduct = (product: IProductState) =>
+export const addNewProduct = (product: IProduct) =>
   axios({
     method: 'post',
     data: { product },
@@ -47,7 +47,7 @@ export const addNewProduct = (product: IProductState) =>
     url: API.PRODUCT.PRODUCT_LIST,
   });
 
-export const editProduct = (product: IProductState, id: string) =>
+export const editProduct = (product: IProduct, id: string) =>
   axios({
     method: 'patch',
     data: { product },

@@ -5,17 +5,18 @@ import { toastActions } from 'bus/toast/actions';
 import { modalsActions } from 'bus/modals/actions';
 import { productActions } from 'bus/product/actions';
 import { addNewProduct } from 'bus/product/saga/apiRequests';
-// import { IProduct } from 'interfaces';
+import { IProduct } from 'interfaces';
 
-// type AddproductPayload = {
-//   payload: { product: IProduct };
-// };
+type AddProductPayload = {
+  payload: { product: IProduct };
+};
 
-export function* addNewProductWorker({ payload }): SagaIterator {
+export function* addNewProductWorker({
+  payload,
+}: AddProductPayload): SagaIterator {
   yield put(productActions.addNewProduct.start());
   try {
     const { product } = payload;
-    console.log(product);
 
     yield call(() => addNewProduct(product));
     yield put(productActions.addNewProduct.success());
