@@ -2,19 +2,20 @@ import { runSaga } from 'redux-saga';
 
 import * as api from 'bus/product/saga/apiRequests';
 import { productActions } from 'bus/product/actions';
-import { addNewProductWorker } from 'bus/product/saga/workers';
+import { apiReqSaga } from 'bus/product/helpers/reqSaga';
+import { addNewProduct } from 'bus/product/saga/apiRequests';
 
 describe('add new product saga', () => {
-  let mockProduct;
   let dispatched;
+  let mockProduct;
+
   beforeEach(() => {
+    dispatched = [];
     mockProduct = {
       price: 200,
       origin: 'usa',
-      isEditable: false,
       name: 'Black Cat',
     };
-    dispatched = [];
   });
 
   it('call api and dispatch success action', async () => {
@@ -25,11 +26,16 @@ describe('add new product saga', () => {
       {
         dispatch: (action) => dispatched.push(action),
       },
-      addNewProductWorker,
-      { payload: { mockProduct } },
-    );
+      apiReqSaga,
+      { payload: { product: mockProduct } },
+      productActions.addNewProduct,
+      addNewProduct,
+      {message: 'Product has been added'},
+      {isFetchingItem: false},
+  );
     expect(addProduct).toHaveBeenCalledTimes(1);
-    expect(dispatched[1]).toEqual(productActions.addNewProduct.success());
+    console.log(dispatched);
+    expect(dispatched[1]).toEqual(productActions.addNewProduct.success(mockProduct));
   });
 
   it('call api and dispatch error action', async () => {
@@ -40,8 +46,12 @@ describe('add new product saga', () => {
       {
         dispatch: (action) => dispatched.push(action),
       },
-      addNewProductWorker,
+      apiReqSaga,
       { payload: { mockProduct } },
+      productActions.addNewProduct,
+      addNewProduct,
+      {message: 'Product has been added'},
+      {isFetchingItem: false},
     );
     expect(addProduct).toHaveBeenCalledTimes(1);
     expect(dispatched[1]).toEqual(productActions.addNewProduct.error());

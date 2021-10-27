@@ -4,11 +4,11 @@ import { renderWithRedux } from 'utils/renderWithRedux';
 import MinMaxPcice from 'containers/Filters/FilterMinMaxPrice';
 
 describe('MinMaxPcice container', () => {
-  let getByDisplayValue;
-  let getByPlaceholderText;
-  let queryByDisplayValue;
   let min;
   let max;
+  let getByDisplayValue;
+  let queryByDisplayValue;
+  let getByPlaceholderText;
 
   beforeEach(() => {
     ({

@@ -1,7 +1,7 @@
 .wrapper {
-  width: 300px;
+  width: 250px;
   margin: 20px;
-  height: 200px;
+  height: 160px;
   padding: 10px;
   display: flex;
   text-align: center;
@@ -21,6 +21,7 @@
   }
 
   h3 {
+    margin: 10px 0;
     font-size: 20px;
     font-weight: bold;
   }

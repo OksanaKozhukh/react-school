@@ -22,13 +22,31 @@ jest.mock('react-select', () => ({ options, value, onChange }) => {
   );
 });
 
+const initialState = {
+  edit: {
+    currentProduct: {
+      name: 'Golden fish',
+      price: 2000,
+      origin: 'Europe',
+    },
+  },
+  productList: {
+    origins: [
+      { value: 'europe', label: 'Europe' },
+      { value: 'usa', label: 'Usa' },
+      { value: 'africa', label: 'Africa' },
+      { value: 'asia', label: 'Asia' },
+    ],
+  },
+};
+
 describe('EditProduct modal', () => {
-  let getByRole;
   let name;
   let price;
   let origin;
   let editBtn;
   let resetBtn;
+  let getByRole;
   let getByText;
   let getByTestId;
   let getByPlaceholderText;
@@ -39,28 +57,10 @@ describe('EditProduct modal', () => {
       getByText,
       getByTestId,
       getByPlaceholderText,
-    } = renderWithRedux(<EditProduct />, {
-      initialState: {
-        edit: {
-          currentProduct: {
-            name: 'Golden fish',
-            price: 2000,
-            origin: 'Europe',
-          },
-        },
-        productList: {
-          origins: [
-            { value: 'europe', label: 'Europe' },
-            { value: 'usa', label: 'Usa' },
-            { value: 'africa', label: 'Africa' },
-            { value: 'asia', label: 'Asia' },
-          ],
-        },
-      },
-    }));
+    } = renderWithRedux(<EditProduct />, { initialState }));
+    origin = getByTestId('select');
     name = getByPlaceholderText('Enter name');
     price = getByPlaceholderText('Enter price');
-    origin = getByTestId('select');
     editBtn = getByRole('button', { name: 'Edit' });
     resetBtn = getByText('Reset').closest('button');
   });
@@ -76,9 +76,9 @@ describe('EditProduct modal', () => {
   });
 
   it('modal fields are prefilled with values from state', () => {
-    expect(name).toHaveValue('Golden fish');
     expect(price).toHaveValue(2000);
     expect(origin).toHaveValue('europe');
+    expect(name).toHaveValue('Golden fish');
   });
 
   it('change product name', async () => {

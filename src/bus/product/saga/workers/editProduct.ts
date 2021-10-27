@@ -1,34 +1,11 @@
-import { call, put } from 'redux-saga/effects';
-import { SagaIterator } from '@redux-saga/core';
-
-import { IProduct } from 'interfaces';
-import { toastActions } from 'bus/toast/actions';
-import { modalsActions } from 'bus/modals/actions';
 import { productActions } from 'bus/product/actions';
 import { editProduct } from 'bus/product/saga/apiRequests';
+import { createReqSaga } from 'bus/product/helpers/reqSaga';
 
-type EditProductPayload = {
-  payload: {
-    product: IProduct;
-    id: string;
-  };
-};
+const message = 'Product has been edited';
 
-export function* editProductWorker({
-  payload,
-}: EditProductPayload): SagaIterator {
-  yield put(productActions.editProduct.start());
-  try {
-    const { product, id } = payload;
-    yield call(() => editProduct(product, id));
-    yield put(productActions.editProduct.success());
-
-    const message = 'Product has been edited';
-    yield put(toastActions.showToast({ message }));
-
-    yield put(modalsActions.closeModal());
-    yield put(productActions.fetchProductList.request());
-  } catch (err) {
-    yield put(productActions.editProduct.error(err));
-  }
-}
+export const editProductWorker = createReqSaga(
+  productActions.editProduct,
+  editProduct,
+  message,
+);

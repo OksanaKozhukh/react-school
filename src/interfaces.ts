@@ -99,3 +99,8 @@ export interface ModalState {
   name: string;
   opened: boolean;
 }
+
+export interface ProductPayload {
+  id: string;
+  product: IProduct;
+}

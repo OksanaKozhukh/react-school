@@ -16,12 +16,13 @@ import styles from './styles.module.scss';
 const ProductList: FC = (): ReactElement => {
   const dispatch = useDispatch();
   const list = useSelector(selectProductList);
-
   const loading = useSelector(selectProductListLoading);
 
   useEffect(() => {
+    dispatch(productActions.fetchOrigins.request());
     dispatch(productActions.fetchProductList.request());
-  }, [dispatch]);
+  }, []);
+
   return (
     <>
       <Header />

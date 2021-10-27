@@ -33,7 +33,6 @@ const ProductItem: FC<Props> = ({ item }: Props): ReactElement => {
 
   const handleDeleteClick = (id: string) => {
     dispatch(modalsActions.openModal(MODALS_NAMES.DELETE_PRODUCT));
-
     dispatch(productActions.selectProductForDelete(id));
   };
 

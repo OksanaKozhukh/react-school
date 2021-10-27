@@ -2,13 +2,17 @@ import { fireEvent, render } from '@testing-library/react';
 
 import Button from 'components/Button';
 
+const props = {
+  title: 'Edit',
+  onClick: jest.fn(),
+};
+
 describe('Button component', () => {
-  let getByRole;
   let btn;
-  const handleClick = jest.fn();
+  let getByRole;
 
   beforeEach(() => {
-    ({ getByRole } = render(<Button title="Edit" onClick={handleClick} />));
+    ({ getByRole } = render(<Button {...props} />));
     btn = getByRole('button', { name: 'Edit' });
   });
 
@@ -18,6 +22,6 @@ describe('Button component', () => {
 
   it('handle click events', () => {
     fireEvent.click(btn);
-    expect(handleClick).toHaveBeenCalled();
+    expect(props.onClick).toHaveBeenCalledTimes(1);
   });
 });

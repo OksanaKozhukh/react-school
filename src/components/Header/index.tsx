@@ -41,7 +41,7 @@ const Header: FC = (): ReactElement => {
       </div>
 
       <div className={styles.cart}>
-        <span className={styles.total}>Total: {total} $</span>
+        <span className={styles.total}>Total $: {total}</span>
         <Link to={BOOK.CART}>
           <BiCart size={32} className={styles.icon} />
         </Link>

@@ -6,9 +6,9 @@ import ButtonLoader from 'components/ButtonLoader';
 import styles from './styles.module.scss';
 
 type Props = {
-  title?: string;
+  title: string;
   loading?: boolean;
-  onClick?: (...args: any[]) => any;
+  onClick?: (...args: any[]) => void;
   disabled?: boolean;
   extraClass?: string;
 };

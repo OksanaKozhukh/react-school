@@ -3,18 +3,18 @@ import { renderWithReduxAndRouter } from 'utils/renderWithReduxAndRouter';
 
 const list = [
   {
+    id: '12',
     price: 100,
     origin: 'asia',
     isEditable: true,
     name: 'Golden Fish',
-    id: '12',
   },
   {
+    id: '10',
     price: 200,
     origin: 'usa',
     isEditable: false,
     name: 'Black Cat',
-    id: '10',
   },
 ];
 

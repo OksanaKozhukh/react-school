@@ -2,12 +2,12 @@ import CartItem from 'pages/CartItem';
 import { renderWithRedux } from 'utils/renderWithRedux';
 
 const product = {
+  id: '12',
   price: 100,
   quantity: 2,
   origin: 'asia',
   isEditable: false,
   name: 'Gold Fish',
-  id: '12',
 };
 
 describe('CartItem component', () => {

@@ -1,11 +1,11 @@
 import Select from 'react-select';
-import { useEffect, FC, ReactElement } from 'react';
+import { FC, ReactElement } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { IOrigin, IProduct } from 'interfaces';
 import Button from 'components/Button';
 import { GrFormClose } from 'react-icons/gr';
+import { IOption, IProduct } from 'interfaces';
 import { modalsActions } from 'bus/modals/actions';
 import { productActions } from 'bus/product/actions';
 import { selectOrigins, selectAddStateLoading } from 'bus/product/selectors';
@@ -18,13 +18,9 @@ const AddProduct: FC = (): ReactElement => {
   const dispatch = useDispatch();
   const loading: boolean = useSelector(selectAddStateLoading);
 
-  useEffect(() => {
-    dispatch(productActions.fetchOrigins.request());
-  }, [dispatch]);
-
   const handleCloseModal = () => dispatch(modalsActions.closeModal());
 
-  const options = useSelector(selectOrigins).map((el: IOrigin) => ({
+  const options: Array<IOption> = useSelector(selectOrigins).map((el) => ({
     value: el.value,
     label: el.displayName,
   }));

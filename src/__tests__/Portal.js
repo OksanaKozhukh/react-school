@@ -3,9 +3,10 @@ import { renderWithRedux } from 'utils/renderWithRedux';
 import AddProduct from 'containers/Modals/AddProduct';
 
 describe('Portal component', () => {
-  let getByText;
   let unmount;
+  let getByText;
   let queryByText;
+  
   beforeEach(
     () =>
       ({ getByText, unmount, queryByText } = renderWithRedux(

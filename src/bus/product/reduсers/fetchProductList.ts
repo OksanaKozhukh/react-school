@@ -4,9 +4,9 @@ import { IFetchProductList } from 'interfaces';
 import { productActions } from 'bus/product/actions';
 
 const initialState = {
+  error: null,
   origins: [],
   products: [],
-  error: null,
   totalItems: 0,
   loading: false,
   succeed: false,

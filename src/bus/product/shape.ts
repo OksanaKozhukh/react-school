@@ -11,8 +11,8 @@ export const productSchema = () =>
       .required('This field is required')
       .positive('Enter positive number'),
     [NAME]: string()
+      .trim()
       .required('This field is required')
       .min(3, 'Enter at least 3 characters')
-      .max(20, 'Enter less than 20 characters')
-      .trim(),
+      .max(20, 'Enter less than 20 characters'),
   });

@@ -5,6 +5,10 @@ import { productActions } from 'bus/product/actions';
 import { fetchProductListWorker } from 'bus/product/saga/workers';
 
 describe('fetch product list', () => {
+  let dispatched;
+
+  beforeEach(() => dispatched = []);
+
   it('load products and handle them in case of success', async () => {
     const mockData = [
       {
@@ -23,16 +27,37 @@ describe('fetch product list', () => {
     const requestProductList = jest
       .spyOn(api, 'fetchProductList')
       .mockImplementation(() => Promise.resolve(mockData));
-    const dispatched = [];
+    
     await runSaga(
       {
         dispatch: (action) => dispatched.push(action),
       },
       fetchProductListWorker,
     );
-    // expect(requestProductList).toHaveBeenCalledTimes(1);
-    // expect(dispatched[1]).toEqual(
-    //   productActions.fetchProductList.success(mockData),
-    // );
+
+    await new Promise((res) => setTimeout(res, 1000));
+
+    expect(requestProductList).toHaveBeenCalledTimes(1);
+    expect(dispatched[1]).toEqual(
+      productActions.fetchProductList.success(mockData),
+    );
+  });
+
+  it('call api and dispatch error action', async () => {
+    const requestProduct = jest
+      .spyOn(api, 'fetchProductList')
+      .mockImplementation(() => Promise.reject());
+
+    await runSaga(
+      {
+        dispatch: (action) => dispatched.push(action),
+      },
+      fetchProductListWorker,
+    );
+
+    await new Promise((res) => setTimeout(res, 1000));
+
+    expect(requestProduct).toHaveBeenCalledTimes(1);
+    expect(dispatched[1]).toEqual(productActions.fetchProductList.error());
   });
 });

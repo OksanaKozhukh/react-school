@@ -2,7 +2,7 @@ import axios, { AxiosPromise } from 'axios';
 
 import { BOOK } from 'book';
 import { API, apiKey } from 'constants/index';
-import { IItem, IList, IOriginList, IProduct } from 'interfaces';
+import { IItem, IList, IOrigin, ProductPayload } from 'interfaces';
 
 export const fetchProductList = (
   params: object,
@@ -19,40 +19,42 @@ export const fetchProductList = (
     }),
   });
 
-export const fetchProductItem = (id: string): AxiosPromise<IItem> =>
+export const fetchProductItem = (
+  payload: ProductPayload,
+): AxiosPromise<IItem> =>
   axios({
     method: 'get',
-    url: API.PRODUCT.PRODUCT_ITEM.replace(':id', id),
+    url: API.PRODUCT.PRODUCT_ITEM.replace(':id', payload.id),
   });
 
-export const fetchOrigins = (): AxiosPromise<IOriginList> =>
+export const fetchOrigins = (): AxiosPromise<IOrigin[]> =>
   axios({ method: 'get', url: API.PRODUCT.FETCH_ORIGINS });
 
-export const deleteProduct = (id: string) =>
+export const deleteProduct = (payload: ProductPayload) =>
   axios({
     method: 'delete',
-    url: API.PRODUCT.PRODUCT_ITEM.replace(':id', id),
+    url: API.PRODUCT.PRODUCT_ITEM.replace(':id', payload.id),
     headers: {
       Authorization: apiKey,
     },
   });
 
-export const addNewProduct = (product: IProduct) =>
+export const addNewProduct = (payload: ProductPayload) =>
   axios({
     method: 'post',
-    data: { product },
+    data: payload.product,
     headers: {
       Authorization: apiKey,
     },
     url: API.PRODUCT.PRODUCT_LIST,
   });
 
-export const editProduct = (product: IProduct, id: string) =>
+export const editProduct = (payload: ProductPayload) =>
   axios({
     method: 'patch',
-    data: { product },
+    data: payload.product,
     headers: {
       Authorization: apiKey,
     },
-    url: API.PRODUCT.PRODUCT_ITEM.replace(':id', id),
+    url: API.PRODUCT.PRODUCT_ITEM.replace(':id', payload.id),
   });

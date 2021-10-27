@@ -1,20 +1,22 @@
 import { FC, ReactElement } from 'react';
 import Select from 'react-select';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { IOption } from 'interfaces';
 import { productActions } from 'bus/product/actions';
+import { selectOrigins } from 'bus/product/selectors';
 import { formUrlQuery } from 'bus/product/helpers/formUrlQuery';
-
-const options: Array<IOption> = [
-  { value: 'europe', label: 'Europe' },
-  { value: 'usa', label: 'Usa' },
-  { value: 'africa', label: 'Africa' },
-  { value: 'asia', label: 'Asia' },
-];
 
 const FilterByCountry: FC = (): ReactElement => {
   const dispatch = useDispatch();
+  const origins = useSelector(selectOrigins);
+
+  const options =
+    origins &&
+    origins.map((el) => ({
+      value: el.value,
+      label: el.displayName,
+    }));
 
   const handleChange = (ev) => {
     const data = {

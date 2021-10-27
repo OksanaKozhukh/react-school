@@ -7,7 +7,7 @@ import { AppState } from 'rootReducer';
 
 const selectProductState = (state: AppState) => state.productList;
 
-export const selectProductList = createSelector([selectProductState], (state) =>
+export const selectProductList = createSelector(selectProductState, (state) =>
   get(state, 'products'),
 );
 
@@ -16,7 +16,7 @@ export const selectProductListLoading = createSelector(
   (state) => get(state, 'loading'),
 );
 
-export const selectTotalItems = createSelector([selectProductState], (state) =>
+export const selectTotalItems = createSelector(selectProductState, (state) =>
   get(state, 'totalItems'),
 );
 
@@ -27,6 +27,11 @@ const selectProductItemState = (state: AppState) => state.productItem;
 export const selectProductItem = createSelector(
   [selectProductItemState],
   (state) => get(state, 'product'),
+);
+
+export const selectProductItemLoading = createSelector(
+  [selectProductItemState],
+  (state) => get(state, 'loading'),
 );
 
 // ORIGINS
@@ -46,13 +51,12 @@ export const selectAddStateLoading = createSelector([selectAddState], (state) =>
 
 const selectEditState = (state: AppState) => state.edit;
 
-export const selectCurrentProduct = createSelector([selectEditState], (state) =>
+export const selectCurrentProduct = createSelector(selectEditState, (state) =>
   get(state, 'currentProduct'),
 );
 
-export const selectEditStateLoading = createSelector(
-  [selectEditState],
-  (state) => get(state, 'loading'),
+export const selectEditStateLoading = createSelector(selectEditState, (state) =>
+  get(state, 'loading'),
 );
 
 // DELETE
@@ -64,6 +68,6 @@ export const selectProductId = createSelector([selectDeleteState], (state) =>
 );
 
 export const selectDeleteStateLoading = createSelector(
-  [selectDeleteState],
+  selectDeleteState,
   (state) => get(state, 'loading'),
 );

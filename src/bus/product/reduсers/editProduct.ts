@@ -4,10 +4,10 @@ import { IEditProduct } from 'interfaces';
 import { productActions } from 'bus/product/actions';
 
 const initialState = {
-  currentProduct: {},
   error: null,
   loading: false,
   succeed: false,
+  currentProduct: {},
 } as IEditProduct;
 
 const editProductReducer = createReducer(initialState, (builder) => {

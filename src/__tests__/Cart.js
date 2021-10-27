@@ -3,38 +3,40 @@ import userEvent from '@testing-library/user-event';
 import Cart from 'pages/Cart';
 import { renderWithReduxAndRouter } from 'utils/renderWithReduxAndRouter';
 
+const initialState = {
+  cart: {
+    cartProducts: [
+      {
+        price: 100,
+        quantity: 3,
+        origin: 'asia',
+        isEditable: false,
+        name: 'Gold Fish',
+        id: '12',
+      },
+    ],
+    totalPrice: 300,
+  },
+};
+
 describe('Cart page', () => {
-  let getByTestId;
-  let queryByText;
+  let total;
   let plusBtn;
   let minusBtn;
   let deleteBtn;
+  let getByTestId;
+  let queryByText;
   let productQuantity;
-  let total;
 
   beforeEach(() => {
     ({ getByTestId, queryByText } = renderWithReduxAndRouter(<Cart />, {
-      initialState: {
-        cart: {
-          cartProducts: [
-            {
-              price: 100,
-              quantity: 3,
-              origin: 'asia',
-              isEditable: false,
-              name: 'Gold Fish',
-              id: '12',
-            },
-          ],
-          totalPrice: 300,
-        },
-      },
+      initialState
     }));
     plusBtn = getByTestId('plus-button');
     minusBtn = getByTestId('minus-button');
+    total = getByTestId('cart-total-price');
     deleteBtn = getByTestId('delete-button');
     productQuantity = getByTestId('product-quantity');
-    total = getByTestId('cart-total-price');
   });
 
   it('increment product quantity', () => {
