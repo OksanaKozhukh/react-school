@@ -9,9 +9,9 @@ import { IOption, IProduct } from 'interfaces';
 import { modalsActions } from 'bus/modals/actions';
 import { productActions } from 'bus/product/actions';
 import {
+  selectOrigins,
   selectCurrentProduct,
   selectEditStateLoading,
-  selectOrigins,
 } from 'bus/product/selectors';
 
 import { editProduct } from './shape';

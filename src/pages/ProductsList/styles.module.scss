@@ -5,3 +5,15 @@
   padding: 90px 0 70px;
   justify-content: center;
 }
+
+.empty {
+  height: 500px;
+  display: flex;
+  color: grey;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    font-size: 20px;
+  }
+}

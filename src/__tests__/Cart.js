@@ -69,6 +69,7 @@ describe('Cart page', () => {
   it('check total price after decrement product quantity', () => {
     expect(productQuantity).toHaveTextContent(3);
     userEvent.click(minusBtn);
+    expect(productQuantity).toHaveTextContent(2);
     expect(total).toHaveTextContent('Total price: 200 $');
   });
 });

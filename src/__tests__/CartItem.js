@@ -6,8 +6,9 @@ const product = {
   price: 100,
   quantity: 2,
   origin: 'asia',
-  isEditable: false,
+  totalPrice: 200,
   name: 'Gold Fish',
+  isEditable: false,
 };
 
 describe('CartItem component', () => {
@@ -17,6 +18,6 @@ describe('CartItem component', () => {
     );
     expect(getByText('Gold Fish')).toBeInTheDocument();
     expect(getByTestId('product-quantity')).toHaveTextContent(2);
-    expect(getByTestId('product-price')).toHaveTextContent(100);
+    expect(getByTestId('product-total-price')).toHaveTextContent(200);
   });
 });

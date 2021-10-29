@@ -15,10 +15,10 @@ const Pagination: FC = (): ReactElement => {
   const total = useSelector(selectTotalItems);
   const options = qs.parse(window.location.search.substr(1));
 
+  const pageNumbers: number[] = [];
   const perPage = options.perPage || 50;
   const currentPage = options.page || 1;
 
-  const pageNumbers: number[] = [];
   for (let i = 1; i <= Math.ceil(total / +perPage); i++) {
     pageNumbers.push(i);
   }
@@ -28,6 +28,15 @@ const Pagination: FC = (): ReactElement => {
     formUrlQuery(data);
     dispatch(productActions.fetchProductList.request());
   };
+
+  const liElems = document.querySelectorAll('li');
+  liElems.forEach((elem) => {
+    if (elem.innerText === currentPage) {
+      elem.setAttribute('style', 'color: black');
+    } else {
+      elem.removeAttribute('style');
+    }
+  });
 
   return (
     <ul className={styles.pageNumbers}>

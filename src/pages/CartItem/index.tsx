@@ -1,11 +1,11 @@
+import Button from 'components/Button';
 import { FC, ReactElement } from 'react';
 import { useDispatch } from 'react-redux';
+import { cartActions } from 'bus/cart/actions';
+import { IItemWithQuantity } from 'interfaces';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { AiOutlinePlusSquare, AiOutlineMinusSquare } from 'react-icons/ai';
 
-import { cartActions } from 'bus/cart/actions';
-
-import { IItemWithQuantity } from 'interfaces';
 import styles from './styles.module.scss';
 
 type Props = {
@@ -24,35 +24,38 @@ const CartItem: FC<Props> = ({ item }: Props): ReactElement => {
   return (
     <div className={styles.cartItemWrapper}>
       <p className={styles.nameWrapper}> {item.name}</p>
+
       <div className={styles.quantityWrapper}>
-        <button
-          type="button"
+        <Button
+          testId="minus-button"
+          extraClass={styles.extraClass}
           onClick={() => handleDecrease(item.id)}
-          data-testid="minus-button"
         >
           <AiOutlineMinusSquare size={22} />
-        </button>
+        </Button>
+
         <p data-testid="product-quantity">{item.quantity}</p>
-        <button
-          type="button"
+
+        <Button
+          testId="plus-button"
+          extraClass={styles.extraClass}
           onClick={() => handleIncrease(item.id)}
-          data-testid="plus-button"
         >
           <AiOutlinePlusSquare size={22} />
-        </button>
+        </Button>
       </div>
 
-      <p className={styles.priceWrapper} data-testid="product-price">
-        {' '}
-        {item.price}
+      <p className={styles.priceWrapper} data-testid="product-total-price">
+        {item.totalPrice}
       </p>
-      <button
-        type="button"
+
+      <Button
+        testId="delete-button"
+        extraClass={styles.extraClass}
         onClick={() => handleDelete(item.id)}
-        data-testid="delete-button"
       >
         <RiDeleteBinLine size={22} />
-      </button>
+      </Button>
     </div>
   );
 };

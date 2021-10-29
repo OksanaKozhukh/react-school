@@ -13,20 +13,6 @@ export function* apiReqSaga(
   message: string,
   isFetchingItem: boolean,
 ) {
-  // console.log(isFetchingItem);
-  // yield put(start());
-  // try {
-  //   yield call(() => apiReq(action.payload));
-  //   yield put(success());
-
-  //   yield put(toastActions.showToast({ message }));
-
-  //   yield put(modalsActions.closeModal());
-  //   yield put(productActions.fetchProductList.request());
-  // } catch (err) {
-  //   yield put(error(err));
-  // }
-
   const { payload }: { payload: ProductPayload } = action;
   yield put(start());
   try {

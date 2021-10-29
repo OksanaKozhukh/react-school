@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-export const reqReducer = (initialState, reqAction) =>
+export const reqReducer = <T>(initialState: T, reqAction) =>
   createReducer(initialState, (builder) => {
     builder
       .addCase(reqAction.start, (state) => ({

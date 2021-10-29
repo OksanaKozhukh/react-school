@@ -6,10 +6,10 @@ import { productActions } from 'bus/product/actions';
 const initialState = {
   error: null,
   origins: [],
-  products: [],
   totalItems: 0,
   loading: false,
   succeed: false,
+  products: undefined,
 } as IFetchProductList;
 
 const fetchProductListReducer = createReducer(initialState, (builder) => {

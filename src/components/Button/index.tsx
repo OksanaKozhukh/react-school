@@ -6,23 +6,33 @@ import ButtonLoader from 'components/ButtonLoader';
 import styles from './styles.module.scss';
 
 type Props = {
-  title: string;
+  title?: string;
+  testId?: string;
   loading?: boolean;
-  onClick?: (...args: any[]) => void;
+  children?: object;
   disabled?: boolean;
   extraClass?: string;
+  onClick?: (...args: any[]) => void;
 };
 
 const Button: FC<Props> = ({
   title,
+  testId,
   loading,
-  disabled,
   onClick,
+  disabled,
+  children,
   extraClass,
 }: Props): ReactElement => (
   <div className={cn(styles.btn, extraClass)}>
-    <button type="submit" disabled={disabled} onClick={onClick}>
+    <button
+      type="submit"
+      disabled={disabled}
+      onClick={onClick}
+      data-testid={testId}
+    >
       {loading ? <ButtonLoader /> : <div>{title}</div>}
+      {children}
     </button>
   </div>
 );

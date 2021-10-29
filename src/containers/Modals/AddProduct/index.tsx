@@ -1,6 +1,6 @@
 import Select from 'react-select';
-import { FC, ReactElement } from 'react';
 import { useFormik } from 'formik';
+import { FC, ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Button from 'components/Button';
@@ -35,7 +35,7 @@ const AddProduct: FC = (): ReactElement => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit} id="formAdd">
+    <form onSubmit={formik.handleSubmit}>
       <div className={styles.wrapper}>
         <div className={styles.header}>
           <p>Add Product</p>

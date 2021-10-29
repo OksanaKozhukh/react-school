@@ -82,7 +82,7 @@ export interface IFetchProductItem extends IProductState {
 
 export interface IFetchProductList extends IProductState {
   origins: IOrigin[];
-  products: IItem[];
+  products: undefined | IItem[];
   totalItems: number;
 }
 

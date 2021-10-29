@@ -5,11 +5,12 @@ import { useDispatch } from 'react-redux';
 import { GrFormClose } from 'react-icons/gr';
 
 import { BOOK } from 'book';
-import { IItem, IItemWithQuantity } from 'interfaces';
+import Button from 'components/Button';
 import { MODALS_NAMES } from 'constants/index';
 import { cartActions } from 'bus/cart/actions';
 import { modalsActions } from 'bus/modals/actions';
 import { productActions } from 'bus/product/actions';
+import { IItem, IItemWithQuantity } from 'interfaces';
 
 import styles from './styles.module.scss';
 
@@ -21,17 +22,20 @@ const ProductItem: FC<Props> = ({ item }: Props): ReactElement => {
   const dispatch = useDispatch();
   const getOriginName = (el: string) => el[0].toUpperCase() + el.slice(1);
 
-  const handleAddClick = (el: IItem) =>
+  const handleAddToCart = (el: IItem) =>
     dispatch(
-      cartActions.addToCart({ ...el, quantity: 0 } as IItemWithQuantity),
+      cartActions.addToCart({
+        ...el,
+        quantity: 0,
+      } as IItemWithQuantity),
     );
 
-  const handleEditClick = (el: IItem) => {
+  const handleEdit = (el: IItem) => {
     dispatch(modalsActions.openModal(MODALS_NAMES.EDIT_PRODUCT));
     dispatch(productActions.selectProductForEdit(el));
   };
 
-  const handleDeleteClick = (id: string) => {
+  const handleDelete = (id: string) => {
     dispatch(modalsActions.openModal(MODALS_NAMES.DELETE_PRODUCT));
     dispatch(productActions.selectProductForDelete(id));
   };
@@ -43,7 +47,7 @@ const ProductItem: FC<Props> = ({ item }: Props): ReactElement => {
           size={25}
           className={styles.icon}
           data-testid="delete-icon"
-          onClick={() => handleDeleteClick(item.id)}
+          onClick={() => handleDelete(item.id)}
         />
       )}
       <h3 className={item.isEditable ? styles.nameWrapper : ''}>{item.name}</h3>
@@ -52,18 +56,24 @@ const ProductItem: FC<Props> = ({ item }: Props): ReactElement => {
         <p data-testid="item-origin">Origin: {getOriginName(item.origin)}</p>
         <p data-testid="item-price"> Price: $ {item.price}</p>
       </div>
+
       <div className={styles.btn}>
         <Link to={BOOK.PRODUCT_ITEM.replace(':id', item.id)}>
-          <button type="button">Details</button>
+          <Button title="Details" extraClass={styles.extraClass} />
         </Link>
+
         {item.isEditable ? (
-          <button type="button" onClick={() => handleEditClick(item)}>
-            Edit
-          </button>
+          <Button
+            title="Edit"
+            extraClass={styles.extraClass}
+            onClick={() => handleEdit(item)}
+          />
         ) : (
-          <button type="button" onClick={() => handleAddClick(item)}>
-            Add to cart
-          </button>
+          <Button
+            title="Add to cart"
+            extraClass={styles.extraClass}
+            onClick={() => handleAddToCart(item)}
+          />
         )}
       </div>
     </div>

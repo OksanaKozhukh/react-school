@@ -47,6 +47,7 @@ const selectAddState = (state: AppState) => state.add;
 export const selectAddStateLoading = createSelector([selectAddState], (state) =>
   get(state, 'loading'),
 );
+
 // EDIT
 
 const selectEditState = (state: AppState) => state.edit;

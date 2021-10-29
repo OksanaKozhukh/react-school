@@ -18,10 +18,9 @@ const cartReducer = createReducer(initialState, (builder) => {
       const list = [...state.cartProducts, action.payload]
         .map((item) =>
           item.id === action.payload.id
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + 1, totalPrice: item.quantity * item.price + item.price }
             : item,
         )
-        .map((el) => Object.assign(el, { totalPrice: el.price }));
       const uniqList = uniqBy(list, 'id');
       return {
         ...state,
@@ -45,36 +44,31 @@ const cartReducer = createReducer(initialState, (builder) => {
           ? {
             ...item,
             quantity: item.quantity + 1,
-            totalPrice: item.totalPrice + item.price,
+            totalPrice: item.quantity * item.price + item.price,
           }
           : item,
       ),
-      totalPrice:
-        Number(state.totalPrice) +
-        Number(
-          state.cartProducts
-            .filter((item) => item.id === action.payload)
-            .map((item) => item.price),
-        ),
-    }))
+      totalPrice: state.cartProducts.reduce(
+        (sum, cur) => sum + cur.price,
+        state.totalPrice,
+      ),
+    }
+    ))
     .addCase(cartActions.decreaseItem, (state, action) => ({
       ...state,
       cartProducts: state.cartProducts.map((item) =>
         item.id === action.payload
           ? {
             ...item,
-            quantity: item.quantity - 1,
-            totalPrice: item.totalPrice - item.price,
+            quantity: item.quantity - 1 > 0 ? item.quantity - 1 : item.quantity,
+            totalPrice: item.quantity - 1 > 0 ? item.quantity * item.price - item.price : item.quantity * item.price,
           }
           : item,
       ),
-      totalPrice:
-        Number(state.totalPrice) -
-        Number(
-          state.cartProducts
-            .filter((item) => item.id === action.payload)
-            .map((item) => item.price),
-        ),
+      totalPrice: state.cartProducts.reduce(
+        (sum, cur) => sum - cur.price > 0 ? sum - cur.price : sum,
+        state.totalPrice,
+      ),
     }));
 });
 

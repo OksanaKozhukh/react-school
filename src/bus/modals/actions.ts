@@ -8,6 +8,6 @@ enum ModalActionName {
 }
 
 export const modalsActions = {
-  openModal: createAction<string>(`${actionType}/${ModalActionName.OPEN}`),
   closeModal: createAction(`${actionType}/${ModalActionName.CLOSE}`),
+  openModal: createAction<string>(`${actionType}/${ModalActionName.OPEN}`),
 };

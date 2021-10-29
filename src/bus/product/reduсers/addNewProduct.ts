@@ -8,7 +8,7 @@ const initialState = {
   succeed: false,
 } as IProductState;
 
-const addNewProductReducer = reqReducer(
+const addNewProductReducer = reqReducer<IProductState>(
   initialState,
   productActions.addNewProduct,
 );

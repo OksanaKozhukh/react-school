@@ -1,11 +1,11 @@
 import { FC, ReactElement } from 'react';
 import { Link } from 'react-router-dom';
-import { CgAddR } from 'react-icons/cg';
 import { BiCart } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { BOOK } from 'book';
 import NavBar from 'components/NavBar';
+import Button from 'components/Button';
 import { MODALS_NAMES } from 'constants/index';
 import { modalsActions } from 'bus/modals/actions';
 import { selectTotalPrice } from 'bus/cart/selectors';
@@ -24,9 +24,12 @@ const Header: FC = (): ReactElement => {
 
   return (
     <div className={styles.header}>
-      <button type="button" onClick={addProduct}>
-        <CgAddR size={32} className={styles.icon} />
-      </button>
+      <Button
+        onClick={addProduct}
+        extraClass={styles.extraClass}
+        title="+ New"
+      />
+
       <NavBar />
       <div className={styles.filter}>
         <div className={styles.pageFilter}>
@@ -43,7 +46,9 @@ const Header: FC = (): ReactElement => {
       <div className={styles.cart}>
         <span className={styles.total}>Total $: {total}</span>
         <Link to={BOOK.CART}>
-          <BiCart size={32} className={styles.icon} />
+          <Button extraClass={styles.extraClass}>
+            <BiCart size={32} className={styles.icon} />
+          </Button>
         </Link>
       </div>
     </div>

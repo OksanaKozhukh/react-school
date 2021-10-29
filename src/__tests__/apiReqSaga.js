@@ -34,7 +34,6 @@ describe('add new product saga', () => {
       {isFetchingItem: false},
   );
     expect(addProduct).toHaveBeenCalledTimes(1);
-    console.log(dispatched);
     expect(dispatched[1]).toEqual(productActions.addNewProduct.success(mockProduct));
   });
 

@@ -30,14 +30,22 @@ const ProductList: FC = (): ReactElement => {
         <MainLoader />
       ) : (
         <>
-          <div className={styles.productsWrapper}>
-            {list.map((item) => (
-              <ProductItem key={item.id} item={item} />
-            ))}
-          </div>
-          <Pagination />
+          {list && list.length === 0 ? (
+            <div className={styles.empty}>
+              <p>
+                Your product list is empty. Please, tap New above to add new
+                product
+              </p>
+            </div>
+          ) : (
+            <div className={styles.productsWrapper}>
+              {list &&
+                list.map((item) => <ProductItem key={item.id} item={item} />)}
+            </div>
+          )}
         </>
       )}
+      <Pagination />
     </>
   );
 };
