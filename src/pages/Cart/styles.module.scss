@@ -1,17 +1,21 @@
 .cartWrapper::after {
-  top: 0;
   left: 0;
   right: 0;
+  top: 86px;
   bottom: 0;
   z-index: -1;
-  content: "";
+  content: '';
   height: 100%;
   opacity: 0.15;
   position: absolute;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url("https://1184592825.rsc.cdn77.org/main-files/uploads/2018/03/abandoned-cart-carritos-abandonados.jpg");
+  background-image: url('https://1184592825.rsc.cdn77.org/main-files/uploads/2018/03/abandoned-cart-carritos-abandonados.jpg');
+}
+
+.cartWrapper {
+  padding: 86px 0 0 40px;
 }
 
 .cartWrapper > p {
@@ -26,6 +30,10 @@
   color: grey;
   align-items: center;
   justify-content: center;
+
+  p {
+    font-size: 20px;
+  }
 }
 
 .blockWrapper {
@@ -37,7 +45,6 @@
     font-size: 20px;
     font-weight: bold;
   }
-
 
   button {
     border: none;

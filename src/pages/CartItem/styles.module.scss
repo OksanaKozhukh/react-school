@@ -1,20 +1,13 @@
 .cartItemWrapper {
   display: flex;
-  align-items: center;
   font-size: 18px;
+  align-items: center;
   padding: 20px 50px 20px 100px;
   justify-content: space-between;
   border-bottom: 1px solid lightgray;
+
   p {
     color: black;
-  }
-  button {
-    margin: 0;
-    padding: 0;
-    color: black;
-    border: none;
-    outline: none;
-    background-color: white;
   }
 }
 
@@ -36,6 +29,21 @@
     margin-left: 20px;
   }
 }
+
 .priceWrapper {
   width: 100px;
+}
+
+.extraClass {
+  margin: 0;
+
+  button {
+    padding: 0;
+    width: 22px;
+    height: 22px;
+    border: none;
+    outline: none;
+    color: black;
+    background-color: white;
+  }
 }

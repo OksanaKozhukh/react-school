@@ -1,7 +1,19 @@
 .productsWrapper {
   display: flex;
   flex-wrap: wrap;
-  padding: 70px 0;
+  align-items: center;
+  padding: 90px 0 70px;
+  justify-content: center;
+}
+
+.empty {
+  height: 500px;
+  display: flex;
+  color: grey;
   align-items: center;
   justify-content: center;
+
+  p {
+    font-size: 20px;
+  }
 }

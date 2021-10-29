@@ -6,10 +6,18 @@ const prettierOptions = JSON.parse(
 );
 
 module.exports = {
-  parser: 'babel-eslint',
-  extends: ['airbnb', 'prettier'],
-  plugins: ['prettier', 'redux-saga', 'react', 'react-hooks', 'jsx-a11y'],
+  parser: '@typescript-eslint/parser',
+  extends: ['airbnb-typescript', 'prettier'],
+  plugins: [
+    'prettier',
+    'redux-saga',
+    'react',
+    'react-hooks',
+    'jsx-a11y',
+    '@typescript-eslint',
+  ],
   rules: {
+    'no-plusplus': [2, { allowForLoopAfterthoughts: true }],
     'prettier/prettier': ['error', prettierOptions],
     'arrow-body-style': [2, 'as-needed'],
     'class-methods-use-this': 0,
@@ -68,5 +76,13 @@ module.exports = {
     'redux-saga/yield-effects': 2,
     'require-yield': 0,
     'no-param-reassign': ['error', { props: false }],
+  },
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+    project: './tsconfig.json',
   },
 };

@@ -6,7 +6,7 @@ import FilterPerPage from 'containers/Filters/FilterPerPage';
 jest.mock('react-select', () => ({ options, value, onChange }) => {
   function handleChange(event) {
     const option = options.find(
-      (option) => option.value === event.currentTarget.value,
+      (option) => option.value === event.target.value,
     );
     onChange(option);
   }

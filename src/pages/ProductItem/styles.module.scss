@@ -1,7 +1,7 @@
 .wrapper {
-  width: 300px;
+  width: 250px;
   margin: 20px;
-  height: 200px;
+  height: 160px;
   padding: 10px;
   display: flex;
   text-align: center;
@@ -21,6 +21,7 @@
   }
 
   h3 {
+    margin: 10px 0;
     font-size: 20px;
     font-weight: bold;
   }
@@ -34,10 +35,13 @@
   .btn {
     display: flex;
     justify-content: space-around;
+  }
+
+  .extraClass {
+    margin: 0;
 
     button {
-      margin: 0;
-      width: 110px;
+      width: 100px;
       border: none;
       outline: none;
       color: white;
@@ -45,10 +49,6 @@
       font-size: 18px;
       border-radius: 10px;
       background-color: gray;
-    }
-
-    button:hover {
-      transform: scale(0.9);
     }
   }
 }

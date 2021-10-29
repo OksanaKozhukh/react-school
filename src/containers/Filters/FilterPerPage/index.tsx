@@ -1,0 +1,35 @@
+import { FC, ReactElement } from 'react';
+import Select from 'react-select';
+import { useDispatch } from 'react-redux';
+
+import { IOption } from 'interfaces';
+import { productActions } from 'bus/product/actions';
+import { formUrlQuery } from 'bus/product/helpers/formUrlQuery';
+
+const options: Array<IOption> = [
+  { value: '10', label: '10' },
+  { value: '25', label: '25' },
+  { value: '50', label: '50' },
+];
+
+const FilterPerPage: FC = (): ReactElement => {
+  const dispatch = useDispatch();
+
+  const handleChange = (ev) => {
+    const data = { perPage: ev.value };
+    formUrlQuery(data);
+    dispatch(productActions.fetchProductList.request());
+  };
+
+  return (
+    <div>
+      <Select
+        options={options}
+        placeholder="Products per page"
+        onChange={(ev) => handleChange(ev)}
+      />
+    </div>
+  );
+};
+
+export default FilterPerPage;

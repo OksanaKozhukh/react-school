@@ -22,31 +22,31 @@ jest.mock('react-select', () => ({ options, value, onChange }) => {
   );
 });
 
+const initialState = {
+  productList: {
+    origins: [
+      { value: 'europe', label: 'Europe' },
+      { value: 'usa', label: 'Usa' },
+      { value: 'africa', label: 'Africa' },
+      { value: 'asia', label: 'Asia' },
+    ],
+  },
+};
+
 describe('AddProduct modal', () => {
   const mockedHandler = jest.fn();
+  let btn;
   let name;
   let price;
+  let origin;
   let getByText;
   let getByTestId;
   let getByLabelText;
-  let btn;
-  let origin;
 
   beforeEach(() => {
     ({ getByText, getByTestId, getByLabelText } = renderWithRedux(
       <AddProduct />,
-      {
-        initialState: {
-          productList: {
-            origins: [
-              { value: 'europe', label: 'Europe' },
-              { value: 'usa', label: 'Usa' },
-              { value: 'africa', label: 'Africa' },
-              { value: 'asia', label: 'Asia' },
-            ],
-          },
-        },
-      },
+      { initialState },
     ));
     name = getByLabelText(/Name/);
     origin = getByTestId('select');
@@ -55,15 +55,15 @@ describe('AddProduct modal', () => {
   });
 
   it('check form fields', () => {
-    expect(origin).toBeInTheDocument();
     expect(name).toBeInTheDocument();
     expect(price).toBeInTheDocument();
+    expect(origin).toBeInTheDocument();
   });
 
   it('check form fields to be required', () => {
-    expect(origin).toBeRequired();
     expect(name).toBeRequired();
     expect(price).toBeRequired();
+    expect(origin).toBeRequired();
   });
 
   it('render button and check it is disabled', () => {
@@ -107,15 +107,5 @@ describe('AddProduct modal', () => {
 
     // check button is not disabled when all required fields are filled and valid
     expect(btn).not.toHaveAttribute('disabled');
-
-    await waitFor(() => fireEvent.submit(btn));
-    // await waitFor(() => expect(mockedHandler).toHaveBeenCalledTimes(1));
-    // await waitFor(() =>
-    //   expect(mockedHandler).toHaveBeenCalledWith({
-    //     name: 'mockName',
-    //     price: 1000,
-    //     origin: 'usa',
-    //   }),
-    // );
   });
 });

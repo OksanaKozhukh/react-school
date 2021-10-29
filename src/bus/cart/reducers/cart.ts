@@ -1,0 +1,75 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable indent */
+import uniqBy from 'lodash/uniqBy';
+
+import { createReducer } from '@reduxjs/toolkit';
+
+import { CartState } from 'interfaces';
+import { cartActions } from 'bus/cart/actions';
+
+const initialState = {
+  cartProducts: [],
+  totalPrice: 0,
+} as CartState;
+
+const cartReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(cartActions.addToCart, (state, action) => {
+      const list = [...state.cartProducts, action.payload]
+        .map((item) =>
+          item.id === action.payload.id
+            ? { ...item, quantity: item.quantity + 1, totalPrice: item.quantity * item.price + item.price }
+            : item,
+        )
+      const uniqList = uniqBy(list, 'id');
+      return {
+        ...state,
+        cartProducts: uniqList,
+        totalPrice: uniqList.reduce(
+          (sum, cur) => sum + cur.quantity * cur.price,
+          0,
+        ),
+      };
+    })
+    .addCase(cartActions.deleteFromCart, (state, action) => ({
+      ...state,
+      cartProducts: state.cartProducts.filter(
+        (item) => item.id !== action.payload,
+      ),
+    }))
+    .addCase(cartActions.increaseItem, (state, action) => ({
+      ...state,
+      cartProducts: state.cartProducts.map((item) =>
+        item.id === action.payload
+          ? {
+            ...item,
+            quantity: item.quantity + 1,
+            totalPrice: item.quantity * item.price + item.price,
+          }
+          : item,
+      ),
+      totalPrice: state.cartProducts.reduce(
+        (sum, cur) => sum + cur.price,
+        state.totalPrice,
+      ),
+    }
+    ))
+    .addCase(cartActions.decreaseItem, (state, action) => ({
+      ...state,
+      cartProducts: state.cartProducts.map((item) =>
+        item.id === action.payload
+          ? {
+            ...item,
+            quantity: item.quantity - 1 > 0 ? item.quantity - 1 : item.quantity,
+            totalPrice: item.quantity - 1 > 0 ? item.quantity * item.price - item.price : item.quantity * item.price,
+          }
+          : item,
+      ),
+      totalPrice: state.cartProducts.reduce(
+        (sum, cur) => sum - cur.price > 0 ? sum - cur.price : sum,
+        state.totalPrice,
+      ),
+    }));
+});
+
+export default cartReducer;

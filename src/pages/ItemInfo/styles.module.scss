@@ -1,17 +1,5 @@
 .infoWrapper {
-  padding: 70px 0 0 40px;
-
-  button {
-    width: 110px;
-    border: none;
-    outline: none;
-    color: white;
-    cursor: pointer;
-    font-size: 18px;
-    border-radius: 10px;
-    margin: 20px auto 0;
-    background-color: gray;
-  }
+  padding: 86px 0 0 40px;
 
   h3 {
     font-size: 20px;
@@ -34,12 +22,28 @@
   right: 0;
   bottom: 0;
   z-index: -1;
-  content: "";
+  content: '';
   height: 100%;
   opacity: 0.15;
   position: absolute;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url("https://www.dynamiccio.com/wp-content/uploads/2020/02/ecoomerce.png");
+  background-image: url('https://www.dynamiccio.com/wp-content/uploads/2020/02/ecoomerce.png');
+}
+
+.extraClass {
+  margin: 0;
+
+  button {
+    width: 100px;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 10px;
+    margin: 20px auto 0;
+    background-color: gray;
+  }
 }
