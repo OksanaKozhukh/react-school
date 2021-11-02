@@ -29,7 +29,7 @@ const AddProduct: FC = (): ReactElement => {
     initialValues: addProduct.shape,
     validationSchema: addProduct.schema,
     onSubmit: ({ name, price, origin }) => {
-      const product: IProduct = { name, price, origin };
+      const product: IProduct = { product: { name, price, origin } };
       dispatch(productActions.addNewProduct.request({ product }));
     },
   });

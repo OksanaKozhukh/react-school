@@ -1,15 +1,17 @@
 nav {
   display: flex;
 
-  a:first-child {
-    margin-right: 25px;
-  }
-
   a {
     color: white;
+    font-size: 20px;
+    margin-left: 25px;
     font-weight: bold;
     text-decoration: none;
     text-transform: uppercase;
+  }
+
+  a:last-of-type {
+    margin-right: 25px;
   }
 
   a:hover, .isActive {

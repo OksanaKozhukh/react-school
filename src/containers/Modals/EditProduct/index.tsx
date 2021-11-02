@@ -32,8 +32,8 @@ const EditProduct: FC = (): ReactElement => {
   const formik = useFormik({
     initialValues: currentProduct,
     validationSchema: editProduct.shema,
-    onSubmit: ({ name, price, origin }: IProduct) => {
-      const product: IProduct = { name, price, origin };
+    onSubmit: ({ name, price, origin }) => {
+      const product: IProduct = { product: { name, price, origin } };
       dispatch(
         productActions.editProduct.request({ product, id: currentProduct.id }),
       );

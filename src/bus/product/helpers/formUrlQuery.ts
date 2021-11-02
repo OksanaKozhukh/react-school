@@ -9,3 +9,5 @@ export const formUrlQuery = (data: object) => {
   const searchString = qs.stringify(newParams);
   history.push({ search: `?${searchString}` });
 };
+
+export const clearUrlQuery = () => history.push({ search: '' });

@@ -10,35 +10,9 @@
   justify-content: space-between;
 }
 
-.filter {
+.products {
   display: flex;
-
-  .pageFilter {
-    width: 180px;
-    margin-right: 20px;
-  }
-
-  .countryFilter {
-    width: 370px;
-  }
-
-  .priceFilter {
-    input {
-      border: none;
-      outline: none;
-      height: 36px;
-      width: 70px;
-      font-size: 16px;
-      padding: 1px 8px;
-      border-radius: 4px;
-      margin-right: 20px;
-      font-family: 'Times New Roman';
-
-      ::placeholder {
-        font-size: 16px;
-      }
-    }
-  }
+  align-items: center;
 }
 
 .cart {
@@ -54,7 +28,6 @@
   .icon {
     color: white;
     cursor: pointer;
-    margin-right: 20px;
   }
 }
 

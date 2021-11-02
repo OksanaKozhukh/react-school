@@ -47,9 +47,11 @@ export interface DataOrigins {
 }
 
 export interface IProduct {
-  name: string;
-  origin: string;
-  price: number | string;
+  product: {
+    name: string;
+    origin: string;
+    price: number | string;
+  };
 }
 
 export interface IProductWithId extends IProduct {
