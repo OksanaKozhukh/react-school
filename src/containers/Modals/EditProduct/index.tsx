@@ -22,6 +22,7 @@ const EditProduct: FC = (): ReactElement => {
   const dispatch = useDispatch();
   const loading = useSelector(selectEditStateLoading);
   const currentProduct = useSelector(selectCurrentProduct);
+
   const options: Array<IOption> = useSelector(selectOrigins).map((el) => ({
     value: el.value,
     label: el.displayName,
@@ -86,13 +87,13 @@ const EditProduct: FC = (): ReactElement => {
             options={options}
             data-testid="product-origin"
             placeholder="Select country"
-            value={formik.values.origin}
             onChange={(value) => formik.setFieldValue('origin', value.value)}
-            defaultValue={
-              options.filter(
-                (option) => option.value === formik.initialValues.origin,
-              )[0]
-            }
+            value={options.filter(
+              (option) => option.value === formik.values.origin,
+            )}
+            defaultValue={options.filter(
+              (option) => option.value === currentProduct.origin,
+            )}
           />
           <div className={styles.error}>{formik.errors.origin}</div>
         </div>
