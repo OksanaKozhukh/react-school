@@ -41,10 +41,9 @@ const Filters: FC = (): ReactElement => {
     dispatch(productActions.fetchProductList.request());
   };
 
-  const handlePerPageFilter = (ev: ChangeEvent<HTMLSelectElement>) => {
-    const element = ev.target as HTMLSelectElement;
-    const params = { perPage: element.value };
-    handleChangeFilter(params, setPerPage, element.value);
+  const handlePerPageFilter = (ev) => {
+    const params = { perPage: ev.value };
+    handleChangeFilter(params, setPerPage, ev.value);
   };
 
   const handleMinPriceFilter = (ev: ChangeEvent<HTMLInputElement>) => {
