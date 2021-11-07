@@ -22,7 +22,7 @@ describe('ItemInfo page', () => {
   const { getByTestId, getByRole, queryByRole } = renderWithReduxAndRouter(
     <ItemInfo />, { initialState },
   );
-  it('check product details', () => {
+  it('should render correct product details', () => {
     expect(getByRole('heading')).toHaveTextContent('Golden Fish');
     expect(getByTestId('item-origin')).toHaveTextContent('Origin: Asia');
     expect(getByTestId('item-price')).toHaveTextContent('Price: $ 100');

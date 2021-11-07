@@ -18,7 +18,7 @@ describe('add new product saga', () => {
     };
   });
 
-  it('call api and dispatch success action', async () => {
+  it('should call api and dispatch success action', async () => {
     const addProduct = jest
       .spyOn(api, 'addNewProduct')
       .mockImplementation(() => Promise.resolve(mockProduct));
@@ -37,7 +37,7 @@ describe('add new product saga', () => {
     expect(dispatched[1]).toEqual(productActions.addNewProduct.success(mockProduct));
   });
 
-  it('call api and dispatch error action', async () => {
+  it('should call api and dispatch error action', async () => {
     const addProduct = jest
       .spyOn(api, 'addNewProduct')
       .mockImplementation(() => Promise.reject());

@@ -1,8 +1,9 @@
 import { FC, ReactElement } from 'react';
-import Select from 'react-select';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Input from 'components/Input';
+import Select from 'components/Select';
 import Button from 'components/Button';
 import { GrFormClose } from 'react-icons/gr';
 import { IOption, IProduct } from 'interfaces';
@@ -53,49 +54,44 @@ const EditProduct: FC = (): ReactElement => {
           />
         </div>
         <div className={styles.field}>
-          <div className={styles.title}>
-            <label htmlFor="name">Name:</label>
-          </div>
-          <input
+          <Input
+            {...formik.getFieldProps('name')}
+            id="name"
             type="text"
             name="name"
+            label="Name:"
             placeholder="Enter name"
-            value={formik.values.name}
-            onChange={formik.handleChange}
+            error={formik.errors.name}
+            touched={formik.touched.name}
           />
-          <div className={styles.error}>{formik.errors.name}</div>
         </div>
         <div className={styles.field}>
-          <div className={styles.title}>
-            <label htmlFor="price">Price:</label>
-          </div>
-          <input
+          <Input
+            {...formik.getFieldProps('price')}
+            id="price"
             type="number"
             name="price"
+            label="Price:"
             placeholder="Enter price"
-            value={formik.values.price}
-            onChange={formik.handleChange}
+            error={formik.errors.price}
+            touched={formik.touched.price}
           />
-          <div className={styles.error}>{formik.errors.price}</div>
         </div>
         <div className={styles.field}>
-          <div className={styles.title}>
-            <label htmlFor="origin">Origin:</label>
-          </div>
           <Select
+            {...formik.getFieldProps('origin')}
+            id="origin"
             name="origin"
+            label="Origin:"
             options={options}
-            data-testid="product-origin"
+            labelStyles={styles.title}
             placeholder="Select country"
-            onChange={(value) => formik.setFieldValue('origin', value.value)}
-            value={options.filter(
-              (option) => option.value === formik.values.origin,
-            )}
-            defaultValue={options.filter(
-              (option) => option.value === currentProduct.origin,
-            )}
+            error={formik.errors.origin}
+            touched={formik.touched.origin}
+            onChange={formik.setFieldValue}
+            defaultValue={currentProduct.origin}
+            onBlur={() => formik.setFieldTouched('origin')}
           />
-          <div className={styles.error}>{formik.errors.origin}</div>
         </div>
         <div className={styles.btn}>
           <Button

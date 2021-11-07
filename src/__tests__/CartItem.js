@@ -12,7 +12,7 @@ const product = {
 };
 
 describe('CartItem component', () => {
-  it('check product in cart', () => {
+  it('should display correct product details in cart', () => {
     const { getByText, getByTestId } = renderWithRedux(
       <CartItem item={product} />,
     );
