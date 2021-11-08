@@ -1,15 +1,16 @@
 import { FC, ReactElement } from 'react';
-import Select from 'react-select';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Input from 'components/Input';
+import { IProduct } from 'interfaces';
+import Select from 'components/Select';
 import Button from 'components/Button';
 import { GrFormClose } from 'react-icons/gr';
-import { IOption, IProduct } from 'interfaces';
 import { modalsActions } from 'bus/modals/actions';
 import { productActions } from 'bus/product/actions';
+import { useGetOriginOptions } from 'bus/product/hooks/useGetOriginOptions';
 import {
-  selectOrigins,
   selectCurrentProduct,
   selectEditStateLoading,
 } from 'bus/product/selectors';
@@ -22,18 +23,16 @@ const EditProduct: FC = (): ReactElement => {
   const dispatch = useDispatch();
   const loading = useSelector(selectEditStateLoading);
   const currentProduct = useSelector(selectCurrentProduct);
-  const options: Array<IOption> = useSelector(selectOrigins).map((el) => ({
-    value: el.value,
-    label: el.displayName,
-  }));
+
+  const options = useGetOriginOptions();
 
   const handleCloseModal = () => dispatch(modalsActions.closeModal());
 
   const formik = useFormik({
     initialValues: currentProduct,
     validationSchema: editProduct.shema,
-    onSubmit: ({ name, price, origin }: IProduct) => {
-      const product: IProduct = { name, price, origin };
+    onSubmit: ({ name, price, origin }) => {
+      const product: IProduct = { product: { name, price, origin } };
       dispatch(
         productActions.editProduct.request({ product, id: currentProduct.id }),
       );
@@ -52,49 +51,44 @@ const EditProduct: FC = (): ReactElement => {
           />
         </div>
         <div className={styles.field}>
-          <div className={styles.title}>
-            <label htmlFor="name">Name:</label>
-          </div>
-          <input
+          <Input
+            {...formik.getFieldProps('name')}
+            id="name"
             type="text"
             name="name"
+            label="Name:"
             placeholder="Enter name"
-            value={formik.values.name}
-            onChange={formik.handleChange}
+            error={formik.errors.name}
+            touched={formik.touched.name}
           />
-          <div className={styles.error}>{formik.errors.name}</div>
         </div>
         <div className={styles.field}>
-          <div className={styles.title}>
-            <label htmlFor="price">Price:</label>
-          </div>
-          <input
+          <Input
+            {...formik.getFieldProps('price')}
+            id="price"
             type="number"
             name="price"
+            label="Price:"
             placeholder="Enter price"
-            value={formik.values.price}
-            onChange={formik.handleChange}
+            error={formik.errors.price}
+            touched={formik.touched.price}
           />
-          <div className={styles.error}>{formik.errors.price}</div>
         </div>
         <div className={styles.field}>
-          <div className={styles.title}>
-            <label htmlFor="origin">Origin:</label>
-          </div>
           <Select
+            {...formik.getFieldProps('origin')}
+            id="origin"
             name="origin"
+            label="Origin:"
             options={options}
-            data-testid="product-origin"
+            labelStyles={styles.title}
             placeholder="Select country"
-            value={formik.values.origin}
-            onChange={(value) => formik.setFieldValue('origin', value.value)}
-            defaultValue={
-              options.filter(
-                (option) => option.value === formik.initialValues.origin,
-              )[0]
-            }
+            error={formik.errors.origin}
+            touched={formik.touched.origin}
+            onChange={formik.setFieldValue}
+            defaultValue={currentProduct.origin}
+            onBlur={() => formik.setFieldTouched('origin')}
           />
-          <div className={styles.error}>{formik.errors.origin}</div>
         </div>
         <div className={styles.btn}>
           <Button

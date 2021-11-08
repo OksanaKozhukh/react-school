@@ -16,7 +16,7 @@ const productNotEditable = {
 };
 
 describe('ProducItem component', () => {
-  it('check editable product item info', () => {
+  it('should render info for editable product item', () => {
     const { getByTestId, getByRole, queryByRole } = renderWithReduxAndRouter(
       <ProductItem item={productEditable} />,
     );
@@ -30,10 +30,9 @@ describe('ProducItem component', () => {
     ).not.toBeInTheDocument();
   });
 
-  it('check not editable product item info', () => {
-    const { getByTestId, getByRole, queryByRole } = renderWithReduxAndRouter(
-      <ProductItem item={productNotEditable} />,
-    );
+  it('should render info for not editable product item', () => {
+    const { getByTestId, getByRole, queryByRole, getByText } =
+      renderWithReduxAndRouter(<ProductItem item={productNotEditable} />);
     expect(getByRole('heading')).toHaveTextContent('Black Cat');
     expect(getByTestId('item-origin')).toHaveTextContent('Origin: Usa');
     expect(getByTestId('item-price')).toHaveTextContent('Price: $ 200');

@@ -1,14 +1,16 @@
-import Select from 'react-select';
 import { useFormik } from 'formik';
 import { FC, ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Input from 'components/Input';
+import { IProduct } from 'interfaces';
+import Select from 'components/Select';
 import Button from 'components/Button';
 import { GrFormClose } from 'react-icons/gr';
-import { IOption, IProduct } from 'interfaces';
 import { modalsActions } from 'bus/modals/actions';
 import { productActions } from 'bus/product/actions';
-import { selectOrigins, selectAddStateLoading } from 'bus/product/selectors';
+import { selectAddStateLoading } from 'bus/product/selectors';
+import { useGetOriginOptions } from 'bus/product/hooks/useGetOriginOptions';
 
 import { addProduct } from './shape';
 
@@ -20,22 +22,19 @@ const AddProduct: FC = (): ReactElement => {
 
   const handleCloseModal = () => dispatch(modalsActions.closeModal());
 
-  const options: Array<IOption> = useSelector(selectOrigins).map((el) => ({
-    value: el.value,
-    label: el.displayName,
-  }));
+  const options = useGetOriginOptions();
 
   const formik = useFormik({
     initialValues: addProduct.shape,
     validationSchema: addProduct.schema,
     onSubmit: ({ name, price, origin }) => {
-      const product: IProduct = { name, price, origin };
+      const product: IProduct = { product: { name, price, origin } };
       dispatch(productActions.addNewProduct.request({ product }));
     },
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form onSubmit={formik.handleSubmit} data-testid="form">
       <div className={styles.wrapper}>
         <div className={styles.header}>
           <p>Add Product</p>
@@ -46,51 +45,43 @@ const AddProduct: FC = (): ReactElement => {
           />
         </div>
         <div className={styles.field}>
-          <div className={styles.title}>
-            <label htmlFor="name">Name:</label>
-          </div>
-          <input
-            required
+          <Input
+            {...formik.getFieldProps('name')}
             id="name"
             type="text"
             name="name"
+            label="Name:"
             placeholder="Enter name"
-            value={formik.values.name}
-            onChange={formik.handleChange}
+            error={formik.errors.name}
+            touched={formik.touched.name}
           />
-          <div className={styles.error}>{formik.errors.name}</div>
         </div>
         <div className={styles.field}>
-          <div className={styles.title}>
-            <label htmlFor="price">Price:</label>
-          </div>
-          <input
-            required
+          <Input
+            {...formik.getFieldProps('price')}
             id="price"
             name="price"
             type="number"
+            label="Price:"
             placeholder="Enter price"
-            value={formik.values.price}
-            onChange={formik.handleChange}
+            error={formik.errors.price}
+            touched={formik.touched.price}
           />
-          <div className={styles.error}>{formik.errors.price}</div>
         </div>
         <div className={styles.field}>
-          <div className={styles.title}>
-            <label htmlFor="origin">Origin:</label>
-          </div>
-          <div data-testid="select-origin">
-            <Select
-              required
-              id="origin"
-              name="origin"
-              options={options}
-              placeholder="Select country"
-              value={formik.values.origins}
-              onChange={(value) => formik.setFieldValue('origin', value.value)}
-            />
-          </div>
-          <div className={styles.error}>{formik.errors.origins}</div>
+          <Select
+            {...formik.getFieldProps('origin')}
+            id="origin"
+            name="origin"
+            label="Origin:"
+            options={options}
+            labelStyles={styles.title}
+            placeholder="Select country"
+            error={formik.errors.origin}
+            touched={formik.touched.origin}
+            onChange={formik.setFieldValue}
+            onBlur={() => formik.setFieldTouched('origin')}
+          />
         </div>
         <Button
           title="Add"

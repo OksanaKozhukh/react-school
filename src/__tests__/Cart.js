@@ -39,34 +39,34 @@ describe('Cart page', () => {
     productQuantity = getByTestId('product-quantity');
   });
 
-  it('increment product quantity', () => {
+  it('should increment product quantity', () => {
     expect(productQuantity).toHaveTextContent(3);
     userEvent.click(plusBtn);
     expect(productQuantity).toHaveTextContent(4);
   });
 
-  it('decrement product quantity', () => {
+  it('should decrement product quantity', () => {
     expect(productQuantity).toHaveTextContent(3);
     userEvent.click(minusBtn);
     expect(productQuantity).toHaveTextContent(2);
   });
 
-  it('delete product from cart', () => {
+  it('should delete product from cart', () => {
     userEvent.click(deleteBtn);
     expect(queryByText('Generic Steel Fish')).not.toBeInTheDocument();
   });
 
-  it('check initial total price', () => {
+  it('should display initial total price', () => {
     expect(total).toHaveTextContent('Total price: 300 $');
   });
 
-  it('check total price after increment product quantity', () => {
+  it('should display total price after increment product quantity', () => {
     expect(productQuantity).toHaveTextContent(3);
     userEvent.click(plusBtn);
     expect(total).toHaveTextContent('Total price: 400 $');
   });
 
-  it('check total price after decrement product quantity', () => {
+  it('should display total price after decrement product quantity', () => {
     expect(productQuantity).toHaveTextContent(3);
     userEvent.click(minusBtn);
     expect(productQuantity).toHaveTextContent(2);

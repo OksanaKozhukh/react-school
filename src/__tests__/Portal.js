@@ -16,11 +16,11 @@ describe('Portal component', () => {
       )),
   );
 
-  it('modal is mounted', () => {
+  it('modal should be mounted', () => {
     expect(getByText('Add Product')).toBeInTheDocument();
   });
 
-  it('modal is unmounted', () => {
+  it('modal should be unmounted', () => {
     expect(getByText('Add Product')).toBeInTheDocument();
     unmount();
     expect(queryByText('Add New Product')).not.toBeInTheDocument();

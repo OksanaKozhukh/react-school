@@ -16,11 +16,11 @@ describe('Button component', () => {
     btn = getByRole('button', { name: 'Edit' });
   });
 
-  it('render button with title', () => {
+  it('should render button with title', () => {
     expect(btn).toBeInTheDocument();
   });
 
-  it('handle click events', () => {
+  it('should handle click events', () => {
     fireEvent.click(btn);
     expect(props.onClick).toHaveBeenCalledTimes(1);
   });

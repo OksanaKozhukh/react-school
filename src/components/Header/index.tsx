@@ -6,12 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BOOK } from 'book';
 import NavBar from 'components/NavBar';
 import Button from 'components/Button';
+import Filters from 'containers/Filters';
 import { MODALS_NAMES } from 'constants/index';
 import { modalsActions } from 'bus/modals/actions';
 import { selectTotalPrice } from 'bus/cart/selectors';
-import FilterPerPage from 'containers/Filters/FilterPerPage';
-import MinMaxPcice from 'containers/Filters/FilterMinMaxPrice';
-import FilterByCountry from 'containers/Filters/FilterByCountry';
 
 import styles from './styles.module.scss';
 
@@ -24,24 +22,16 @@ const Header: FC = (): ReactElement => {
 
   return (
     <div className={styles.header}>
-      <Button
-        onClick={addProduct}
-        extraClass={styles.extraClass}
-        title="+ New"
-      />
-
-      <NavBar />
-      <div className={styles.filter}>
-        <div className={styles.pageFilter}>
-          <FilterPerPage />
-        </div>
-        <div className={styles.priceFilter}>
-          <MinMaxPcice />
-        </div>
-        <div className={styles.countryFilter}>
-          <FilterByCountry />
-        </div>
+      <div className={styles.products}>
+        <NavBar />
+        <Button
+          onClick={addProduct}
+          extraClass={styles.extraClass}
+          title="+ Add"
+        />
       </div>
+
+      <Filters />
 
       <div className={styles.cart}>
         <span className={styles.total}>Total $: {total}</span>

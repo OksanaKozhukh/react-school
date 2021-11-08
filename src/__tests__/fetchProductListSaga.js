@@ -9,7 +9,7 @@ describe('fetch product list', () => {
 
   beforeEach(() => dispatched = []);
 
-  it('load products and handle them in case of success', async () => {
+  it('should load products and handle them in case of success', async () => {
     const mockData = [
       {
         price: 100,
@@ -43,7 +43,7 @@ describe('fetch product list', () => {
     );
   });
 
-  it('call api and dispatch error action', async () => {
+  it('should call api and dispatch error action', async () => {
     const requestProduct = jest
       .spyOn(api, 'fetchProductList')
       .mockImplementation(() => Promise.reject());

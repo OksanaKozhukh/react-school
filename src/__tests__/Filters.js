@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event';
 
+import Filter from 'containers/Filters';
 import { renderWithRedux } from 'utils/renderWithRedux';
-import MinMaxPcice from 'containers/Filters/FilterMinMaxPrice';
 
 describe('MinMaxPcice container', () => {
   let min;
@@ -11,11 +11,8 @@ describe('MinMaxPcice container', () => {
   let getByPlaceholderText;
 
   beforeEach(() => {
-    ({
-      getByDisplayValue,
-      queryByDisplayValue,
-      getByPlaceholderText,
-    } = renderWithRedux(<MinMaxPcice />));
+    ({ getByDisplayValue, queryByDisplayValue, getByPlaceholderText } =
+      renderWithRedux(<Filter />));
     min = getByPlaceholderText('Min price');
     max = getByPlaceholderText('Max price');
   });

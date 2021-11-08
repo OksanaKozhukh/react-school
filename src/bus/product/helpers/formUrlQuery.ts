@@ -7,5 +7,7 @@ export const formUrlQuery = (data: object) => {
   const params = qs.parse(window.location.search.substr(1));
   const newParams = { ...params, ...data };
   const searchString = qs.stringify(newParams);
-  history.push({ search: `?${searchString}` });
+  return history.push({ search: `?${searchString}` });
 };
+
+export const clearUrlQuery = () => history.push({ search: '' });
