@@ -11,11 +11,8 @@ describe('MinMaxPcice container', () => {
   let getByPlaceholderText;
 
   beforeEach(() => {
-    ({
-      getByDisplayValue,
-      queryByDisplayValue,
-      getByPlaceholderText,
-    } = renderWithRedux(<Filter />));
+    ({ getByDisplayValue, queryByDisplayValue, getByPlaceholderText } =
+      renderWithRedux(<Filter />));
     min = getByPlaceholderText('Min price');
     max = getByPlaceholderText('Max price');
   });

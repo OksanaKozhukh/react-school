@@ -3,13 +3,14 @@ import { FC, ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Input from 'components/Input';
+import { IProduct } from 'interfaces';
 import Select from 'components/Select';
 import Button from 'components/Button';
 import { GrFormClose } from 'react-icons/gr';
-import { IOption, IProduct } from 'interfaces';
 import { modalsActions } from 'bus/modals/actions';
 import { productActions } from 'bus/product/actions';
-import { selectOrigins, selectAddStateLoading } from 'bus/product/selectors';
+import { selectAddStateLoading } from 'bus/product/selectors';
+import { useGetOriginOptions } from 'bus/product/hooks/useGetOriginOptions';
 
 import { addProduct } from './shape';
 
@@ -21,10 +22,7 @@ const AddProduct: FC = (): ReactElement => {
 
   const handleCloseModal = () => dispatch(modalsActions.closeModal());
 
-  const options: Array<IOption> = useSelector(selectOrigins).map((el) => ({
-    value: el.value,
-    label: el.displayName,
-  }));
+  const options = useGetOriginOptions();
 
   const formik = useFormik({
     initialValues: addProduct.shape,
@@ -36,7 +34,7 @@ const AddProduct: FC = (): ReactElement => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form onSubmit={formik.handleSubmit} data-testid="form">
       <div className={styles.wrapper}>
         <div className={styles.header}>
           <p>Add Product</p>

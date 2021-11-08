@@ -8,18 +8,18 @@ import styles from './styles.module.scss';
 
 type Props = {
   id?: string;
-  label?: string;
-  labelStyles?: string;
   name: string;
-  options: Array<IOption>;
+  label?: string;
   isMulti?: boolean;
-  value: string | string[];
-  onBlur?: any;
-  onChange: (...args: any[]) => void;
   placeholder: string;
+  labelStyles?: string;
   defaultValue?: string;
+  options: Array<IOption>;
+  value: string | string[];
   error?: string | undefined;
   touched?: boolean | undefined;
+  onBlur?: (...args: any[]) => void;
+  onChange: (...args: any[]) => void;
 };
 
 const Select: FC<Props> = ({
@@ -37,12 +37,16 @@ const Select: FC<Props> = ({
   placeholder,
   defaultValue,
 }: Props): ReactElement => {
-  const getValue = () =>
-    !isMulti
-      ? options.find((option) => option.value === value) || ''
-      : options.filter((option) => value.includes(option.value)) || [];
+  const getValue = () => {
+    if (options) {
+      return isMulti
+        ? options.filter((option) => value.includes(option.value))
+        : options.find((option) => option.value === value);
+    }
+    return isMulti ? [] : '';
+  };
   const getDefaultValue = () =>
-    options.find((option) => option.value === defaultValue);
+    options && options.find((option) => option.value === defaultValue);
   const handleChange = (option) =>
     isMulti
       ? onChange(name, option ? option.map((item) => item.value) : [])

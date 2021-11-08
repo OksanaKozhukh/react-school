@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 import { FC, ReactElement } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { useFormik } from 'formik';
 import { IOption } from 'interfaces';
@@ -8,8 +8,8 @@ import Input from 'components/Input';
 import Select from 'components/Select';
 import Button from 'components/Button';
 import { productActions } from 'bus/product/actions';
-import { selectOrigins } from 'bus/product/selectors';
 import { clearUrlQuery, formUrlQuery } from 'bus/product/helpers/formUrlQuery';
+import { useGetOriginOptions } from 'bus/product/hooks/useGetOriginOptions';
 
 import { filters } from './shape';
 import styles from './styles.module.scss';
@@ -22,14 +22,7 @@ const perPageOptions: Array<IOption> = [
 
 const Filters: FC = (): ReactElement => {
   const dispatch = useDispatch();
-  const originsList = useSelector(selectOrigins);
-
-  const originOptions: IOption[] =
-    originsList &&
-    originsList.map((el) => ({
-      value: el.value,
-      label: el.displayName,
-    }));
+  const originOptions = useGetOriginOptions();
 
   const formik = useFormik({
     initialValues: filters.shape(),
