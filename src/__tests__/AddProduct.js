@@ -1,14 +1,13 @@
-// import selectEvent from 'react-select-event';
-import { fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, waitFor, screen } from '@testing-library/react';
 
 import AddProduct from 'containers/Modals/AddProduct';
 import { renderWithRedux } from 'utils/renderWithRedux';
 
-const initialState = {
+const mockedOrigins = {
   productList: {
     origins: [
-      { value: 'europe', label: 'Europe' },
       { value: 'usa', label: 'Usa' },
+      { value: 'europe', label: 'Europe' },
       { value: 'africa', label: 'Africa' },
       { value: 'asia', label: 'Asia' },
     ],
@@ -16,24 +15,21 @@ const initialState = {
 };
 
 describe('AddProduct modal', () => {
-  const mockedHandler = jest.fn();
   let btn;
   let name;
   let price;
   let origin;
-  let getByText;
-  let getByTestId;
-  let getByLabelText;
+  // let container;
 
   beforeEach(() => {
-    ({ getByText, getByTestId, getByLabelText } = renderWithRedux(
+    renderWithRedux(
       <AddProduct />,
-      { initialState },
-    ));
-    name = getByLabelText(/Name/);
-    origin = getByTestId('select');
-    price = getByLabelText(/Price/);
-    btn = getByText('Add').closest('button');
+      { mockedOrigins },
+    );
+    name = screen.getByLabelText(/Name/);
+    origin = screen.getByTestId('select');
+    price = screen.getByLabelText(/Price/);
+    btn = screen.getByRole('button', { name: 'Add' });
   });
 
   it('should render correct form fields', () => {
@@ -47,7 +43,7 @@ describe('AddProduct modal', () => {
     expect(btn).toHaveAttribute('disabled');
   });
 
-  it('should fill correct name input', async () => {
+  it('should handle change fields and submit form', async () => {
     await waitFor(() =>
       fireEvent.change(name, {
         target: {
@@ -55,11 +51,10 @@ describe('AddProduct modal', () => {
         },
       }),
     );
+
     expect(name).toBeValid();
     expect(name).toHaveValue('mockName');
-  });
 
-  it('should fill correct price input', async () => {
     await waitFor(() =>
       fireEvent.change(price, {
         target: {
@@ -67,16 +62,20 @@ describe('AddProduct modal', () => {
         },
       }),
     );
+    
     expect(price).toBeValid();
     expect(price).toHaveValue(1000);
+
+    // const input = origin.querySelector('input');
+    // const result = container.querySelector(`input[name=origin]`);
+
+    // await waitFor(() => fireEvent.keyDown(input, { key: 'ArrowDown' }));
+    // screen.debug();
+    // await waitFor(() => screen.getByText('Usa'));
+    // fireEvent.click(screen.getByText('Usa'));
+
+    // expect(result).toHaveValue('usa');
+
+    // await waitFor(() => fireEvent.submit(getByTestId('form')));
   });
-
-  // it('should fill correct origin select', async () => {
-  //   const input = origin.querySelector('input');
-  //   fireEvent.keyDown(input, { key: 'ArrowDown' });
-  //   await waitFor(() => getByText('Europe'));
-  //   fireEvent.click(screen.getByText('Europe'));
-
-  //   expect(imput).toHaveValue('europe')
-  // });
 });

@@ -1,5 +1,4 @@
-import selectEvent from 'react-select-event';
-import { fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, waitFor, screen } from '@testing-library/react';
 
 import { renderWithRedux } from 'utils/renderWithRedux';
 import EditProduct from 'containers/Modals/EditProduct';
@@ -25,22 +24,19 @@ const initialState = {
 describe('EditProduct modal', () => {
   let name;
   let price;
-  let origin;
+  let result;
   let editBtn;
   let resetBtn;
-  let getByRole;
-  let getByText;
-  let getByTestId;
-  let getByPlaceholderText;
+  let container;
 
   beforeEach(() => {
-    ({ getByRole, getByText, getByTestId, getByPlaceholderText } =
+    ({ container } =
       renderWithRedux(<EditProduct />, { initialState }));
-    origin = getByTestId('select');
-    name = getByPlaceholderText('Enter name');
-    price = getByPlaceholderText('Enter price');
-    editBtn = getByRole('button', { name: 'Edit' });
-    resetBtn = getByText('Reset').closest('button');
+    name = screen.getByPlaceholderText('Enter name');
+    price = screen.getByPlaceholderText('Enter price');
+    editBtn = screen.getByRole('button', { name: 'Edit' });
+    resetBtn = screen.getByText('Reset').closest('button');
+    result = container.querySelector(`input[name=origin]`);
   });
 
   it('should render Edit button and check it is disabled', () => {
@@ -55,7 +51,7 @@ describe('EditProduct modal', () => {
 
   it('should prefill modal fields with values from state', () => {
     expect(price).toHaveValue(2000);
-    // expect(origin).toHaveValue('europe');
+    expect(result).toHaveValue('europe');
     expect(name).toHaveValue('Golden fish');
   });
 
@@ -67,8 +63,11 @@ describe('EditProduct modal', () => {
         },
       }),
     );
+
     expect(name).toBeValid();
     expect(name).toHaveValue('Black cat');
+
+    await waitFor(() => fireEvent.submit(screen.getByTestId('form')));
   });
 
   it('should change product price', async () => {
@@ -79,20 +78,10 @@ describe('EditProduct modal', () => {
         },
       }),
     );
+
     expect(price).toBeValid();
     expect(price).toHaveValue(1500);
-  });
 
-  it('should change product origin', async () => {
-    // await waitFor(() =>
-    //   fireEvent.change(origin, {
-    //     target: {
-    //       value: 'usa',
-    //     },
-    //   }),
-    // );
-    // await selectEvent.select(origin, 'Usa');
-    // expect(origin).toBeValid();
-    // expect(origin).toHaveValue('usa');
+    await waitFor(() => fireEvent.submit(screen.getByTestId('form')));
   });
 });

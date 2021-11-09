@@ -40,7 +40,7 @@ const EditProduct: FC = (): ReactElement => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form onSubmit={formik.handleSubmit} data-testid="form">
       <div className={styles.wrapper}>
         <div className={styles.header}>
           <p>Edit Product</p>
