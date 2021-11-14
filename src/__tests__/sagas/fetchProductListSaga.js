@@ -1,6 +1,7 @@
 import { runSaga } from 'redux-saga';
 
 import * as api from 'bus/product/saga/apiRequests';
+import { mockedProductList }from 'utils/mockedData';
 import { productActions } from 'bus/product/actions';
 import { fetchProductListWorker } from 'bus/product/saga/workers';
 
@@ -10,23 +11,9 @@ describe('fetch product list', () => {
   beforeEach(() => dispatched = []);
 
   it('should load products and handle them in case of success', async () => {
-    const mockData = [
-      {
-        price: 100,
-        origin: 'asia',
-        isEditable: false,
-        name: 'Golden Fish',
-      },
-      {
-        price: 200,
-        origin: 'usa',
-        isEditable: false,
-        name: 'Black Cat',
-      },
-    ];
     const requestProductList = jest
       .spyOn(api, 'fetchProductList')
-      .mockImplementation(() => Promise.resolve(mockData));
+      .mockImplementation(() => Promise.resolve(mockedProductList));
     
     await runSaga(
       {
@@ -39,7 +26,7 @@ describe('fetch product list', () => {
 
     expect(requestProductList).toHaveBeenCalledTimes(1);
     expect(dispatched[1]).toEqual(
-      productActions.fetchProductList.success(mockData),
+      productActions.fetchProductList.success(mockedProductList),
     );
   });
 

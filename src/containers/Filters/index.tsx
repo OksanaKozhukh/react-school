@@ -66,10 +66,15 @@ const Filters: FC = (): ReactElement => {
   };
 
   return (
-    <form onSubmit={formik.handleSubmit} className={styles.filter}>
+    <form
+      data-testid="form"
+      className={styles.filter}
+      onSubmit={formik.handleSubmit}
+    >
       <div className={styles.pageFilter}>
         <Select
           name="perPage"
+          testId="perPage-select"
           options={perPageOptions}
           placeholder="Products per page"
           onChange={(_, value) => handlePerPageFilter(value)}

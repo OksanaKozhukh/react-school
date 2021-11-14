@@ -10,6 +10,7 @@ type Props = {
   id?: string;
   name: string;
   label?: string;
+  testId?: string;
   isMulti?: boolean;
   placeholder: string;
   labelStyles?: string;
@@ -29,6 +30,7 @@ const Select: FC<Props> = ({
   label,
   error,
   onBlur,
+  testId,
   options,
   touched,
   isMulti,
@@ -40,7 +42,9 @@ const Select: FC<Props> = ({
   const getValue = () => {
     if (options) {
       return isMulti
-        ? options.filter((option) => value.includes(option.value))
+        ? options.filter((option) =>
+            value ? value.includes(option.value) : [],
+          )
         : options.find((option) => option.value === value);
     }
     return isMulti ? [] : '';
@@ -53,7 +57,7 @@ const Select: FC<Props> = ({
       : onChange(name, option.value);
 
   return (
-    <div data-testid="select" className={styles.field}>
+    <div data-testid={testId || 'select'} className={styles.field}>
       {label && (
         <div className={labelStyles}>
           <label htmlFor={id}>{label}</label>

@@ -1,21 +1,20 @@
 import userEvent from '@testing-library/user-event';
 
 import Cart from 'pages/Cart';
+import { mockedProductItem } from 'utils/mockedData';
 import { renderWithReduxAndRouter } from 'utils/renderWithReduxAndRouter';
 
 const initialState = {
   cart: {
-    cartProducts: [
-      {
-        price: 100,
-        quantity: 3,
-        origin: 'asia',
-        isEditable: false,
-        name: 'Gold Fish',
-        id: '12',
-      },
-    ],
+    cartProducts: [mockedProductItem],
     totalPrice: 300,
+  },
+};
+
+const emptyState = {
+  cart: {
+    cartProducts: [],
+    totalPrice: 0,
   },
 };
 
@@ -23,6 +22,7 @@ describe('Cart page', () => {
   let total;
   let plusBtn;
   let minusBtn;
+  let getByText;
   let deleteBtn;
   let getByTestId;
   let queryByText;
@@ -30,7 +30,7 @@ describe('Cart page', () => {
 
   beforeEach(() => {
     ({ getByTestId, queryByText } = renderWithReduxAndRouter(<Cart />, {
-      initialState
+      initialState,
     }));
     plusBtn = getByTestId('plus-button');
     minusBtn = getByTestId('minus-button');
@@ -71,5 +71,14 @@ describe('Cart page', () => {
     userEvent.click(minusBtn);
     expect(productQuantity).toHaveTextContent(2);
     expect(total).toHaveTextContent('Total price: 200 $');
+  });
+
+  it('should display empty message if cart is empty', () => {
+    ({ getByText } = renderWithReduxAndRouter(<Cart />, {
+      emptyState,
+    }));
+    expect(
+      getByText('Your cart is empty. Please, add products'),
+    ).toBeInTheDocument();
   });
 });

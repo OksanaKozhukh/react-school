@@ -1,3 +1,10 @@
+import {
+  fireEvent,
+  waitFor,
+  screen,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
+
 import { renderWithRedux } from 'utils/renderWithRedux';
 import DeleteProduct from 'containers/Modals/DeleteProduct';
 
