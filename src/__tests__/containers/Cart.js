@@ -11,10 +11,18 @@ const initialState = {
   },
 };
 
+const emptyState = {
+  cart: {
+    cartProducts: [],
+    totalPrice: 0,
+  },
+};
+
 describe('Cart page', () => {
   let total;
   let plusBtn;
   let minusBtn;
+  let getByText;
   let deleteBtn;
   let getByTestId;
   let queryByText;
@@ -63,5 +71,14 @@ describe('Cart page', () => {
     userEvent.click(minusBtn);
     expect(productQuantity).toHaveTextContent(2);
     expect(total).toHaveTextContent('Total price: 200 $');
+  });
+
+  it('should display empty message if cart is empty', () => {
+    ({ getByText } = renderWithReduxAndRouter(<Cart />, {
+      emptyState,
+    }));
+    expect(
+      getByText('Your cart is empty. Please, add products'),
+    ).toBeInTheDocument();
   });
 });
