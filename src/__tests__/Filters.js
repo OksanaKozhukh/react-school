@@ -1,4 +1,3 @@
-import userEvent from '@testing-library/user-event';
 import { fireEvent, waitFor, screen } from '@testing-library/react';
 
 import Filter from 'containers/Filters';
@@ -22,16 +21,28 @@ describe('MinMaxPcice container', () => {
     expect(max).toBeInTheDocument();
   });
 
-  it('should handle correct min price', () => {
+  it('should handle correct min price', async () => {
     expect(screen.queryByDisplayValue('100')).not.toBeInTheDocument();
-    userEvent.type(min, '100');
+    await waitFor(() =>
+      fireEvent.change(min, {
+        target: {
+          value: '100',
+        },
+      }),
+    );
 
     expect(screen.getByDisplayValue('100')).toBeInTheDocument();
   });
 
-  it('should handle correct max price', () => {
+  it('should handle correct max price', async () => {
     expect(screen.queryByDisplayValue('500')).not.toBeInTheDocument();
-    userEvent.type(max, '500');
+    await waitFor(() =>
+    fireEvent.change(max, {
+      target: {
+        value: '500',
+      },
+    }),
+  );
 
     expect(screen.getByDisplayValue('500')).toBeInTheDocument();
   });

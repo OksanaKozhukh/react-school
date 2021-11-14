@@ -1,23 +1,15 @@
 import CartItem from 'pages/CartItem';
 import { renderWithRedux } from 'utils/renderWithRedux';
 
-const product = {
-  id: '12',
-  price: 100,
-  quantity: 2,
-  origin: 'asia',
-  totalPrice: 200,
-  name: 'Gold Fish',
-  isEditable: false,
-};
+import { mockedProductItemModified } from 'utils/mockedData';
 
 describe('CartItem component', () => {
   it('should display correct product details in cart', () => {
     const { getByText, getByTestId } = renderWithRedux(
-      <CartItem item={product} />,
+      <CartItem item={mockedProductItemModified} />,
     );
-    expect(getByText('Gold Fish')).toBeInTheDocument();
-    expect(getByTestId('product-quantity')).toHaveTextContent(2);
-    expect(getByTestId('product-total-price')).toHaveTextContent(200);
+    expect(getByText(mockedProductItemModified.name)).toBeInTheDocument();
+    expect(getByTestId('product-quantity')).toHaveTextContent(mockedProductItemModified.quantity);
+    expect(getByTestId('product-total-price')).toHaveTextContent(mockedProductItemModified.totalPrice);
   });
 });

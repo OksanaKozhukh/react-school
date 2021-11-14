@@ -15,11 +15,16 @@ type Props = {
 const CartItem: FC<Props> = ({ item }: Props): ReactElement => {
   const dispatch = useDispatch();
 
-  const handleDecrease = (id: string) => dispatch(cartActions.decreaseItem(id));
+  const handleDecrease = () => {
+    if (item.quantity - 1 > 0) {
+      return dispatch(cartActions.decreaseItem(item));
+    }
+    return null;
+  };
 
-  const handleIncrease = (id: string) => dispatch(cartActions.increaseItem(id));
+  const handleIncrease = () => dispatch(cartActions.increaseItem(item));
 
-  const handleDelete = (id: string) => dispatch(cartActions.deleteFromCart(id));
+  const handleDelete = () => dispatch(cartActions.deleteFromCart(item));
 
   return (
     <div className={styles.cartItemWrapper}>
@@ -29,7 +34,7 @@ const CartItem: FC<Props> = ({ item }: Props): ReactElement => {
         <Button
           testId="minus-button"
           extraClass={styles.extraClass}
-          onClick={() => handleDecrease(item.id)}
+          onClick={handleDecrease}
         >
           <AiOutlineMinusSquare size={22} />
         </Button>
@@ -39,7 +44,7 @@ const CartItem: FC<Props> = ({ item }: Props): ReactElement => {
         <Button
           testId="plus-button"
           extraClass={styles.extraClass}
-          onClick={() => handleIncrease(item.id)}
+          onClick={handleIncrease}
         >
           <AiOutlinePlusSquare size={22} />
         </Button>
@@ -52,7 +57,7 @@ const CartItem: FC<Props> = ({ item }: Props): ReactElement => {
       <Button
         testId="delete-button"
         extraClass={styles.extraClass}
-        onClick={() => handleDelete(item.id)}
+        onClick={handleDelete}
       >
         <RiDeleteBinLine size={22} />
       </Button>

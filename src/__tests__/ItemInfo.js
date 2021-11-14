@@ -1,15 +1,12 @@
+import upperFirst from 'lodash/upperFirst';
+
 import ItemInfo from 'pages/ItemInfo';
+import { mockedProduct } from 'utils/mockedData';
 import { renderWithReduxAndRouter } from 'utils/renderWithReduxAndRouter';
 
 const initialState = {
   productItem: {
-    product: {
-      id: 12,
-      price: 100,
-      origin: 'asia',
-      isEditable: true,
-      name: 'Golden Fish',
-    },
+    product: mockedProduct
   },
 };
 
@@ -23,11 +20,8 @@ describe('ItemInfo page', () => {
     <ItemInfo />, { initialState },
   );
   it('should render correct product details', () => {
-    expect(getByRole('heading')).toHaveTextContent('Golden Fish');
-    expect(getByTestId('item-origin')).toHaveTextContent('Origin: Asia');
-    expect(getByTestId('item-price')).toHaveTextContent('Price: $ 100');
-    expect(
-      queryByRole('button', { name: 'Add to cart' }),
-    ).not.toBeInTheDocument();
+    expect(getByRole('heading')).toHaveTextContent(mockedProduct.name);
+    expect(getByTestId('item-origin')).toHaveTextContent(`Origin: ${upperFirst(mockedProduct.origin)}`);
+    expect(getByTestId('item-price')).toHaveTextContent(`Price: $ ${(mockedProduct.price)}`);
   });
 });

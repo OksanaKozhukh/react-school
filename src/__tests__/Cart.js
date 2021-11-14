@@ -1,20 +1,12 @@
 import userEvent from '@testing-library/user-event';
 
 import Cart from 'pages/Cart';
+import { mockedProductItem } from 'utils/mockedData';
 import { renderWithReduxAndRouter } from 'utils/renderWithReduxAndRouter';
 
 const initialState = {
   cart: {
-    cartProducts: [
-      {
-        price: 100,
-        quantity: 3,
-        origin: 'asia',
-        isEditable: false,
-        name: 'Gold Fish',
-        id: '12',
-      },
-    ],
+    cartProducts: [mockedProductItem],
     totalPrice: 300,
   },
 };
@@ -30,7 +22,7 @@ describe('Cart page', () => {
 
   beforeEach(() => {
     ({ getByTestId, queryByText } = renderWithReduxAndRouter(<Cart />, {
-      initialState
+      initialState,
     }));
     plusBtn = getByTestId('plus-button');
     minusBtn = getByTestId('minus-button');

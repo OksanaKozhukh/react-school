@@ -1,16 +1,12 @@
 import { fireEvent, waitFor, screen } from '@testing-library/react';
 
+import { mockedOrigins } from 'utils/mockedData';
 import AddProduct from 'containers/Modals/AddProduct';
 import { renderWithRedux } from 'utils/renderWithRedux';
 
-const mockedOrigins = {
+const initialState = {
   productList: {
-    origins: [
-      { value: 'usa', label: 'Usa' },
-      { value: 'europe', label: 'Europe' },
-      { value: 'africa', label: 'Africa' },
-      { value: 'asia', label: 'Asia' },
-    ],
+    origins: mockedOrigins,
   },
 };
 
@@ -22,10 +18,7 @@ describe('AddProduct modal', () => {
   // let container;
 
   beforeEach(() => {
-    renderWithRedux(
-      <AddProduct />,
-      { mockedOrigins },
-    );
+    renderWithRedux(<AddProduct />, { initialState });
     name = screen.getByLabelText(/Name/);
     origin = screen.getByTestId('select');
     price = screen.getByLabelText(/Price/);
@@ -62,7 +55,7 @@ describe('AddProduct modal', () => {
         },
       }),
     );
-    
+
     expect(price).toBeValid();
     expect(price).toHaveValue(1000);
 

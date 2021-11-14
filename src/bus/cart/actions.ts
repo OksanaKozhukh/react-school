@@ -15,13 +15,13 @@ export const cartActions = {
   addToCart: createAction<IItemWithQuantity>(
     `${actionType}/${CartActionName.ADD_TO_CART}`,
   ),
-  deleteFromCart: createAction<string>(
+  deleteFromCart: createAction<IItemWithQuantity>(
     `${actionType}/${CartActionName.DELETE_FROM_CART}`,
   ),
-  increaseItem: createAction<string>(
+  increaseItem: createAction<IItemWithQuantity>(
     `${actionType}/${CartActionName.INCREASE_ITEM}`,
   ),
-  decreaseItem: createAction<string>(
+  decreaseItem: createAction<IItemWithQuantity>(
     `${actionType}/${CartActionName.DECREASE_ITEM}`,
   ),
 };

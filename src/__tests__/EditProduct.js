@@ -2,22 +2,14 @@ import { fireEvent, waitFor, screen } from '@testing-library/react';
 
 import { renderWithRedux } from 'utils/renderWithRedux';
 import EditProduct from 'containers/Modals/EditProduct';
+import { mockedProduct, mockedOrigins } from 'utils/mockedData';
 
 const initialState = {
   edit: {
-    currentProduct: {
-      name: 'Golden fish',
-      price: 2000,
-      origin: 'europe',
-    },
+    currentProduct: mockedProduct,
   },
   productList: {
-    origins: [
-      { value: 'europe', label: 'Europe' },
-      { value: 'usa', label: 'Usa' },
-      { value: 'africa', label: 'Africa' },
-      { value: 'asia', label: 'Asia' },
-    ],
+    origins: mockedOrigins,
   },
 };
 
@@ -30,8 +22,7 @@ describe('EditProduct modal', () => {
   let container;
 
   beforeEach(() => {
-    ({ container } =
-      renderWithRedux(<EditProduct />, { initialState }));
+    ({ container } = renderWithRedux(<EditProduct />, { initialState }));
     name = screen.getByPlaceholderText('Enter name');
     price = screen.getByPlaceholderText('Enter price');
     editBtn = screen.getByRole('button', { name: 'Edit' });
@@ -50,9 +41,9 @@ describe('EditProduct modal', () => {
   });
 
   it('should prefill modal fields with values from state', () => {
-    expect(price).toHaveValue(2000);
-    expect(result).toHaveValue('europe');
-    expect(name).toHaveValue('Golden fish');
+    expect(price).toHaveValue(mockedProduct.price);
+    expect(result).toHaveValue(mockedProduct.origin);
+    expect(name).toHaveValue(mockedProduct.name);
   });
 
   it('should change product name', async () => {

@@ -15,12 +15,15 @@ const initialState = {
 const cartReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(cartActions.addToCart, (state, action) => {
-      const list = [...state.cartProducts, action.payload]
-        .map((item) =>
-          item.id === action.payload.id
-            ? { ...item, quantity: item.quantity + 1, totalPrice: item.quantity * item.price + item.price }
-            : item,
-        )
+      const list = [...state.cartProducts, action.payload].map((item) =>
+        item.id === action.payload.id
+          ? {
+              ...item,
+              quantity: item.quantity + 1,
+              totalPrice: item.quantity * item.price + item.price,
+            }
+          : item,
+      );
       const uniqList = uniqBy(list, 'id');
       return {
         ...state,
@@ -34,41 +37,35 @@ const cartReducer = createReducer(initialState, (builder) => {
     .addCase(cartActions.deleteFromCart, (state, action) => ({
       ...state,
       cartProducts: state.cartProducts.filter(
-        (item) => item.id !== action.payload,
+        (item) => item.id !== action.payload.id,
       ),
+      totalPrice: state.totalPrice - action.payload.totalPrice,
     }))
     .addCase(cartActions.increaseItem, (state, action) => ({
       ...state,
       cartProducts: state.cartProducts.map((item) =>
-        item.id === action.payload
+        item.id === action.payload.id
           ? {
-            ...item,
-            quantity: item.quantity + 1,
-            totalPrice: item.quantity * item.price + item.price,
-          }
+              ...item,
+              quantity: item.quantity + 1,
+              totalPrice: item.totalPrice + item.price,
+            }
           : item,
       ),
-      totalPrice: state.cartProducts.reduce(
-        (sum, cur) => sum + cur.price,
-        state.totalPrice,
-      ),
-    }
-    ))
+      totalPrice: state.totalPrice + action.payload.price,
+    }))
     .addCase(cartActions.decreaseItem, (state, action) => ({
       ...state,
       cartProducts: state.cartProducts.map((item) =>
-        item.id === action.payload
+        item.id === action.payload.id
           ? {
-            ...item,
-            quantity: item.quantity - 1 > 0 ? item.quantity - 1 : item.quantity,
-            totalPrice: item.quantity - 1 > 0 ? item.quantity * item.price - item.price : item.quantity * item.price,
-          }
+              ...item,
+              quantity: item.quantity - 1,
+              totalPrice: item.totalPrice - item.price,
+            }
           : item,
       ),
-      totalPrice: state.cartProducts.reduce(
-        (sum, cur) => sum - cur.price > 0 ? sum - cur.price : sum,
-        state.totalPrice,
-      ),
+      totalPrice: state.totalPrice - action.payload.price,
     }));
 });
 
