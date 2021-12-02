@@ -7,6 +7,7 @@ export const mockedProductItem = {
   id: '12',
   quantity: 3,
   isEditable: false,
+  totalPrice: 0,
 };
 
 export const mockedProductItemModified = {

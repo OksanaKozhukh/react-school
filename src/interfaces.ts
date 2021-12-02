@@ -34,15 +34,15 @@ export interface IList {
   totalItems: number;
 }
 
-export interface DataList {
+export interface IDataList {
   data: IList;
 }
 
-export interface DataItem {
+export interface IDataItem {
   data: IItem;
 }
 
-export interface DataOrigins {
+export interface IDataOrigins {
   data: IOriginList;
 }
 
@@ -88,21 +88,21 @@ export interface IFetchProductList extends IProductState {
   totalItems: number;
 }
 
-export interface Toast {
+export interface IToast {
   message: string;
 }
 
-export interface CartState {
+export interface ICartState {
   cartProducts: IItemWithQuantity[];
   totalPrice: number;
 }
 
-export interface ModalState {
+export interface IModalState {
   name: string;
   opened: boolean;
 }
 
-export interface ProductPayload {
+export interface IProductPayload {
   id: string;
   product: IProduct;
 }

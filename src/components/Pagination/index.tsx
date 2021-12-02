@@ -1,27 +1,17 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { FC, ReactElement } from 'react';
-import qs from 'query-string';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { productActions } from 'bus/product/actions';
 import { formUrlQuery } from 'bus/product/helpers/formUrlQuery';
-import { selectTotalItems } from 'bus/product/selectors';
+import { useGetPaginationOptions } from 'bus/product/hooks/useGetPaginationOptions';
 
 import styles from './styles.module.scss';
 
 const Pagination: FC = (): ReactElement => {
   const dispatch = useDispatch();
-  const total = useSelector(selectTotalItems);
-  const options = qs.parse(window.location.search.substr(1));
-
-  const pageNumbers: number[] = [];
-  const perPage = options.perPage || 50;
-  const currentPage = options.page || 1;
-
-  for (let i = 1; i <= Math.ceil(total / +perPage); i++) {
-    pageNumbers.push(i);
-  }
+  const { pageNumbers, currentPage } = useGetPaginationOptions();
 
   const changeCurrentPage = (num: number) => {
     const data = { page: num };

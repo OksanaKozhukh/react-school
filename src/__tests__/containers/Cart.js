@@ -40,15 +40,15 @@ describe('Cart page', () => {
   });
 
   it('should increment product quantity', () => {
-    expect(productQuantity).toHaveTextContent(3);
+    expect(productQuantity).toHaveTextContent('3');
     userEvent.click(plusBtn);
-    expect(productQuantity).toHaveTextContent(4);
+    expect(productQuantity).toHaveTextContent('4');
   });
 
   it('should decrement product quantity', () => {
-    expect(productQuantity).toHaveTextContent(3);
+    expect(productQuantity).toHaveTextContent('3');
     userEvent.click(minusBtn);
-    expect(productQuantity).toHaveTextContent(2);
+    expect(productQuantity).toHaveTextContent('2');
   });
 
   it('should delete product from cart', () => {
@@ -61,15 +61,15 @@ describe('Cart page', () => {
   });
 
   it('should display total price after increment product quantity', () => {
-    expect(productQuantity).toHaveTextContent(3);
+    expect(productQuantity).toHaveTextContent('3');
     userEvent.click(plusBtn);
     expect(total).toHaveTextContent('Total price: 400 $');
   });
 
   it('should display total price after decrement product quantity', () => {
-    expect(productQuantity).toHaveTextContent(3);
+    expect(productQuantity).toHaveTextContent('3');
     userEvent.click(minusBtn);
-    expect(productQuantity).toHaveTextContent(2);
+    expect(productQuantity).toHaveTextContent('2');
     expect(total).toHaveTextContent('Total price: 200 $');
   });
 
