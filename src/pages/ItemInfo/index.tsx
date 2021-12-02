@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import upperFirst from 'lodash/upperFirst';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Header from 'components/Header';
 import Button from 'components/Button';
 import { cartActions } from 'bus/cart/actions';
 import MainLoader from 'components/MainLoader';
@@ -36,8 +35,6 @@ const ItemInfo: FC = (): ReactElement => {
 
   return (
     <>
-      <Header />
-
       {loading ? (
         <MainLoader />
       ) : (

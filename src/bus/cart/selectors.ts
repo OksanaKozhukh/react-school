@@ -3,12 +3,12 @@ import { createSelector } from '@reduxjs/toolkit';
 
 import { AppState } from 'rootReducer';
 
-const selectcartState = (state: AppState) => state.cart;
+const selectCartState = (state: AppState) => state.cart;
 
-export const selectCartProducts = createSelector([selectcartState], (state) =>
+export const selectCartProducts = createSelector([selectCartState], (state) =>
   get(state, 'cartProducts'),
 );
 
-export const selectTotalPrice = createSelector([selectcartState], (state) =>
+export const selectTotalPrice = createSelector([selectCartState], (state) =>
   get(state, 'totalPrice'),
 );

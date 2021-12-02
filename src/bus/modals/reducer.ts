@@ -1,12 +1,12 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { ModalState } from 'interfaces';
+import { IModalState } from 'interfaces';
 import { modalsActions } from 'bus/modals/actions';
 
 const initialState = {
   name: '',
   opened: false,
-} as ModalState;
+} as IModalState;
 
 const modalsReducer = createReducer(initialState, (builder) => {
   builder

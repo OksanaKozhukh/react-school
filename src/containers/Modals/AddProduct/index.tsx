@@ -24,13 +24,6 @@ const AddProduct: FC = (): ReactElement => {
 
   const options = useGetOriginOptions();
 
-  // const options = [
-  //   { value: 'usa', label: 'Usa' },
-  //   { value: 'europe', label: 'Europe' },
-  //   { value: 'africa', label: 'Africa' },
-  //   { value: 'asia', label: 'Asia' },
-  // ];
-
   const formik = useFormik({
     initialValues: addProduct.shape,
     validationSchema: addProduct.schema,

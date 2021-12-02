@@ -1,7 +1,13 @@
 import { createAction } from '@reduxjs/toolkit';
 import { createRequestAction } from 'bus/common/createAction';
 
-import { DataItem, DataList, DataOrigins, IItem, IProduct } from 'interfaces';
+import {
+  IItem,
+  IProduct,
+  IDataItem,
+  IDataList,
+  IDataOrigins,
+} from 'interfaces';
 
 const actionType = 'PRODUCT';
 
@@ -21,7 +27,7 @@ export const productActions = {
     actionType,
     `${ProductActionName.EDIT_PRODUCT}`,
   ),
-  fetchOrigins: createRequestAction<void, DataOrigins>(
+  fetchOrigins: createRequestAction<void, IDataOrigins>(
     actionType,
     `${ProductActionName.FETCH_ORIGINS}`,
   ),
@@ -33,11 +39,11 @@ export const productActions = {
     actionType,
     `${ProductActionName.ADD_NEW_PRODUCT}`,
   ),
-  fetchProductList: createRequestAction<void, DataList>(
+  fetchProductList: createRequestAction<void, IDataList>(
     actionType,
     `${ProductActionName.FETCH_PRODUCT_LIST}`,
   ),
-  fetchProductItem: createRequestAction<{ id: string }, DataItem>(
+  fetchProductItem: createRequestAction<{ id: string }, IDataItem>(
     actionType,
     `${ProductActionName.FETCH_PRODUCT_ITEM}`,
   ),

@@ -1,7 +1,7 @@
 import { SagaIterator } from '@redux-saga/core';
 import { call, fork, put } from 'redux-saga/effects';
 
-import { ProductPayload } from 'interfaces';
+import { IProductPayload } from 'interfaces';
 import { toastActions } from 'bus/toast/actions';
 import { modalsActions } from 'bus/modals/actions';
 import { productActions } from 'bus/product/actions';
@@ -13,7 +13,7 @@ export function* apiReqSaga(
   message: string,
   isFetchingItem: boolean,
 ) {
-  const { payload }: { payload: ProductPayload } = action;
+  const { payload }: { payload: IProductPayload } = action;
   yield put(start());
   try {
     if (!payload) {
@@ -44,7 +44,7 @@ export const createReqSaga = (
   message = '',
   isFetchingItem = false,
 ) =>
-  function* handleReqtSaga(action): SagaIterator {
+  function* handleReqSaga(action): SagaIterator {
     yield fork(
       apiReqSaga,
       action,

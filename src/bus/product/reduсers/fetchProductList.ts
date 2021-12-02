@@ -22,12 +22,12 @@ const fetchProductListReducer = createReducer(initialState, (builder) => {
       ...state,
       succeed: true,
       loading: false,
-      products: action.payload?.data.items,
-      totalItems: action.payload?.data.totalItems,
+      products: action.payload?.data?.items,
+      totalItems: action.payload?.data?.totalItems,
     }))
     .addCase(productActions.fetchOrigins.success, (state, action) => ({
       ...state,
-      origins: action.payload?.data.items,
+      origins: action.payload?.data?.items,
     }))
     .addCase(productActions.fetchProductList.error, (state, action) => ({
       ...state,

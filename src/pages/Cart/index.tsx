@@ -2,7 +2,6 @@ import { FC, ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
 import CartItem from 'pages/CartItem';
-import Header from 'components/Header';
 import { IItemWithQuantity } from 'interfaces';
 import { selectCartProducts, selectTotalPrice } from 'bus/cart/selectors';
 
@@ -15,8 +14,6 @@ const Cart: FC = (): ReactElement => {
 
   return (
     <>
-      <Header />
-
       {cartProducts.length > 0 ? (
         <div className={styles.cartWrapper}>
           {cartProducts.map((item: IItemWithQuantity) => (

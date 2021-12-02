@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 
-import { Toast } from 'interfaces';
+import { IToast } from 'interfaces';
 
 const actionType = 'TOAST';
 
@@ -9,5 +9,5 @@ enum ToastActionName {
 }
 
 export const toastActions = {
-  showToast: createAction<Toast>(`${actionType}/${ToastActionName.SHOW}`),
+  showToast: createAction<IToast>(`${actionType}/${ToastActionName.SHOW}`),
 };

@@ -1,13 +1,12 @@
 import { useEffect, FC, ReactElement } from 'react';
-import qs from 'query-string';
 import isEmpty from 'lodash/isEmpty';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Header from 'components/Header';
 import ProductItem from 'pages/ProductItem';
 import Pagination from 'components/Pagination';
 import MainLoader from 'components/MainLoader';
 import { productActions } from 'bus/product/actions';
+import { getParams } from 'bus/product/helpers/formUrlQuery';
 import {
   selectProductList,
   selectProductListLoading,
@@ -20,7 +19,7 @@ const ProductList: FC = (): ReactElement => {
   const list = useSelector(selectProductList);
   const loading = useSelector(selectProductListLoading);
 
-  const queryParams = qs.parse(window.location.search.substr(1));
+  const queryParams = getParams();
 
   useEffect(() => {
     dispatch(productActions.fetchOrigins.request());
@@ -29,7 +28,6 @@ const ProductList: FC = (): ReactElement => {
 
   return (
     <>
-      <Header />
       {loading ? (
         <MainLoader />
       ) : (

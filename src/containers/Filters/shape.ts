@@ -1,9 +1,9 @@
-import qs from 'query-string';
 import { object, array, number } from 'yup';
 
 import { FORM_FIELDS } from 'constants/index';
+import { getParams } from 'bus/product/helpers/formUrlQuery';
 
-const queryParams = qs.parse(window.location.search.substr(1));
+const queryParams = getParams();
 const { PER_PAGE, MIN_PRICE, MAX_PRICE, ORIGINS } = FORM_FIELDS;
 
 const initialValues = () => ({

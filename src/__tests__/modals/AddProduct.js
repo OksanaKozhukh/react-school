@@ -15,7 +15,6 @@ describe('AddProduct modal', () => {
   let name;
   let price;
   let origin;
-  // let container;
 
   beforeEach(() => {
     renderWithRedux(<AddProduct />, { initialState });
@@ -58,17 +57,5 @@ describe('AddProduct modal', () => {
 
     expect(price).toBeValid();
     expect(price).toHaveValue(1000);
-
-    // const input = origin.querySelector('input');
-    // const result = container.querySelector(`input[name=origin]`);
-
-    // await waitFor(() => fireEvent.keyDown(input, { key: 'ArrowDown' }));
-    // screen.debug();
-    // await waitFor(() => screen.getByText('Usa'));
-    // fireEvent.click(screen.getByText('Usa'));
-
-    // expect(result).toHaveValue('usa');
-
-    // await waitFor(() => fireEvent.submit(getByTestId('form')));
   });
 });

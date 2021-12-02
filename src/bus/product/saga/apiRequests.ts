@@ -2,7 +2,7 @@ import axios, { AxiosPromise } from 'axios';
 
 import { BOOK } from 'book';
 import { API, apiKey } from 'constants/index';
-import { IItem, IList, IOrigin, ProductPayload } from 'interfaces';
+import { IItem, IList, IOrigin, IProductPayload } from 'interfaces';
 
 export const fetchProductList = (
   params: object,
@@ -20,7 +20,7 @@ export const fetchProductList = (
   });
 
 export const fetchProductItem = (
-  payload: ProductPayload,
+  payload: IProductPayload,
 ): AxiosPromise<IItem> =>
   axios({
     method: 'get',
@@ -30,7 +30,7 @@ export const fetchProductItem = (
 export const fetchOrigins = (): AxiosPromise<IOrigin[]> =>
   axios({ method: 'get', url: API.PRODUCT.FETCH_ORIGINS });
 
-export const deleteProduct = (payload: ProductPayload) =>
+export const deleteProduct = (payload: IProductPayload) =>
   axios({
     method: 'delete',
     url: API.PRODUCT.PRODUCT_ITEM.replace(':id', payload.id),
@@ -39,7 +39,7 @@ export const deleteProduct = (payload: ProductPayload) =>
     },
   });
 
-export const addNewProduct = (payload: ProductPayload) =>
+export const addNewProduct = (payload: IProductPayload) =>
   axios({
     method: 'post',
     data: payload.product,
@@ -49,7 +49,7 @@ export const addNewProduct = (payload: ProductPayload) =>
     url: API.PRODUCT.PRODUCT_LIST,
   });
 
-export const editProduct = (payload: ProductPayload) =>
+export const editProduct = (payload: IProductPayload) =>
   axios({
     method: 'patch',
     data: payload.product,

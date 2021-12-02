@@ -1,15 +1,15 @@
 /* eslint-disable no-undef */
-import qs from 'query-string';
 import { call, put, delay } from 'redux-saga/effects';
 import { SagaIterator } from '@redux-saga/core';
 
 import { BOOK } from 'book';
-import { DataList } from 'interfaces';
+import { IDataList } from 'interfaces';
 import { productActions } from 'bus/product/actions';
+import { getParams } from 'bus/product/helpers/formUrlQuery';
 import { fetchProductList } from 'bus/product/saga/apiRequests';
 
 export function* fetchProductListWorker(): SagaIterator {
-  const queryParams = qs.parse(window.location.search.substr(1));
+  const queryParams = getParams();
   if (queryParams) yield delay(1000);
 
   const { pathname } = window.location;
@@ -23,7 +23,9 @@ export function* fetchProductListWorker(): SagaIterator {
   yield put(productActions.fetchProductList.start());
 
   try {
-    const data: DataList = yield call(() => fetchProductList(params, pathname));
+    const data: IDataList = yield call(() =>
+      fetchProductList(params, pathname),
+    );
     yield put(productActions.fetchProductList.success(data));
   } catch (error) {
     yield put(productActions.fetchProductList.error(error));
